@@ -1,48 +1,24 @@
 import { getArtisanRequests } from "@/lib/data/getArtisanRequests";
 import { acceptRequest, rejectRequest } from "@/lib/actions/serviceRequests";
 import { getCurrentUser } from "@/lib/auth/getCurrentUser";
-import { createSupabaseServer } from "@/lib/supabase/server";
 
 export default async function ArtisanRequestsPage() {
-  const supabase = await createSupabaseServer();
+  /* 1️⃣ Get current user */
+  const user = await getCurrentUser();
 
-  /* 1️⃣ Get current user (auth + profile) */
-  const currentUser = await getCurrentUser();
-
-  if (!currentUser) {
+  if (!user) {
     return <p>Please login</p>;
   }
 
   /* 2️⃣ Ensure artisan role */
-  if (currentUser.profile.role !== "artisan") {
+  if (user.role !== "artisan") {
     return <p>Unauthorized</p>;
   }
 
-  /* 3️⃣ Fetch artisan profile */
-  const { data: requests, error } = await supabase
-    .from("job_requests")
-    .select(
-      `
-    id,
-    status,
-    created_at,
-    artisan:artisan_id (
-      full_name
-    ),
-    service:service_id (
-      name
-    )
-  `
-    )
-    .eq("client_id", user.id);
+  /* 3️⃣ Fetch artisan job requests */
+  const requests = await getArtisanRequests(user.id);
 
-  if (artisanError || !artisan) {
-    return <p>Artisan profile not found</p>;
-  }
-
-  /* 4️⃣ Fetch artisan requests */
-  const requests = await getArtisanRequests(artisan.id);
-
+  /* 4️⃣ Render */
   return (
     <div className="p-6 max-w-3xl mx-auto">
       <h1 className="text-2xl font-bold mb-6">Service Requests</h1>
