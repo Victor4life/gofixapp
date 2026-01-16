@@ -34,8 +34,15 @@ export default function Testimonials() {
         }}
       />
 
-      {/* 🔹 GRADIENT OVERLAY (Deep Blue/Slate for readability) */}
-      <div className="absolute inset-0 bg-[#000b76]  z-10" />
+      {/* 🔹 GRADIENT OVERLAY */}
+      <div className="absolute inset-0 bg-[#000b76]/95 z-10" />
+
+      {/* 🔹 ADDED BEAUTIFICATION ELEMENTS */}
+      <div className="absolute inset-0 z-20 pointer-events-none">
+        {/* Decorative Floating Shapes (Glass Orbs) */}
+        <div className="absolute bottom-1/2 left-5 w-8 h-8 bg-blue-400/20 rounded-full blur-sm animate-ping" />
+        <div className="absolute bottom-1/4 right-5 w-8 h-8 bg-blue-400/20 rounded-full blur-sm animate-ping" />
+      </div>
 
       {/* 🔹 CONTENT SLIDER CONTAINER */}
       <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24 relative z-30">
@@ -50,7 +57,6 @@ export default function Testimonials() {
         {/* The Sliding Window */}
         <div className="overflow-hidden">
           <div className="flex animate-testimonial-slide">
-            {/* Duplicate list to create infinite loop effect */}
             {[...quotes, ...quotes].map((item, index) => (
               <div key={index} className="min-w-full md:pr-24">
                 <span className="text-8xl font-serif text-blue-400/30 leading-none block -mb-10 select-none">
@@ -77,7 +83,7 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Minimal Progress Indicator / Button */}
+        {/* Progress Indicator */}
         <div className="absolute right-8 md:right-24 bottom-0 flex items-center gap-4">
           <div className="h-px w-24 bg-white/10 relative overflow-hidden">
             <div className="absolute inset-0 bg-blue-500 animate-progress-line" />
@@ -88,30 +94,23 @@ export default function Testimonials() {
         </div>
       </div>
 
-      {/* 🔹 ANIMATIONS */}
       <style jsx global>{`
         @keyframes testimonial-slide {
-          0% {
-            transform: translateX(0);
-          }
+          0%,
           16.66% {
             transform: translateX(0);
-          } /* Stay on 1st slide */
-          33.33% {
-            transform: translateX(-100%);
-          } /* Move to 2nd */
+          }
+          33.33%,
           50% {
             transform: translateX(-100%);
-          } /* Stay on 2nd */
-          66.66% {
-            transform: translateX(-200%);
-          } /* Move to 3rd */
+          }
+          66.66%,
           83.33% {
             transform: translateX(-200%);
-          } /* Stay on 3rd */
+          }
           100% {
             transform: translateX(-300%);
-          } /* Loop back */
+          }
         }
 
         @keyframes progress-line {

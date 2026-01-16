@@ -32,19 +32,24 @@ export default async function ClientRequestsPage() {
     status,
     created_at,
     artisan:artisan_id (
-      full_name
+      user:user_id (
+        full_name
+      )
     ),
     service:service_id (
       name
     )
   `
     )
-    .eq("client_id", user.id);
+    .eq("client_id", user.id)
+    .order("created_at", { ascending: false });
 
   if (error) {
     console.error(error);
     return <p>Error loading requests</p>;
   }
+
+  console.log("AUTH CHECK", user);
 
   /* 4️⃣ Render */
   return (
@@ -55,16 +60,10 @@ export default async function ClientRequestsPage() {
 
       <div className="space-y-4">
         {requests.map((r: any) => (
-          <div key={r.id} className="border p-4 rounded bg-white">
-            <p className="font-semibold">
-              {r.artisan?.full_name ?? "Unknown artisan"}
-            </p>
-
-            <p className="text-sm text-gray-600">
-              {r.service?.name ?? "Unknown service"}
-            </p>
-
-            <p className="text-sm mt-1 capitalize">Status: {r.status}</p>
+          <div key={r.id}>
+            <p>{r.artisan?.[0]?.user?.[0]?.full_name ?? "Unknown artisan"}</p>
+            <p>{r.service?.[0]?.name ?? "Unknown service"}</p>
+            <p>{r.status}</p>
           </div>
         ))}
       </div>

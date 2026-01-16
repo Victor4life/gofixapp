@@ -1,30 +1,31 @@
+// lib/data/getArtisanRequests.ts
 import { createSupabaseServer } from "@/lib/supabase/server";
 
-export async function getArtisanRequests(artisanProfileId: string) {
+export async function getArtisanRequests(artisanUserId: string) {
   const supabase = await createSupabaseServer();
 
   const { data, error } = await supabase
-    .from("service_requests")
+    .from("job_requests")
     .select(
       `
       id,
       status,
       created_at,
-      client:users!service_requests_client_id_fkey (
+      client:client_id (
         full_name
       ),
-      service:services (
+      service:service_id (
         name
       )
     `
     )
-    .eq("artisan_id", artisanProfileId)
+    .eq("artisan_id", artisanUserId)
     .order("created_at", { ascending: false });
 
   if (error) {
-    console.error("getArtisanRequests error:", error.message);
+    console.error("getArtisanRequests error:", error);
     return [];
   }
 
-  return data;
+  return data ?? [];
 }

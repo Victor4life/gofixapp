@@ -6,7 +6,6 @@ export default function LoadingScreen() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial asset loading
     const timer = setTimeout(() => setLoading(false), 2500);
     return () => clearTimeout(timer);
   }, []);
@@ -14,37 +13,56 @@ export default function LoadingScreen() {
   if (!loading) return null;
 
   return (
-    <div className="fixed inset-0 z-[9999] bg-slate-900 flex flex-col items-center justify-center overflow-hidden">
+    <div className="fixed inset-0 z-[9999] bg-[#000b76] flex flex-col items-center justify-center overflow-hidden">
       {/* 🔹 Background Ambient Glow */}
-      <div className="absolute w-[500px] h-[500px] bg-blue-600/20 blur-[150px] rounded-full animate-pulse" />
+      <div className="absolute w-[600px] h-[600px] bg-blue-500/20 blur-[180px] rounded-full animate-pulse" />
 
-      <div className="relative z-10 flex flex-col items-center space-y-8 text-center px-6">
+      {/* 🔹 Floating Mesh Texture */}
+      <div
+        className="absolute inset-0 opacity-[0.05]"
+        style={{
+          backgroundImage: `radial-gradient(circle, #fff 1px, transparent 1px)`,
+          backgroundSize: "40px 40px",
+        }}
+      />
+
+      <div className="relative z-10 flex flex-col items-center space-y-12 text-center px-6">
         {/* Animated Hammer Logo */}
         <div className="relative">
-          <div className="w-24 h-24 bg-blue-600 rounded-[2.5rem] flex items-center justify-center shadow-2xl shadow-blue-500/40 animate-bounce transition-all duration-1000">
-            <Hammer size={40} className="text-white fill-white/10" />
+          <div className="w-28 h-28 bg-white rounded-[2.5rem] flex items-center justify-center shadow-[0_20px_50px_rgba(0,0,0,0.3)] animate-bounce-slow">
+            <Hammer size={48} className="text-[#000b76] fill-[#000b76]/5" />
           </div>
-          {/* Shimmer Orbit */}
-          <div className="absolute inset-[-10px] border-2 border-blue-400/30 rounded-[3rem] animate-[spin_4s_linear_infinite]" />
+
+          {/* Shimmer Orbit Lines */}
+          <div className="absolute inset-[-15px] border border-blue-400/20 rounded-[3.5rem] animate-[spin_6s_linear_infinite]" />
+          <div className="absolute inset-[-30px] border border-blue-400/10 rounded-[4rem] animate-[spin_8s_linear_infinite_reverse]" />
         </div>
 
-        <div className="space-y-2">
-          <h2 className="text-4xl font-fantasy text-white tracking-[0.2em] animate-pulse">
+        {/* Textual Branding */}
+        <div className="space-y-4">
+          <h2 className="text-5xl font-black text-white tracking-[0.3em] uppercase transition-all">
             GO-FIX
           </h2>
-          <div className="flex items-center justify-center space-x-1.5">
-            <div className="h-[2px] w-8 bg-blue-600 rounded-full animate-[shimmer_2s_infinite]" />
-            <p className="text-blue-400 text-[10px] font-bold uppercase tracking-[0.4em] translate-x-1">
+
+          {/* Aligned Subtext Row */}
+          <div className="flex items-center justify-center space-x-4">
+            <div className="h-[1px] bg-gradient-to-r from-transparent to-blue-500 animate-[line-expand_2s_infinite]" />
+            <p className="text-blue-400 text-[11px] font-black uppercase tracking-[0.5em] whitespace-nowrap">
               Elite Artisans
             </p>
-            <div className="h-[2px] w-8 bg-blue-600 rounded-full animate-[shimmer_2s_infinite]" />
+            <div className="h-[1px] bg-gradient-to-l from-transparent to-blue-500 animate-[line-expand_2s_infinite]" />
           </div>
         </div>
       </div>
 
-      {/* 🔹 Bottom Progress Bar */}
-      <div className="absolute bottom-20 w-48 h-[1px] bg-slate-800 overflow-hidden">
-        <div className="h-full bg-blue-500 animate-[loading_2.5s_ease-in-out_forwards]" />
+      {/* 🔹 Sleek Center-Aligned Progress Bar */}
+      <div className="absolute bottom-24 flex flex-col items-center space-y-4">
+        <div className="w-48 h-[2px] bg-white/10 rounded-full overflow-hidden">
+          <div className="h-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.8)] animate-[loading_2.5s_ease-in-out_forwards]" />
+        </div>
+        <span className="text-blue-200/40 text-[9px] font-bold uppercase tracking-widest">
+          Establishing Secure Session
+        </span>
       </div>
 
       <style jsx>{`
@@ -56,18 +74,27 @@ export default function LoadingScreen() {
             transform: translateX(0);
           }
         }
-        @keyframes shimmer {
-          0% {
-            opacity: 0.3;
+        @keyframes line-expand {
+          0%,
+          100% {
             width: 10px;
+            opacity: 0.2;
           }
           50% {
+            width: 50px;
             opacity: 1;
-            width: 40px;
           }
+        }
+        .animate-bounce-slow {
+          animation: bounce-slow 3s ease-in-out infinite;
+        }
+        @keyframes bounce-slow {
+          0%,
           100% {
-            opacity: 0.3;
-            width: 10px;
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-20px);
           }
         }
       `}</style>

@@ -200,6 +200,7 @@ export default function LandingPage() {
           </section>
         </main>
         <HowItWorks />
+        <FeaturedArtisans />
         <Testimonials />
         <FAQ />
         <Footer />
