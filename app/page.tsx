@@ -16,7 +16,7 @@ export default function LandingPage() {
       <LoadingScreen />
       <div className="animate-in fade-in duration-1000">
         <main
-          className={`${inter.className} relative min-h-screen h-screen flex flex-col bg-[#000b76] overflow-hidden pt-20 text-slate-900`}
+          className={`${inter.className} relative min-h-screen h-screen flex flex-col bg-[#000b76] overflow-hidden pt-10 md:pt-20 text-slate-900`}
         >
           <div
             className="absolute right-0 top-0 h-full w-full pointer-events-none z-0 opacity-100 translate-x-1/4 lg:translate-x-0"
