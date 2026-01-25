@@ -22,7 +22,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${fantasy.variable}`}>
       <body>
-        <Navbar />
         {children}
 
         {/* Smartsupp Live Chat Integration */}

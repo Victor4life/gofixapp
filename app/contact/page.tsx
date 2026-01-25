@@ -1,4 +1,5 @@
 "use client";
+import Navbar from "@/components/Navbar";
 
 import React, { useState } from "react";
 import {
@@ -24,6 +25,7 @@ export default function ContactPage() {
 
   return (
     <>
+      <Navbar />
       <main className="min-h-screen bg-[#F8FAFC] pt-40 pb-24 overflow-hidden relative">
         {/* 🔹 THE GEOMETRIC BACKGROUND (Your Image) */}
         <div

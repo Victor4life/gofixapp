@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
+import Navbar from "@/components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,6 +16,7 @@ export default function LandingPage() {
     <>
       <LoadingScreen />
       <div className="animate-in fade-in duration-1000">
+        <Navbar />
         <main
           className={`${inter.className} relative min-h-screen h-screen flex flex-col bg-[#000b76] overflow-hidden pt-10 md:pt-20 text-slate-900`}
         >
