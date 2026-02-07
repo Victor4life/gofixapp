@@ -3,21 +3,23 @@
 import { createSupabaseServer } from "@/lib/supabase/server";
 
 export async function acceptRequest(formData: FormData) {
-  const supabase = await createSupabaseServer();
-  const requestId = formData.get("requestId") as string;
+  const supabase = createSupabaseServer();
+  const requestId = formData.get("requestId");
+  console.log("ACCEPTING:", requestId);
 
   await supabase
-    .from("service_requests")
+    .from("job_requests")
     .update({ status: "accepted" })
     .eq("id", requestId);
 }
 
 export async function rejectRequest(formData: FormData) {
-  const supabase = await createSupabaseServer();
-  const requestId = formData.get("requestId") as string;
+  const supabase = createSupabaseServer();
+  const requestId = formData.get("requestId");
+  console.log("REJECTING:", requestId);
 
   await supabase
-    .from("service_requests")
-    .update({ status: "rejected" })
+    .from("job_requests")
+    .update({ status: "cancelled" })
     .eq("id", requestId);
 }

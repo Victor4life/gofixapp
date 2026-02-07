@@ -2,7 +2,7 @@
 import { createSupabaseServer } from "@/lib/supabase/server";
 
 export async function getArtisanRequests(artisanUserId: string) {
-  const supabase = await createSupabaseServer();
+  const supabase = createSupabaseServer();
 
   const { data, error } = await supabase
     .from("job_requests")
@@ -17,13 +17,13 @@ export async function getArtisanRequests(artisanUserId: string) {
       service:service_id (
         name
       )
-    `
+    `,
     )
     .eq("artisan_id", artisanUserId)
     .order("created_at", { ascending: false });
 
   if (error) {
-    console.error("getArtisanRequests error:", error);
+    console.error(error);
     return [];
   }
 

@@ -1,72 +1,60 @@
-import { createSupabaseServer } from "@/lib/supabase/server";
+"use client";
 
-export default async function ClientRequestsPage() {
-  const supabase = await createSupabaseServer();
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase/client";
+import { getCurrentUser } from "@/lib/auth/getCurrentUser";
 
-  /* 1️⃣ Get authenticated user */
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+export default function ClientRequestsPage() {
+  const [requests, setRequests] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  if (!user) {
-    return <p>Please login</p>;
-  }
+  useEffect(() => {
+    async function load() {
+      const user = await getCurrentUser();
 
-  /* 2️⃣ Fetch role from users table */
-  const { data: profile, error: profileError } = await supabase
-    .from("users")
-    .select("role")
-    .eq("id", user.id)
-    .single();
+      if (!user || user.role !== "client") {
+        window.location.href = "/login";
+        return;
+      }
 
-  if (profileError || profile?.role !== "client") {
-    return <p>Unauthorized</p>;
-  }
+      const { data } = await supabase
+        .from("job_requests")
+        .select(
+          `
+          id,
+          status,
+          client:client_id (
+            full_name
+          ),
+          service:service_id (
+            name
+          )
+        `,
+        )
+        .eq("client_id", user.id)
+        .order("created_at", { ascending: false });
 
-  /* 3️⃣ Fetch client requests */
-  const { data: requests, error } = await supabase
-    .from("job_requests")
-    .select(
-      `
-    id,
-    status,
-    created_at,
-    artisan:artisan_id (
-      user:user_id (
-        full_name
-      )
-    ),
-    service:service_id (
-      name
-    )
-  `
-    )
-    .eq("client_id", user.id)
-    .order("created_at", { ascending: false });
+      setRequests(data ?? []);
+      setLoading(false);
+    }
 
-  if (error) {
-    console.error(error);
-    return <p>Error loading requests</p>;
-  }
+    load();
+  }, []);
 
-  console.log("AUTH CHECK", user);
+  if (loading) return <p>Loading...</p>;
 
-  /* 4️⃣ Render */
   return (
     <div className="p-6 max-w-2xl mx-auto">
       <h1 className="text-2xl font-bold mb-4">My Requests</h1>
 
-      {!requests?.length && <p>No requests yet</p>}
+      {!requests.length && <p>No requests yet</p>}
 
-      <div className="space-y-4">
-        {requests.map((r: any) => (
-          <div key={r.id}>
-            <p>{r.artisan?.[0]?.user?.[0]?.full_name ?? "Unknown artisan"}</p>
-            <p>{r.service?.[0]?.name ?? "Unknown service"}</p>
-            <p>{r.status}</p>
-          </div>
-        ))}
-      </div>
+      {requests.map((r) => (
+        <div key={r.id} className="border p-4 rounded bg-white mb-3">
+          <p className="font-semibold">{r.service?.name}</p>
+          <p className="text-sm capitalize">Status: {r.status}</p>
+        </div>
+      ))}
     </div>
   );
 }
