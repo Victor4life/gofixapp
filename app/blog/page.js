@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { fetchGraphQL } from "@/lib/contentful";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export default async function BlogFeed() {
   const query = `
@@ -114,6 +115,7 @@ export default async function BlogFeed() {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
