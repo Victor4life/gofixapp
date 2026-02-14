@@ -19,8 +19,20 @@
   }
 }
 
+/* Add this to your global.css to mimic Google's style */
+
+h1,
+h2,
+h3,
+h4 {
+  /* Use "Outfit" as a free alternative to Google Sans */
+  font-family: "Outfit", sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em; /* Google headers are often slightly tight */
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Use Roboto for that classic Android/Gmail feel */
+  font-family: "Roboto", "Inter", sans-serif;
+  color: #3c4043; /* Google's specific "Off-Black" for text */
 }
