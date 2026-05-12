@@ -1,173 +1,165 @@
 "use client";
-import {
-  Hammer,
-  Droplets,
-  Zap,
-  Wrench,
-  Paintbrush,
-  Scissors,
-  Car,
-  ChevronRight,
-} from "lucide-react";
 
-const categories = [
-  {
-    name: "Plumbing",
-    icon: <Droplets size={20} />,
-    color: "text-blue-600",
-    bg: "bg-blue-50",
-  },
-  {
-    name: "Electrical",
-    icon: <Zap size={20} />,
-    color: "text-yellow-600",
-    bg: "bg-yellow-50",
-  },
-  {
-    name: "Carpentry",
-    icon: <Wrench size={20} />,
-    color: "text-orange-600",
-    bg: "bg-orange-50",
-  },
-  {
-    name: "Painting",
-    icon: <Paintbrush size={20} />,
-    color: "text-purple-600",
-    bg: "bg-purple-50",
-  },
-  {
-    name: "Mechanic",
-    icon: <Car size={20} />,
-    color: "text-red-600",
-    bg: "bg-red-50",
-  },
-  {
-    name: "Cleaning",
-    icon: <Scissors size={20} />,
-    color: "text-green-600",
-    bg: "bg-green-50",
-  },
-];
+import { useEffect, useState } from "react";
+import {
+  ArrowRight,
+  Search,
+  Sparkles,
+  ShieldCheck,
+} from "lucide-react";
 
 const steps = [
   {
     number: "01",
-    title: "Request a Service",
-    description: "Select the repair task you need. From plumbing to painting.",
-    containerClass:
-      "relative md:absolute md:top-[15%] md:left-[5%] w-full md:w-64",
+    title: "Describe Your Need",
+    description:
+      "Tell us what needs attention and where. From urgent repairs to planned upgrades.",
+    icon: <Search size={22} />,
   },
   {
     number: "02",
-    title: "Match with a Pro",
+    title: "Matched Instantly",
     description:
-      "Our system connects you with the highest-rated artisans currently available.",
-    containerClass:
-      "relative md:absolute md:top-[40%] md:left-[38%] w-full md:w-64",
+      "Our intelligent system connects you with verified professionals nearby.",
+    icon: <Sparkles size={22} />,
   },
   {
     number: "03",
-    title: "Relax & Rate",
+    title: "Elite Service Delivery",
     description:
-      "Pay securely and leave a review once the job is completed perfectly.",
-    containerClass:
-      "relative md:absolute md:top-[10%] md:left-[70%] w-full md:w-64",
+      "Relax while trusted artisans deliver exceptional workmanship with precision.",
+    icon: <ShieldCheck size={22} />,
   },
 ];
 
-export default function UnifiedDiscovery() {
+export default function ProcessCarousel() {
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActive((prev) => (prev + 1) % steps.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section className="relative bg-white">
-      {/* 🔹 1. AUTO-SLIDING CATEGORIES (-MT to overlap Hero) */}
-      <div className="relative z-30 -mt-8 md:-mt-10 overflow-hidden flex flex-1 mx-8 md:mx-20">
-        {/* Infinite Slide Container */}
-        <div className="flex gap-4 animate-scroll whitespace-nowrap pb-6 relative">
-          {/* Duplicate for infinite loop */}
-          {[...categories, ...categories].map((cat, index) => (
-            <div
-              key={index}
-              className="flex items-center gap-4 bg-white border border-slate-100 p-4 pr-8 rounded-2xl shadow-xl shadow-slate-200/50 hover:shadow-blue-100 hover:-translate-y-1 transition-all cursor-pointer min-w-[200px]"
-            >
-              <div className={`${cat.bg} ${cat.color} p-3 rounded-xl`}>
-                {cat.icon}
-              </div>
-              <span className="font-bold text-slate-800 tracking-tight">
-                {cat.name}
+    <section className="relative overflow-hidden bg-white py-40">
+      {/* 🔹 BACKGROUND ATMOSPHERE */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-[120px] opacity-80" />
+
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 relative z-10">
+        <div className="grid lg:grid-cols-12 gap-20 items-center">
+          {/* 🔹 LEFT CONTENT */}
+          <div className="lg:col-span-4 space-y-8">
+            <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-[#000b76] px-4 py-2 rounded-full">
+              <span className="text-[10px] font-black uppercase tracking-[0.25em]">
+                The Process
               </span>
             </div>
-          ))}
-        </div>
 
-        {/* Floating Slide Action Button */}
-        <div className="max-w-7xl mx-auto px-6 mt-6 flex absolute -right-5">
-          <button className="bg-[#000b76] p-3 rounded-full shadow-lg border border-slate-100 hover:bg-blue-600 hover:text-white transition-colors group">
-            <ChevronRight
-              size={20}
-              className="group-hover:translate-x-0.5 transition-transform"
-            />
-          </button>
-        </div>
-      </div>
-      {/* 🔹 2. HOW IT WORKS CONTENT */}
-      <div className="max-w-7xl mx-auto px-6 py-5 md:py-5">
-        {/* Header */}
-        <div className="flex flex-col items-center text-center space-y-6 mb-20">
-          <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-100 text-blue-700 px-4 py-2 rounded-full">
-            <Hammer size={14} />
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em]">
-              The Process
-            </span>
+            <div className="space-y-6">
+              <h2 className="text-5xl md:text-6xl font-black tracking-tighter leading-[0.95] text-slate-900">
+                A smoother way to hire trusted artisans.
+              </h2>
+
+              <p className="text-slate-500 text-lg leading-relaxed font-medium max-w-md">
+                From discovery to completion, every interaction is designed to
+                feel seamless, transparent, and premium.
+              </p>
+            </div>
+
+            {/* CONTROLS */}
+            <div className="flex items-center gap-4 pt-4">
+              {steps.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  className={`h-2 rounded-full transition-all duration-500 ${
+                    active === i
+                      ? "w-14 bg-[#000b76]"
+                      : "w-2 bg-slate-300"
+                  }`}
+                />
+              ))}
+            </div>
           </div>
-          <h3 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tighter">
-            How it <span className="text-blue-600 font-outline-2">works</span>
-          </h3>
-          <p className="max-w-2xl text-slate-500 font-medium">
-            Professional home help is just three steps away.
-          </p>
-        </div>
 
-        {/* Wavy Path Area */}
-        <div className="relative min-h-[700px] md:min-h-[300px] w-full">
-          <div className="flex flex-col md:block gap-16 relative z-10">
-            {steps.map((step) => (
-              <div key={step.number} className={step.containerClass}>
-                <span className="absolute -top-20 left-0 text-[12rem] font-black text-slate-200 select-none pointer-events-none -z-10">
-                  {step.number}
-                </span>
+          {/* 🔹 RIGHT CAROUSEL */}
+          <div className="lg:col-span-8 relative h-[500px] flex items-center justify-center overflow-hidden">
+            {/* FLOW LINE */}
+            <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-100 to-transparent" />
 
-                <div className="relative flex flex-col items-start group">
-                  <div className="w-6 h-6 bg-blue-600 border-[5px] border-white rounded-full mb-6 shadow-xl group-hover:scale-125 transition-transform" />
-                  <div className="p-8 rounded-[2rem] bg-white border border-slate-100 shadow-[0_15px_40px_-15px_rgba(0,0,0,0.1)] group-hover:shadow-[0_25px_50px_-15px_rgba(59,130,246,0.2)] transition-all group-hover:-translate-y-2">
-                    <h4 className="text-xl font-bold text-slate-900 mb-3 tracking-tight">
-                      {step.title}
-                    </h4>
-                    <p className="text-sm text-slate-500 leading-relaxed font-medium">
-                      {step.description}
-                    </p>
+            {/* GLOW */}
+            <div className="absolute w-72 h-72 rounded-full" />
+
+            {steps.map((step, i) => {
+              const position =
+                (i - active + steps.length) % steps.length;
+
+              let styles = "";
+
+              if (position === 0) {
+                styles =
+                  "translate-x-0 scale-100 z-30 opacity-100";
+              } else if (position === 1) {
+                styles =
+                  "translate-x-[70%] scale-90 z-20 opacity-50 blur-[1px]";
+              } else {
+                styles =
+                  "-translate-x-[70%] scale-90 z-20 opacity-50 blur-[1px]";
+              }
+
+              return (
+                <div
+                  key={i}
+                  className={`absolute w-full max-w-[520px] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${styles}`}
+                >
+                  <div className="relative overflow-hidden rounded-[2.8rem] border border-slate-100 bg-white p-10 md:p-12 shadow-[0_30px_80px_-15px_rgba(15,23,42,0.12)]">
+                    {/* CARD GLOW */}
+                    <div className="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-[80px]" />
+
+                    {/* NUMBER */}
+                    <span className="absolute top-6 right-8 text-8xl font-black text-slate-100 select-none">
+                      {step.number}
+                    </span>
+
+                    <div className="relative z-10 space-y-10">
+                      {/* ICON */}
+                      <div className="w-16 h-16 rounded-2xl bg-[#000b76] text-white flex items-center justify-center shadow-lg shadow-blue-900/20">
+                        {step.icon}
+                      </div>
+
+                      {/* CONTENT */}
+                      <div className="space-y-5">
+                        <h3 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 leading-tight">
+                          {step.title}
+                        </h3>
+
+                        <p className="text-slate-500 leading-relaxed text-lg font-medium max-w-md">
+                          {step.description}
+                        </p>
+                      </div>
+
+                      {/* CTA */}
+                      <button className="group flex items-center gap-3 text-[#000b76] font-black">
+                        Learn More
+
+                        <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center group-hover:translate-x-1 transition-transform">
+                          <ArrowRight size={16} />
+                        </div>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
-      {/* Update the CSS Animation for the new width */}
-      <style jsx>{`
-        @keyframes scroll {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(calc(-250px * 6 - 1rem * 6));
-          }
-        }
-        .animate-scroll {
-          animation: scroll 25s linear infinite;
-        }
-        .animate-scroll:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </section>
   );
 }

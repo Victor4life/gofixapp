@@ -1,5 +1,5 @@
 "use client";
-import { Hammer, ChevronRight } from "lucide-react";
+import { Hammer, ChevronRight, MessageCircle } from "lucide-react";
 
 const quotes = [
   {
@@ -21,21 +21,11 @@ const quotes = [
 
 export default function Testimonials() {
   return (
-    <section className="relative py-48 overflow-hidden group">
+    <section className="relative py-40 overflow-hidden group mx-10">
       {/* 🔹 PARALLAX BACKGROUND IMAGE */}
-      <div
-        className="absolute inset-0 w-full h-full pointer-events-none z-0 scale-110"
-        style={{
-          backgroundImage: "url('/images/image.png')",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          backgroundSize: "cover",
-          backgroundAttachment: "fixed",
-        }}
-      />
 
       {/* 🔹 GRADIENT OVERLAY */}
-      <div className="absolute inset-0 bg-[#000b76]/95 z-10" />
+      <div className="absolute inset-0 bg-[#000b76]/95 z-10 border border-white/10 rounded-[4rem]" />
 
       {/* 🔹 ADDED BEAUTIFICATION ELEMENTS */}
       <div className="absolute inset-0 z-20 pointer-events-none">
@@ -43,6 +33,7 @@ export default function Testimonials() {
         <div className="absolute bottom-1/2 left-5 w-8 h-8 bg-blue-400/20 rounded-full blur-sm animate-ping" />
         <div className="absolute bottom-1/4 right-5 w-8 h-8 bg-blue-400/20 rounded-full blur-sm animate-ping" />
       </div>
+      
 
       {/* 🔹 CONTENT SLIDER CONTAINER */}
       <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24 relative z-30">

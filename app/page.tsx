@@ -26,7 +26,7 @@ export default function LandingPage() {
           <div
             className="absolute right-0 top-0 h-full w-full pointer-events-none z-0 opacity-100 translate-x-1/4 lg:translate-x-0"
             style={{
-              backgroundImage: "url('/waves/wave(5).svg')",
+              backgroundImage: "url('/waves/wave-5.svg')",
 
               backgroundRepeat: "no-repeat",
 
@@ -128,7 +128,6 @@ export default function LandingPage() {
                       "Electrical",
                       "AC Repair",
                       "Carpentry",
-                      "Painting",
                     ].map((tag) => (
                       <button
                         key={tag}
@@ -202,9 +201,9 @@ export default function LandingPage() {
             </div>
           </section>
         </main>
+        <TrustSafety />
         <HowItWorks />
-<TrustSafety />  
-      <Testimonials />
+        <Testimonials />
         <FAQ />
         <Footer />
       </div>

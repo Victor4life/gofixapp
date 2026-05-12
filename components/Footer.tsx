@@ -15,20 +15,14 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-[#000b76] pt-32 pb-12 overflow-hidden">
+    <footer className="relative bg-[#000b76]/85 backdrop-blur-2xl pt-32 pb-12 overflow-hidden">
       {/* 🔹 REVERSED WAVE BACKGROUND */}
-      <div
-        className="absolute left-0 top-0 w-full h-24 pointer-events-none z-0 rotate-180"
-        style={{
-          backgroundImage: "url('/waves/wave(5).svg')",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "top center",
-          backgroundSize: "cover",
-        }}
-      />
-
-      {/* 🔹 Background Artistic Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-blue-500/10 blur-[140px] rounded-full pointer-events-none" />
+<img
+  src="/waves/wave-5.svg"
+  alt=""
+  className="absolute top-0 left-0 w-full scale-y-[-1] z-0 opacity-100"
+/>      {/* 🔹 Background Artistic Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">

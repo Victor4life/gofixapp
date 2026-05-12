@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 export default function TypewriterText() {
-  const text = "On-Demand. On-Time. Every Time.";
+  const text = "On-Demand.";
   const [displayed, setDisplayed] = useState("");
 
   useEffect(() => {
