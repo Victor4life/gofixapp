@@ -8,10 +8,13 @@ import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
 import Navbar from "@/components/Navbar";
+import TypewriterText from "@/components/TypeWriterText";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function LandingPage() {
+
+
   return (
     <>
       <LoadingScreen />
@@ -48,15 +51,13 @@ export default function LandingPage() {
                     </span>
                   </div>{" "}
                   <h1 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter leading-[0.9] text-white">
-                    <span className="drop-shadow-[0_2px_10px_rgba(255,255,255,0.15)]">
-                      Quality Work.
-                    </span>
-                    <br />
-                    <span className="text-blue-400 drop-shadow-[0_0_25px_rgba(59,130,246,0.5)]">
-                      Zero Stress.
-                    </span>
-                  </h1>{" "}
-                </div>
+  <span>Reliable Experts.</span>
+  <br />
+  <span className="text-blue-400">
+    <TypewriterText />
+  </span>
+</h1>
+                   </div>
                 {/* ===== GLASS SEARCH CARD ===== */}
                 <div className="bg-white/10 backdrop-blur-md p-3 rounded-2xl lg:rounded-full border border-white/20 w-full max-w-xl relative z-20 shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
                   <form
@@ -116,7 +117,7 @@ export default function LandingPage() {
                     </button>
                   </form>
                 </div>{" "}
-                {/* ===== POPULAR SEARCHES (TAGS) =====
+                {/* ===== POPULAR SEARCHES (TAGS) =====*/}
                 <div className="space-y-3">
                   <p className="text-sm font-bold text-blue-200/50 uppercase tracking-widest">
                     Popular Searches
@@ -137,7 +138,7 @@ export default function LandingPage() {
                       </button>
                     ))}
                   </div>
-                </div>*/}
+                </div>
               </div>
               {/* 🔹 RIGHT CONTENT: Floating Composition */}
               <div className="hidden lg:flex relative items-center justify-center h-full">
@@ -202,8 +203,8 @@ export default function LandingPage() {
           </section>
         </main>
         <HowItWorks />
-        <FeaturedArtisans />
-        <Testimonials />
+<TrustSafety />  
+      <Testimonials />
         <FAQ />
         <Footer />
       </div>

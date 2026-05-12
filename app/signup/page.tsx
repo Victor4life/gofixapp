@@ -1,8 +1,11 @@
 "use client";
 import { signup } from "@/lib/actions/signup";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function SignupPage() {
   return (
+<>
+      <LoadingScreen />
     <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
       <div className="w-full max-w-md bg-white rounded-xl shadow-sm border p-6">
         <h1 className="text-2xl font-bold mb-2 text-slate-900">
@@ -112,5 +115,6 @@ export default function SignupPage() {
         </form>
       </div>
     </div>
+    </>
   );
 }

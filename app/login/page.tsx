@@ -4,6 +4,7 @@ import { supabase } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Hammer, Mail, Lock, ArrowRight, ShieldCheck } from "lucide-react";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -46,6 +47,7 @@ export default function LoginPage() {
   };
 
   return (
+    <>
     <div className="min-h-screen w-full flex flex-col md:flex-row bg-white">
       {/* 🔹 LEFT COLUMN: Brand Experience */}
       <div className="relative hidden md:flex md:w-1/2 bg-[#000b76] overflow-hidden p-16 flex-col justify-between">
@@ -166,5 +168,6 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
