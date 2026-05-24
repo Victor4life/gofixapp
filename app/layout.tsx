@@ -6,8 +6,12 @@ import Navbar from "@/components/Navbar";
 import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const fantasy = Cinzel({ subsets: ["latin"], variable: "--font-fantasy" });
-
+const cinzel = Cinzel({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-cinzel",
+});
 export const metadata: Metadata = {
   title: "Go-Fix - Find Trusted Artisans for Your Home Needs",
   description:
@@ -20,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${fantasy.variable}`}>
+    <html lang="en" className={`${inter.variable} ${cinzel.variable}`}>
       <body>
         {children}
 

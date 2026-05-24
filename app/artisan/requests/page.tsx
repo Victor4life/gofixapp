@@ -3,7 +3,12 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase/client";
 import { getCurrentUser } from "@/lib/auth/getCurrentUser";
-import { acceptRequest, rejectRequest } from "@/lib/actions/serviceRequests";
+import {
+  acceptRequest,
+  rejectRequest,
+  startJob,
+  completeJob,
+} from "@/lib/actions/serviceRequests";
 
 export default function ArtisanRequestsPage() {
   const [requests, setRequests] = useState<any[]>([]);
@@ -79,6 +84,22 @@ export default function ArtisanRequestsPage() {
               </form>
             </div>
           )}
+          {req.status === "accepted" && (
+  <form action={startJob}>
+    <input type="hidden" name="requestId" value={req.id} />
+    <button className="bg-orange-500 text-white px-4 py-2 rounded">
+      Start Job
+    </button>
+  </form>
+)}
+{req.status === "in_progress" && (
+  <form action={completeJob}>
+    <input type="hidden" name="requestId" value={req.id} />
+    <button className="bg-green-600 text-white px-4 py-2 rounded">
+      Complete Job
+    </button>
+  </form>
+)}
         </div>
       ))}
     </div>

@@ -4,20 +4,40 @@ import { createSupabaseServer } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 
 export async function submitRequest(formData: FormData) {
-  const supabase = await createSupabaseServer();
+  try {
+    const supabase = createSupabaseServer();
 
-  const artisanId = formData.get("artisanId") as string;
-  const serviceId = formData.get("serviceId") as string;
+    const artisanId = formData.get("artisanId") as string;
+    const serviceId = formData.get("serviceId") as string;
+    const clientId = formData.get("clientId") as string;
 
-  // TEMP client (until auth)
-  const CLIENT_ID = "8f7d91d9-b5aa-4124-a1e1-8fe5f8747217";
+    console.log({
+      artisanId,
+      serviceId,
+      clientId,
+    });
 
-  await supabase.from("service_requests").insert({
-    client_id: CLIENT_ID,
-    artisan_id: artisanId,
-    service_id: serviceId,
-    status: "pending",
-  });
+    const { data, error } = await supabase
+      .from("job_requests")
+      .insert({
+        artisan_id: artisanId,
+        service_id: serviceId,
+        client_id: clientId,
+        status: "pending",
+      })
+      .select();
 
-  redirect("/client/requests");
+    console.log("INSERT DATA:", data);
+    console.log("INSERT ERROR:", error);
+
+    if (error) {
+      throw error;
+    }
+
+    redirect("/client/requests");
+  } catch (err) {
+    console.error("SUBMIT REQUEST ERROR:", err);
+
+    throw err;
+  }
 }

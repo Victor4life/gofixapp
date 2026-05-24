@@ -8,6 +8,7 @@ export async function getArtisanById(id: string) {
     .select(
       `
       id,
+       user_id,
       bio,
       is_available,
       rating,
