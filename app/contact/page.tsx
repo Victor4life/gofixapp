@@ -11,137 +11,171 @@ import {
   Hammer,
   CheckCircle2,
   ArrowRight,
+  ShieldCheck,
+  Sparkles,
+  Star,
 } from "lucide-react";
 import Footer from "@/components/Footer";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    service: "",
+    message: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 5000);
+    setFormData({ fullName: "", email: "", service: "", message: "" });
   };
 
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-[#F8FAFC] pt-40 pb-24 overflow-hidden relative">
-        {/* 🔹 THE GEOMETRIC BACKGROUND (Your Image) */}
+      <main className="min-h-screen bg-white pt-40 pb-24 overflow-hidden relative">
+        {/* Background Artistic Glows */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#000b76]/5 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#000b76]/3 blur-[100px] rounded-full pointer-events-none" />
+        
+        {/* Geometric Pattern Overlay */}
         <div
-          className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+          className="absolute inset-0 z-0 opacity-[0.02] pointer-events-none"
           style={{
-            backgroundImage: "url('/waves/your-geometric-pattern.png')", // Ensure this path is correct
-            backgroundSize: "600px",
+            backgroundImage: "url('/waves/your-geometric-pattern.png')",
+            backgroundSize: "400px",
             backgroundRepeat: "repeat",
           }}
         />
 
-        {/* 🔹 Background Artistic Glows */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100/40 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-50/40 blur-[100px] rounded-full pointer-events-none" />
-
         <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24 relative z-10">
-          {/* 🔹 ELEGANT SECTION HEADER */}
-          <div className="max-w-3xl mb-20 space-y-4">
-            <span className="text-blue-600 font-bold tracking-[0.3em] text-[10px] uppercase">
-              Private Concierge
-            </span>
-            <h1 className="text-5xl md:text-7xl font-serif italic text-slate-900 leading-tight">
-              At your{" "}
-              <span className="not-italic font-sans font-black tracking-tighter uppercase text-blue-900">
-                service.
+          {/* Section Header */}
+          <div className="max-w-3xl mb-20 space-y-4 text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 rounded-full bg-[#000b76]/5 px-4 py-2 mx-auto lg:mx-0">
+              <Sparkles size={14} className="text-[#000b76]" />
+              <span className="text-[#000b76] font-bold tracking-[0.2em] text-[10px] uppercase">
+                Premium Support
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold text-black leading-tight">
+              Let's Talk About
+              <span className="block text-[#000b76] mt-2">
+                Your Next Project
               </span>
             </h1>
-            <p className="text-slate-500 font-medium max-w-lg leading-relaxed">
-              Experience the gold standard of home maintenance. Contact our
-              elite dispatch team for immediate assistance.
+            <p className="text-gray-600 font-medium max-w-lg leading-relaxed mx-auto lg:mx-0">
+              Whether you need emergency repairs or planned maintenance, our team is ready to assist you 24/7.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-            {/* 🔹 CONTACT FORM SECTION */}
-            <div className="lg:col-span-7">
-              <div className="bg-white rounded-[2rem] p-8 md:p-12 border border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.04)] relative">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+            {/* Contact Form Section */}
+            <div className="lg:col-span-7 order-2 lg:order-1">
+              <div className="bg-white rounded-3xl p-8 md:p-10 border border-gray-100 shadow-xl">
                 {submitted ? (
-                  <div className="flex flex-col items-center justify-center py-20 text-center animate-in fade-in zoom-in duration-500">
-                    <div className="w-16 h-16 bg-green-50 text-green-600 rounded-full flex items-center justify-center mb-6">
+                  <div className="flex flex-col items-center justify-center py-16 text-center animate-in fade-in zoom-in duration-500">
+                    <div className="w-16 h-16 bg-[#000b76]/10 text-[#000b76] rounded-full flex items-center justify-center mb-6">
                       <CheckCircle2 size={32} />
                     </div>
-                    <h2 className="text-3xl font-serif italic text-slate-900 mb-2">
-                      Message Received
+                    <h2 className="text-2xl font-bold text-black mb-2">
+                      Message Sent Successfully!
                     </h2>
-                    <p className="text-slate-500 text-sm mb-6">
-                      Our concierge will contact you within 30 minutes.
+                    <p className="text-gray-500 text-sm mb-6">
+                      Our team will get back to you within 24 hours.
                     </p>
                     <button
                       onClick={() => setSubmitted(false)}
-                      className="text-blue-600 font-bold text-xs uppercase tracking-widest hover:underline"
+                      className="text-[#000b76] font-semibold text-sm hover:underline"
                     >
-                      Send Another
+                      Send Another Message
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-10">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
-                      <div className="relative group">
-                        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2 block">
-                          Full Name
+                  <form onSubmit={handleSubmit} className="space-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                          Full Name <span className="text-[#000b76]">*</span>
                         </label>
                         <input
                           required
+                          name="fullName"
                           type="text"
-                          placeholder="e.g. Tunde Edwards"
-                          className="w-full bg-transparent border-b border-slate-200 py-3 outline-none focus:border-blue-600 transition-colors font-serif text-lg text-slate-900 placeholder:text-slate-300"
+                          value={formData.fullName}
+                          onChange={handleChange}
+                          placeholder="John Doe"
+                          className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-[#000b76] focus:ring-2 focus:ring-[#000b76]/10 transition-all text-gray-900 placeholder:text-gray-400"
                         />
                       </div>
-                      <div className="relative group">
-                        <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2 block">
-                          Email Address
+                      <div className="space-y-2">
+                        <label className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                          Email Address <span className="text-[#000b76]">*</span>
                         </label>
                         <input
                           required
+                          name="email"
                           type="email"
-                          placeholder="tunde@example.com"
-                          className="w-full bg-transparent border-b border-slate-200 py-3 outline-none focus:border-blue-600 transition-colors font-serif text-lg text-slate-900 placeholder:text-slate-300"
+                          value={formData.email}
+                          onChange={handleChange}
+                          placeholder="hello@example.com"
+                          className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-[#000b76] focus:ring-2 focus:ring-[#000b76]/10 transition-all text-gray-900 placeholder:text-gray-400"
                         />
                       </div>
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2 block">
-                        Service Required
+                      <label className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                        Service Required <span className="text-[#000b76]">*</span>
                       </label>
-                      <select className="w-full bg-transparent border-b border-slate-200 py-3 outline-none focus:border-blue-600 transition-colors font-serif text-lg text-slate-900 cursor-pointer appearance-none">
+                      <select
+                        name="service"
+                        value={formData.service}
+                        onChange={handleChange}
+                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-[#000b76] focus:ring-2 focus:ring-[#000b76]/10 transition-all text-gray-900 cursor-pointer"
+                      >
+                        <option value="">Select a service</option>
                         <option>Emergency Repair</option>
-                        <option>Master Plumbing</option>
-                        <option>Electrical Audit</option>
+                        <option>Plumbing Services</option>
+                        <option>Electrical Work</option>
                         <option>HVAC Maintenance</option>
+                        <option>General Handyman</option>
                       </select>
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-2 block">
-                        Project Details
+                      <label className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                        Message <span className="text-[#000b76]">*</span>
                       </label>
                       <textarea
                         required
-                        rows={4}
-                        placeholder="How can we assist you?"
-                        className="w-full bg-transparent border-b border-slate-200 py-3 outline-none focus:border-blue-600 transition-colors font-serif text-lg text-slate-900 resize-none placeholder:text-slate-300"
+                        name="message"
+                        rows={5}
+                        value={formData.message}
+                        onChange={handleChange}
+                        placeholder="Tell us about your project..."
+                        className="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 outline-none focus:border-[#000b76] focus:ring-2 focus:ring-[#000b76]/10 transition-all text-gray-900 resize-none placeholder:text-gray-400"
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="group flex items-center justify-between w-full md:w-auto bg-[#000b76] text-white px-10 py-5 rounded-full hover:bg-blue-600 transition-all hover:shadow-xl hover:shadow-blue-900/20 active:scale-95"
+                      className="group flex items-center justify-center gap-3 w-full md:w-auto bg-[#000b76] text-white px-8 py-4 rounded-xl hover:bg-[#0012a0] transition-all hover:shadow-lg hover:shadow-[#000b76]/20 active:scale-95 font-semibold"
                     >
-                      <span className="text-xs font-bold uppercase tracking-widest mr-8">
-                        Dispatch Message
-                      </span>
+                      <Send size={18} />
+                      <span>Send Message</span>
                       <ArrowRight
-                        size={18}
-                        className="group-hover:translate-x-2 transition-transform"
+                        size={16}
+                        className="group-hover:translate-x-1 transition-transform"
                       />
                     </button>
                   </form>
@@ -149,74 +183,100 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* 🔹 INFO SECTION */}
-            <div className="lg:col-span-5 space-y-12 lg:pl-10">
-              <div className="space-y-12">
-                <section>
-                  <h4 className="text-[10px] font-bold text-blue-600 uppercase tracking-[0.3em] mb-8">
-                    Direct Channels
-                  </h4>
-                  <div className="space-y-10">
-                    <div className="flex items-start gap-6">
-                      <Phone className="text-blue-600 shrink-0" size={24} />
-                      <div>
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
-                          24/7 Priority Line
-                        </p>
-                        <p className="text-2xl font-serif text-slate-900">
-                          +234 800 GO FIX IT
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-6">
-                      <Mail className="text-blue-600 shrink-0" size={24} />
-                      <div>
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
-                          Electronic Correspondence
-                        </p>
-                        <p className="text-2xl font-serif text-slate-900">
-                          concierge@gofix.com
-                        </p>
-                      </div>
-                    </div>
-                    <div className="flex items-start gap-6">
-                      <MapPin className="text-blue-600 shrink-0" size={24} />
-                      <div>
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
-                          Headquarters
-                        </p>
-                        <p className="text-2xl font-serif text-slate-900 leading-tight">
-                          The Rubicon, Plot 14 <br />
-                          <span className="text-lg">Admiralty Way, Lekki</span>
-                        </p>
-                      </div>
-                    </div>
+            {/* Info Section */}
+            <div className="lg:col-span-5 space-y-8 order-1 lg:order-2">
+              {/* Contact Cards */}
+              <div className="grid grid-cols-1 gap-6">
+                <div className="flex items-center gap-5 p-5 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition-all">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#000b76]/10 text-[#000b76]">
+                    <Phone size={22} />
                   </div>
-                </section>
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">
+                      24/7 Priority Line
+                    </p>
+                    <p className="text-xl font-bold text-black">
+                      +234 800 GO FIX IT
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-5 p-5 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition-all">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#000b76]/10 text-[#000b76]">
+                    <Mail size={22} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">
+                      Email Support
+                    </p>
+                    <p className="text-lg font-semibold text-black">
+                      hello@gofix.com
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-5 p-5 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition-all">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#000b76]/10 text-[#000b76]">
+                    <MapPin size={22} />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">
+                      Our Location
+                    </p>
+                    <p className="text-base font-medium text-black">
+                      Lekki Phase 1, Lagos, Nigeria
+                    </p>
+                  </div>
+                </div>
               </div>
 
-              {/* Availability Status Card */}
-              <div className="p-10 rounded-[2rem] bg-[#000b76] text-white relative overflow-hidden">
-                <div className="relative z-10 space-y-6">
-                  <div className="flex items-center gap-3">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-[0_0_10px_#4ade80]" />
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-200">
-                      System: Operational
+              {/* Business Hours Card */}
+              <div className="p-6 rounded-2xl bg-gray-50 border border-gray-100">
+                <div className="flex items-center gap-3 mb-4">
+                  <Clock size={20} className="text-[#000b76]" />
+                  <h3 className="font-bold text-black">Business Hours</h3>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-500">Monday - Friday</span>
+                    <span className="font-semibold text-black">8:00 AM - 8:00 PM</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-500">Saturday</span>
+                    <span className="font-semibold text-black">9:00 AM - 6:00 PM</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-gray-500">Sunday</span>
+                    <span className="font-semibold text-black">Emergency Only</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Trust Card */}
+              <div className="relative overflow-hidden rounded-2xl bg-[#000b76] p-8 text-white">
+                <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-white/5 blur-3xl" />
+                <div className="absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-white/5 blur-3xl" />
+                
+                <div className="relative z-10">
+                  <div className="flex items-center gap-2 mb-4">
+                    <ShieldCheck size={24} className="text-white/80" />
+                    <span className="text-xs font-bold uppercase tracking-wider">
+                      Trusted Service
                     </span>
                   </div>
-                  <h5 className="text-3xl font-serif italic leading-tight">
-                    Elite artisans are <br />
-                    currently on standby.
-                  </h5>
-                  <p className="text-blue-200/60 text-sm leading-relaxed">
-                    Average response time for emergencies is currently 22
-                    minutes within Lagos Island.
+                  <h4 className="text-2xl font-bold mb-2">
+                    Elite Artisans Ready
+                  </h4>
+                  <p className="text-white/70 text-sm leading-relaxed mb-4">
+                    Average response time for emergencies is under 30 minutes within Lagos.
                   </p>
+                  <div className="flex items-center gap-1">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <Star key={star} size={16} className="fill-white text-white" />
+                    ))}
+                    <span className="text-xs text-white/70 ml-2">4.9/5 from 500+ reviews</span>
+                  </div>
                 </div>
-                <Hammer
-                  size={120}
-                  className="text-white/5 absolute -right-8 -bottom-8 -rotate-12"
-                />
               </div>
             </div>
           </div>

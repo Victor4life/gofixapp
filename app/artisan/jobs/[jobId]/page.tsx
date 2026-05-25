@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { supabase } from "@/lib/supabase/client";
+import Link from "next/link";
 import {
   CheckCircle2,
   Clock,
@@ -173,6 +174,13 @@ const { data } = await supabase
             Mark Completed
           </button>
         )}
+
+        <Link
+  href={`/artisan/jobs/${job.id}/chat`}
+  className="px-4 py-2 bg-black text-white rounded-lg"
+>
+  Open Chat
+</Link>
       </div>
 
       {/* TIMELINE (future upgrade placeholder) */}

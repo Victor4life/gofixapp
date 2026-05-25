@@ -22,7 +22,7 @@ const navItems = [
   { label: "Requests", href: "/artisan/requests", icon: ClipboardList, count: 2 },
   { label: "Active Jobs", href: "/artisan/active-jobs", icon: BriefcaseBusiness },
   { label: "Completed", href: "/artisan/completed", icon: CheckCircle2 },
-  { label: "Profile", href: "/artisan/onboarding", icon: UserRound },
+  { label: "Profile", href: "/artisan/profile", icon: UserRound },
   { label: "Notifications", href: "/artisan/notifications", icon: Bell, count: 4 },
   { label: "Settings", href: "/artisan/settings", icon: Settings },
 ];

@@ -386,13 +386,13 @@ const channel = supabase
                                   </div>
                                 </div>
                               </div>
-                              <Link
-                                href="/artisan/requests"
-                                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#000b76] px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105"
-                              >
-                                View Details
-                                <ArrowRight size={14} />
-                              </Link>
+<Link
+  href={`/artisan/jobs/${job.id}`}
+  className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#000b76] px-5 py-2.5 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg hover:scale-105"
+>
+  View Details
+  <ArrowRight size={14} />
+</Link>
                             </div>
                           ))}
                         </div>
