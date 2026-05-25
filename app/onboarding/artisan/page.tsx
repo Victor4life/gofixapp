@@ -27,6 +27,10 @@ export default function ArtisanOnboarding() {
   const [selected, setSelected] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+const [phone, setPhone] = useState("");
+const [location, setLocation] = useState("");
+const [years, setYears] = useState(0);
+
 
   useEffect(() => {
     async function load() {
@@ -75,6 +79,10 @@ export default function ArtisanOnboarding() {
       .update({
         bio,
         is_available: true,
+
+        phone,
+  location,
+  years_experience: years,
       })
       .eq("id", profile.id);
 
@@ -206,6 +214,34 @@ export default function ArtisanOnboarding() {
                     {bio.length}/200 characters recommended
                   </p>
                 </div>
+
+{/* Phone Number */}
+                <input
+  type="text"
+  placeholder="Phone number"
+  value={phone}
+  onChange={(e) => setPhone(e.target.value)}
+  className="w-full rounded-xl border px-4 py-3"
+/>
+
+{/* Location */}
+<input
+  type="text"
+  placeholder="Location"
+  value={location}
+  onChange={(e) => setLocation(e.target.value)}
+  className="w-full rounded-xl border px-4 py-3"
+/>
+
+{/* Years of Experience */}
+<input
+  type="number"
+  placeholder="Years of experience"
+  value={years}
+  onChange={(e) => setYears(Number(e.target.value))}
+  className="w-full rounded-xl border px-4 py-3"
+/>
+
 
                 {/* Services Section */}
                 <div className="space-y-3">

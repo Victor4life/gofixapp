@@ -8,6 +8,9 @@ type Profile = {
   bio: string;
   is_available: boolean;
   years_experience: number;
+  phone: string;
+  location: string;
+  profile_image: string;
 };
 
 export default function ArtisanProfilePage() {
@@ -19,6 +22,10 @@ export default function ArtisanProfilePage() {
   const [bio, setBio] = useState("");
   const [years, setYears] = useState(0);
   const [available, setAvailable] = useState(true);
+
+  const [phone, setPhone] = useState("");
+const [location, setLocation] = useState("");
+const [profileImage, setProfileImage] = useState("");
 
   useEffect(() => {
     async function loadProfile() {
@@ -39,6 +46,9 @@ export default function ArtisanProfilePage() {
         setBio(data.bio || "");
         setYears(data.years_experience || 0);
         setAvailable(data.is_available);
+        setPhone(data.phone || "");
+setLocation(data.location || "");
+setProfileImage(data.profile_image || "");
       }
 
       setLoading(false);
@@ -58,6 +68,9 @@ export default function ArtisanProfilePage() {
         bio,
         years_experience: years,
         is_available: available,
+        phone,
+location,
+profile_image: profileImage,
       })
       .eq("id", profile.id);
 
@@ -97,6 +110,39 @@ export default function ArtisanProfilePage() {
         {/* Form */}
         <div className="space-y-6">
 
+            {/* Profile Image */}
+            <div className="rounded-2xl border border-gray-200 bg-gray-50 p-6">
+  <div className="flex flex-col items-center gap-4">
+
+    <div className="h-32 w-32 overflow-hidden rounded-full border-4 border-white shadow-lg">
+      <img
+        src={
+          profileImage ||
+          "https://placehold.co/200x200?text=Profile"
+        }
+        alt="Profile"
+        className="h-full w-full object-cover"
+      />
+    </div>
+
+    <div className="w-full">
+      <label className="mb-2 block text-sm font-semibold text-black">
+        Profile Image URL
+      </label>
+
+      <input
+        type="text"
+        value={profileImage}
+        onChange={(e) =>
+          setProfileImage(e.target.value)
+        }
+        placeholder="Paste image URL..."
+        className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-[#000b76]"
+      />
+    </div>
+  </div>
+</div>
+
           {/* Bio */}
           <div>
             <label className="mb-2 block text-sm font-semibold text-black">
@@ -127,6 +173,34 @@ export default function ArtisanProfilePage() {
               className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-[#000b76]"
             />
           </div>
+
+              {/* Phone */}
+          <div>
+  <label className="mb-2 block text-sm font-semibold text-black">
+    Phone Number
+  </label>
+
+  <input
+    type="text"
+    value={phone}
+    onChange={(e) => setPhone(e.target.value)}
+    className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-[#000b76]"
+  />
+</div>
+
+            {/* Location */}
+            <div>
+  <label className="mb-2 block text-sm font-semibold text-black">
+    Location
+  </label>
+
+  <input
+    type="text"
+    value={location}
+    onChange={(e) => setLocation(e.target.value)}
+    className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none focus:border-[#000b76]"
+  />
+</div>
 
           {/* Availability */}
           <div className="flex items-center justify-between rounded-2xl border border-gray-200 p-4">

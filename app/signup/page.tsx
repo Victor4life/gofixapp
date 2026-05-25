@@ -63,7 +63,7 @@ export default function SignupPage() {
 
     /* 4️⃣ Redirect */
     if (role === "artisan") {
-      router.push("/artisan/onboarding");
+      router.push("/onboarding/artisan");
     } else {
       router.push("/client");
     }
