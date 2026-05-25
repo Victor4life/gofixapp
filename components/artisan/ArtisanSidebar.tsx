@@ -54,16 +54,23 @@ export default function ArtisanSidebarPage() {
       </Link>
 
       {/* Search Bar */}
-      <div className="relative mb-6 px-1">
-        <input
-          type="search"
-          placeholder="Search..."
-          className="h-11 w-full rounded-xl border border-gray-200 bg-gray-50 pl-11 pr-4 text-sm text-black placeholder:text-gray-400 transition-all duration-300 focus:border-[#000b76] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#000b76]/10"
-        />
-                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center pl-4">
-          <Search size={18} className="text-gray-400" />
-        </div>
-      </div>
+<div className="relative mb-6 px-1">
+  <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
+    <Search size={18} className="text-gray-400 transition-colors duration-300 group-focus-within:text-[#000b76]" />
+  </div>
+  <input
+    type="search"
+    placeholder="Search requests, jobs, or clients..."
+    className="h-11 w-full rounded-xl border border-gray-200 bg-gray-50 pl-11 pr-12 text-sm text-black placeholder:text-gray-400 transition-all duration-300 focus:border-[#000b76] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#000b76]/10"
+  />
+  {/* Optional keyboard shortcut hint */}
+  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+    <kbd className="hidden sm:inline-flex items-center gap-1 rounded-md bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-500 border border-gray-200">
+      <span className="text-xs">⌘</span>
+      <span className="text-xs">K</span>
+    </kbd>
+  </div>
+</div>
 
       {/* Navigation */}
       <nav className="space-y-1.5">
@@ -114,16 +121,19 @@ export default function ArtisanSidebarPage() {
           <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-white/5 blur-2xl" />
           <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-white/5 blur-2xl" />
           
-          <div className="relative">
-            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm text-white shadow-sm">
-              <LayoutDashboard size={18} />
-            </div>
-            <p className="text-sm font-bold text-white">Keep profile fresh</p>
-            <p className="mt-1 text-xs leading-relaxed text-blue-100">
-              Updated services help clients choose you faster.
-            </p>
-          </div>
-        </div>
+{/*<div className="relative flex flex-1 items-center gap-4 rounded-xl bg-gradient-to-br from-[#000b76] to-[#0012a0] p-4 shadow-lg">
+  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm text-white shadow-sm">
+    <LayoutDashboard size={18} />
+  </div>
+  <div className="flex-1">
+    <p className="text-sm font-bold text-white">Keep profile fresh</p>
+    <p className="text-xs leading-relaxed text-blue-100">
+      Updated services help clients choose you faster.
+    </p>
+  </div>
+</div>  
+
+*/}      </div>
 
         {/* Logout Button */}
         <button

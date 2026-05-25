@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import { supabase } from "@/lib/supabase/client";
 import { getCurrentUser } from "@/lib/auth/getCurrentUser";
-import ArtisanSidebar from "./Sidebar/page";
 
 type Job = {
   id: string;
@@ -144,10 +143,7 @@ const channel = supabase
   return (
     <main className="min-h-screen bg-white">
       <div className="flex min-h-screen w-full">
-        <div className="hidden lg:block">
-          <ArtisanSidebar />
-        </div>
-
+        {/* Sidebar */}
         <div className="flex-1 flex flex-col">
           <section className="flex-1 overflow-auto">
             <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -188,21 +184,21 @@ const channel = supabase
           </div>
 
           {/* Title Section */}
-<div className="space-y-4 p-10">
+<div className="space-y-2 p-4">
   <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-5xl xl:text-5xl">
-    Welcome Back,
-    <span className="block mt-2 bg-gradient-to-r from-white via-white/95 to-white/80 bg-clip-text text-transparent">
-      {user?.full_name?.split(" ")[0] || "Artisan"}!
-    </span>
+    
+    <span className="mt-2 bg-gradient-to-r from-white via-white/95 to-white/80 bg-clip-text text-transparent">
+      Hello, {user?.full_name?.split(" ")[0] || "Artisan"}!
+    </span> 👋
   </h1>
   
   <p className="max-w-2xl text-base font-medium leading-relaxed text-white/80 sm:text-lg md:text-xl">
-    Your command center for managing jobs, tracking requests, and growing your artisan business.
+    Your command center for managing jobs and tracking requests.
   </p>
 </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-wrap gap-4 pt-4">
+          <div className="flex flex-wrap gap-4 pt-2">
             <Link
               href="/artisan/requests"
               className="group/btn inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-[#000b76] transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-white/20"
@@ -223,30 +219,21 @@ const channel = supabase
 
         {/* Right Side - Image with Card Effect */}
         <div className="relative flex-shrink-0 lg:w-auto">
-          {/* Floating decoration */}
-          <div className="absolute -top-4 -right-4 h-24 w-24 rounded-full blur-2xl animate-pulse" style={{ background: '#000b76', opacity: 0.3 }} />
-          <div className="absolute -bottom-4 -left-4 h-24 w-24 rounded-full blur-2xl animate-pulse delay-700" style={{ background: '#000b76', opacity: 0.3 }} />
           
           {/* Image Container */}
-          <div className="group/img relative rounded-2xl bg-gradient-to-br from-white/10 to-white/5 p-1 backdrop-blur-sm">
+          <div className="group/img relative rounded-2xl">
             <div className="relative overflow-hidden rounded-xl">
               <img
                 src="/images/dashboard-img.png"
                 alt="Dashboard Overview"
-                className="h-auto w-72 rounded-xl object-cover transition-all duration-500 group-hover/img:scale-110 lg:w-80"
+                className="h-auto w-full rounded-xl object-cover transition-all duration-500  lg:w-80"
                 onError={(e) => {
                   e.currentTarget.src = "https://placehold.co/400x500/0012a0/white?text=Dashboard+Overview";
                 }}
               />
               
-              {/* Gradient overlay on hover */}
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-t from-[#000b76]/50 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover/img:opacity-100" />
             </div>
             
-            {/* Image caption */}
-            <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 backdrop-blur-sm" style={{ background: '#000b76cc' }}>
-              <p className="text-xs font-medium text-white">Dashboard Preview</p>
-            </div>
           </div>
           
           {/* Decorative rings */}
