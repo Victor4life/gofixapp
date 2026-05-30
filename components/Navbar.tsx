@@ -92,7 +92,7 @@ export default function Navbar() {
                 className="group relative overflow-hidden bg-white text-[#000b76] px-6 py-3 rounded-full text-sm font-black transition-all active:scale-95 shadow-[0_10px_30px_rgba(255,255,255,0.15)] hover:shadow-[0_15px_40px_rgba(255,255,255,0.25)]"
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  Join as Pro
+                  Join Now
                   <ArrowRight
                     size={15}
                     className="transition-transform duration-300 group-hover:translate-x-1"
