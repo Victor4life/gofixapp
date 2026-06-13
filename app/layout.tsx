@@ -1,9 +1,10 @@
+// app/layout.tsx
 import type { Metadata } from "next";
 import { Inter, Cinzel } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
-// 1. Import the Script component
 import Script from "next/script";
+import ToastProvider from "@/components/providers/ToastProvider"; 
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const cinzel = Cinzel({
@@ -12,6 +13,7 @@ const cinzel = Cinzel({
   display: "swap",
   variable: "--font-cinzel",
 });
+
 export const metadata: Metadata = {
   title: "Go-Fix - Find Trusted Artisans for Your Home Needs",
   description:
@@ -26,7 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${cinzel.variable}`}>
       <body>
-        {children}
+        <ToastProvider> {/* 👈 Wrap children with ToastProvider */}
+          {children}
+        </ToastProvider>
 
         {/* Smartsupp Live Chat Integration */}
         <Script id="smartsupp-chat" strategy="afterInteractive">
