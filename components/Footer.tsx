@@ -1,173 +1,440 @@
 "use client";
+
 import React from "react";
 import {
   Facebook,
   Twitter,
   Instagram,
   Linkedin,
-  Hammer,
-  ArrowUpRight,
-  Mail,
-  Phone,
 } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-[#000b76]/85 backdrop-blur-2xl pt-32 pb-12 overflow-hidden">
-      {/* 🔹 REVERSED WAVE BACKGROUND */}
-<img
-  src="/waves/wave-5.svg"
-  alt=""
-  className="absolute top-0 left-0 w-full scale-y-[-1] z-0 opacity-100"
-/>      {/* 🔹 Background Artistic Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full pointer-events-none" />
+    <footer className="px-4 md:px-8 pb-8">
+      <div className="relative overflow-hidden rounded-[28px] bg-[#eef5ff] px-7 py-10 md:px-12 md:py-11 lg:px-12">
 
-      <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-20">
-          {/* 🔹 BRAND SECTION */}
-          <div className="lg:col-span-4 space-y-8">
-            <div className="flex items-center space-x-3 text-white group cursor-pointer">
-              <div className="w-12 h-12 bg-white text-[#000b76] rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:rotate-12 group-hover:bg-blue-400 group-hover:text-white shadow-lg shadow-black/20">
-                <Hammer size={24} />
-              </div>
-              <span className="text-3xl font-black tracking-tighter text-white uppercase">
-                Go-Fix
-              </span>
-            </div>
+        {/* ================================
+            MAIN FOOTER CONTENT
+        ================================= */}
+        <div className="relative z-10 flex flex-col gap-10 lg:flex-row lg:gap-2">
 
-            <p className="text-blue-100/60 text-sm leading-relaxed max-w-xs font-medium italic">
-              "Redefining home maintenance with a touch of elegance. We connect
-              discerning homeowners with the most elite artisans in the city."
-            </p>
+          {/* ================================
+              BRAND
+          ================================= */}
+          <div className="flex-1">
+            <a href="/" className="inline-flex items-center gap-3">
 
-            <div className="flex space-x-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-blue-600 hover:border-blue-600 hover:-translate-y-1 transition-all duration-300"
+              <div className="flex h-11 w-11 items-center justify-center">
+                <svg
+                  viewBox="0 0 48 48"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-11 w-11"
                 >
-                  <Icon size={18} />
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* 🔹 LINKS SECTION */}
-          <div className="lg:col-span-8 grid grid-cols-2 md:grid-cols-3 gap-12">
-            <div className="space-y-7">
-              <h4 className="text-white font-bold text-xs uppercase tracking-[0.3em] opacity-50">
-                Company
-              </h4>
-              <ul className="space-y-4">
-                {["About Us", "Our Process", "Safety", "Artisans"].map(
-                  (item) => (
-                    <li key={item}>
-                      <a
-                        href="#"
-                        className="text-blue-50/80 text-sm hover:text-blue-400 transition-colors flex items-center group font-medium"
-                      >
-                        {item}
-                        <ArrowUpRight
-                          size={14}
-                          className="ml-1 opacity-0 group-hover:opacity-100 transition-all -translate-y-1"
-                        />
-                      </a>
-                    </li>
-                  )
-                )}
-              </ul>
-            </div>
-
-            <div className="space-y-7">
-              <h4 className="text-white font-bold text-xs uppercase tracking-[0.3em] opacity-50">
-                Services
-              </h4>
-              <ul className="space-y-4">
-                {["Electrical", "Plumbing", "Fine Painting", "AC Repair"].map(
-                  (item) => (
-                    <li key={item}>
-                      <a
-                        href="#"
-                        className="text-blue-50/80 text-sm hover:text-blue-400 transition-colors font-medium"
-                      >
-                        {item}
-                      </a>
-                    </li>
-                  )
-                )}
-              </ul>
-            </div>
-
-            <div className="space-y-7">
-              <h4 className="text-white font-bold text-xs uppercase tracking-[0.3em] opacity-50">
-                Contact
-              </h4>
-              <ul className="space-y-5">
-                <li className="flex items-center space-x-3 group cursor-pointer">
-                  <div className="p-2 bg-white/5 rounded-lg text-blue-400">
-                    <Mail size={16} />
-                  </div>
-                  <span className="text-blue-50/80 text-sm font-medium">
-                    concierge@gofix.com
-                  </span>
-                </li>
-                <li className="flex items-center space-x-3 group cursor-pointer">
-                  <div className="p-2 bg-white/5 rounded-lg text-blue-400">
-                    <Phone size={16} />
-                  </div>
-                  <span className="text-blue-50/80 text-sm font-bold tracking-tight">
-                    +234 800 GO FIX IT
-                  </span>
-                </li>
-              </ul>
-              <div className="pt-4">
-                <form className="relative group">
-                  <input
-                    type="email"
-                    placeholder="Join the inner circle"
-                    className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-xs focus:border-blue-500 outline-none text-white transition-all"
+                  <path
+                    d="M24 4L41.32 14V34L24 44L6.68 34V14L24 4Z"
+                    stroke="#1455D9"
+                    strokeWidth="4"
+                    strokeLinejoin="round"
                   />
-                  <button className="absolute right-2 top-2 bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-xl text-[10px] font-bold uppercase transition-all shadow-lg">
-                    Join
-                  </button>
-                </form>
+
+                  <path
+                    d="M29.5 16.5L20 22L29.5 27.5"
+                    stroke="#1455D9"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+
+                  <path
+                    d="M20 22V32"
+                    stroke="#1455D9"
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                  />
+                </svg>
               </div>
-            </div>
-          </div>
-        </div>
 
-        {/* 🔹 BOTTOM BAR */}
-        <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-10">
-            <p className="text-blue-200/40 text-[10px] font-bold uppercase tracking-[0.25em]">
-              © {currentYear} GO-FIX LIMITED
+              <div className="leading-none">
+                <span className="block text-[24px] font-extrabold tracking-tight text-[#102454]">
+                  GoFix
+                </span>
+
+                <span className="mt-1 block text-[11px] font-medium text-[#263a65]">
+                  Find. Hire. Done.
+                </span>
+              </div>
+
+            </a>
+
+            <p className="mt-6 max-w-[250px] text-[12px] leading-[1.65] text-[#263a65]">
+              GoFix is Nigeria's trusted artisan marketplace connecting you
+              with skilled professionals for any job.
             </p>
-            <div className="flex space-x-8">
+          </div>
+
+          {/* ================================
+              EXPLORE
+          ================================= */}
+          <div className="flex-1">
+
+            <h3 className="mb-5 text-[12px] font-bold text-[#102454]">
+              Explore
+            </h3>
+
+            <ul className="space-y-2.5">
+
+              <li>
+                <a
+                  href="/categories"
+                  className="text-[11px] text-[#263a65] transition-colors hover:text-[#1455D9]"
+                >
+                  Categories
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/how-it-works"
+                  className="text-[11px] text-[#263a65] transition-colors hover:text-[#1455D9]"
+                >
+                  How It Works
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/artisans"
+                  className="text-[11px] text-[#263a65] transition-colors hover:text-[#1455D9]"
+                >
+                  Artisans
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/blog"
+                  className="text-[11px] text-[#263a65] transition-colors hover:text-[#1455D9]"
+                >
+                  Blog
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/about"
+                  className="text-[11px] text-[#263a65] transition-colors hover:text-[#1455D9]"
+                >
+                  About Us
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+          {/* ================================
+              SUPPORT
+          ================================= */}
+          <div className="flex-1">
+
+            <h3 className="mb-5 text-[12px] font-bold text-[#102454]">
+              Support
+            </h3>
+
+            <ul className="space-y-2.5">
+
+              <li>
+                <a
+                  href="/help"
+                  className="text-[11px] text-[#263a65] transition-colors hover:text-[#1455D9]"
+                >
+                  Help Center
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/contact"
+                  className="text-[11px] text-[#263a65] transition-colors hover:text-[#1455D9]"
+                >
+                  Contact Us
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/safety"
+                  className="text-[11px] text-[#263a65] transition-colors hover:text-[#1455D9]"
+                >
+                  Safety Tips
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/faqs"
+                  className="text-[11px] text-[#263a65] transition-colors hover:text-[#1455D9]"
+                >
+                  FAQs
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+          {/* ================================
+              FOR ARTISANS
+          ================================= */}
+          <div className="flex-1">
+
+            <h3 className="mb-5 text-[12px] font-bold text-[#102454]">
+              For Artisans
+            </h3>
+
+            <ul className="space-y-2.5">
+
+              <li>
+                <a
+                  href="/join"
+                  className="text-[11px] text-[#263a65] transition-colors hover:text-[#1455D9]"
+                >
+                  Join as an Artisan
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/how-it-works"
+                  className="text-[11px] text-[#263a65] transition-colors hover:text-[#1455D9]"
+                >
+                  How It Works
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="/resources"
+                  className="text-[11px] text-[#263a65] transition-colors hover:text-[#1455D9]"
+                >
+                  Resources
+                </a>
+              </li>
+
+            </ul>
+          </div>
+
+          {/* ================================
+              FOLLOW US
+          ================================= */}
+          <div className="flex-1">
+
+            <h3 className="mb-5 text-[12px] font-bold text-[#102454]">
+              Follow Us
+            </h3>
+
+            <div className="flex items-center gap-2.5">
+
               <a
                 href="#"
-                className="text-blue-200/40 text-[10px] font-bold hover:text-white transition-colors uppercase tracking-widest"
+                aria-label="Facebook"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1455D9] text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[#0d43b2]"
               >
-                Privacy Policy
+                <Facebook
+                  size={15}
+                  fill="currentColor"
+                />
               </a>
+
               <a
                 href="#"
-                className="text-blue-200/40 text-[10px] font-bold hover:text-white transition-colors uppercase tracking-widest"
+                aria-label="Twitter"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1455D9] text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[#0d43b2]"
               >
-                Terms of Service
+                <Twitter
+                  size={14}
+                  fill="currentColor"
+                />
               </a>
+
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1455D9] text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[#0d43b2]"
+              >
+                <Instagram size={15} />
+              </a>
+
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-[#1455D9] text-white transition-all duration-200 hover:-translate-y-1 hover:bg-[#0d43b2]"
+              >
+                <Linkedin
+                  size={15}
+                  fill="currentColor"
+                />
+              </a>
+
             </div>
           </div>
 
-          <div className="flex items-center space-x-3 bg-white/5 px-4 py-2 rounded-2xl border border-white/10">
-            <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse shadow-[0_0_8px_rgba(74,222,128,0.8)]" />
-            <span className="text-[9px] font-black text-blue-100 uppercase tracking-widest">
-              Service Status: Operational
-            </span>
-          </div>
         </div>
+
+        {/* ================================
+            DECORATIVE CITY SKYLINE
+        ================================= */}
+        <div className="pointer-events-none absolute bottom-0 right-4 hidden h-[500px] w-[540px] opacity-30 lg:block">
+
+          <svg
+            viewBox="0 0 320 120"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-full w-full"
+          >
+
+            <path
+              d="M0 118V88H20V75H38V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            <path
+              d="M38 118V63H58V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            <path
+              d="M58 118V80H72V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            <path
+              d="M72 118V53H91V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            <path
+              d="M91 118V72H111V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            <path
+              d="M111 118V45H136V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            <path
+              d="M136 118V66H151V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            <path
+              d="M151 118V30H174V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            <path
+              d="M174 118V62H193V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            <path
+              d="M193 118V48H214V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            <path
+              d="M214 118V70H230V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            <path
+              d="M230 118V55H251V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            <path
+              d="M251 118V74H270V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            <path
+              d="M270 118V42H292V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            <path
+              d="M292 118V63H320V118"
+              stroke="#82A9E8"
+              strokeWidth="1.5"
+            />
+
+            {/* Windows */}
+            <g stroke="#82A9E8" strokeWidth="1">
+              <path d="M44 72H51M44 82H51M44 92H51M44 102H51" />
+              <path d="M78 62H85M78 72H85M78 82H85M78 92H85M78 102H85" />
+              <path d="M118 55H127M118 68H127M118 81H127M118 94H127" />
+              <path d="M158 42H167M158 55H167M158 68H167M158 81H167M158 94H167" />
+              <path d="M199 60H207M199 73H207M199 86H207M199 99H207" />
+              <path d="M277 54H285M277 67H285M277 80H285M277 93H285" />
+              <path d="M300 73H312M300 86H312M300 99H312" />
+            </g>
+
+            {/* Ground */}
+            <path
+              d="M0 118H320"
+              stroke="#82A9E8"
+              strokeWidth="2"
+            />
+
+          </svg>
+
+        </div>
+
+        {/* ================================
+            BOTTOM BAR
+        ================================= */}
+        <div className="relative z-10 mt-10 flex flex-col gap-4 border-t border-[#d4e2f7] pt-5 md:flex-row md:items-center md:justify-center">
+
+          <p className="text-[10px] text-[#263a65]">
+            © {currentYear} GoFix. All rights reserved.
+          </p>
+
+          <div className="flex items-center gap-7">
+
+            <a
+              href="/privacy"
+              className="text-[10px] text-[#263a65] transition-colors hover:text-[#1455D9]"
+            >
+              Privacy Policy
+            </a>
+
+            <a
+              href="/terms"
+              className="text-[10px] text-[#263a65] transition-colors hover:text-[#1455D9]"
+            >
+              Terms of Service
+            </a>
+
+          </div>
+
+        </div>
+
       </div>
     </footer>
   );

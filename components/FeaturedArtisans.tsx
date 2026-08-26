@@ -1,123 +1,534 @@
 "use client";
-import { Star, Hammer, ArrowUpRight, BadgeCheck } from "lucide-react";
+
+import Image from "next/image";
+import {
+  ArrowRight,
+  Check,
+  MapPin,
+  Star,
+} from "lucide-react";
 
 const artisans = [
   {
-    name: "Samuel Okon",
-    category: "Master Plumber",
-    rating: 4.9,
-    img: "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?w=400",
+    name: "John Adewale",
+    profession: "Master Plumber",
+    rating: "4.9",
+    jobs: "127",
+    location: "Lagos",
+    description:
+      "Specialist in plumbing repairs, installations and maintenance.",
+    image: "/images/artisans/john.jpg",
+    featured: true,
   },
   {
-    name: "Amina Yusuf",
-    category: "Electrical Engineer",
-    rating: 4.8,
-    img: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400",
+    name: "Michael Okoro",
+    profession: "Electrician",
+    rating: "4.8",
+    jobs: "84",
+    location: "Lagos",
+    image: "/images/artisans/michael.jpg",
+    featured: false,
   },
   {
-    name: "Victor Evans",
-    category: "Fine Painter",
-    rating: 5.0,
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
+    name: "David Adebayo",
+    profession: "Carpenter",
+    rating: "5.0",
+    jobs: "96",
+    location: "Abuja",
+    image: "/images/artisans/david.jpg",
+    featured: false,
   },
   {
-    name: "Olawale Silva",
-    category: "HVAC Specialist",
-    rating: 4.9,
-    img: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400",
-  },
-  {
-    name: "Blessing Ade",
-    category: "Interior Carpenter",
-    rating: 4.7,
-    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400",
-  },
-  {
-    name: "Julian Hart",
-    category: "Smart Home Pro",
-    rating: 5.0,
-    img: "https://images.unsplash.com/photo-1558227108-83a15ddbbb15?w=400",
+    name: "Samuel James",
+    profession: "Painter",
+    rating: "4.9",
+    jobs: "73",
+    location: "Lagos",
+    image: "/images/artisans/samuel.jpg",
+    featured: false,
   },
 ];
 
-export default function FeaturedArtisans() {
+function VerifiedBadge() {
   return (
-    <section className="py-20 bg-white relative overflow-hidden">
-      {/* 🔹 Background Aura */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-50/50 blur-[120px] rounded-full pointer-events-none" />
+    <div className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-[11px] font-semibold text-[#1554d1] shadow-md">
+      <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#1554d1]">
+        <Check size={10} strokeWidth={3} className="text-white" />
+      </span>
 
-      <div className="max-w-7xl mx-auto px-8 md:px-16 lg:px-24 relative z-10">
-        {/* 🔹 HEADER AREA */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
-          <div className="space-y-6">
-            <div className="inline-flex items-center space-x-2 bg-blue-50 border border-blue-100 text-blue-700 px-4 py-2 rounded-full shadow-sm">
-              <Hammer size={14} className="fill-blue-600/20" />
-              <span className="text-[10px] font-bold uppercase tracking-[0.2em]">
-                The Elite Circle
-              </span>
-            </div>
-            <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] tracking-tighter">
-              Featured Artisans
-            </h3>
+      Verified
+    </div>
+  );
+}
+
+export default function TrustedArtisans() {
+  const featured = artisans.find((artisan) => artisan.featured);
+  const others = artisans.filter((artisan) => !artisan.featured);
+
+  return (
+    <section className="relative overflow-hidden bg-white px-4 py-14 md:px-6 md:py-20 lg:px-10">
+      <div
+        className="
+          relative
+          mx-auto
+          max-w-[1440px]
+          overflow-hidden
+          rounded-[34px]
+          bg-[#f8faff]
+          px-6
+          py-12
+          md:px-10
+          md:py-16
+          lg:px-12
+          lg:py-20
+        "
+      >
+        {/* =====================================================
+            SOFT BACKGROUND BLOB
+        ===================================================== */}
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            -right-[15%]
+            -top-[25%]
+            h-[600px]
+            w-[65%]
+            rounded-full
+            bg-[#eaf1ff]
+            blur-[2px]
+            lg:h-[750px]
+          "
+        />
+
+        {/* =====================================================
+            DARK BLUE ORGANIC SHAPE
+        ===================================================== */}
+
+        {/* White cut-out creating the wave */}
+        <div
+          className="
+            pointer-events-none
+            absolute
+            -bottom-[365px]
+            -left-[5%]
+            h-[220px]
+            w-[60%]
+            rotate-[-4deg]
+            rounded-[50%]
+            bg-[#f8faff]
+          "
+        />
+
+        {/* =====================================================
+            DECORATIVE DOTS
+        ===================================================== */}
+
+        <div className="pointer-events-none absolute right-10 top-12 hidden opacity-50 lg:block">
+          <div className="grid grid-cols-5 gap-3">
+            {Array.from({ length: 25 }).map((_, index) => (
+              <span
+                key={index}
+                className="h-2 w-2 rounded-full bg-[#b9cdf5]"
+              />
+            ))}
           </div>
-          <button className="text-blue-600 font-fantasy text-lg hover:bg-blue-600 hover:shadow-2xl hover:shadow-blue-600/30 transition-all active:scale-95 group">
-            Explore All Professionals
-            <ArrowUpRight
-              className="inline-block ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-              size={20}
+        </div>
+
+        {/* =====================================================
+            HEADER
+        ===================================================== */}
+
+        <div className="relative z-10 mb-12 flex flex-col gap-7 md:flex-row md:items-end md:justify-between">
+          <div>
+            {/* Badge */}
+
+            <div
+              className="
+                inline-flex
+                items-center
+                gap-2
+                rounded-full
+                border
+                border-blue-100
+                bg-white
+                px-4
+                py-2
+                text-sm
+                font-semibold
+                text-[#1554d1]
+                shadow-sm
+              "
+            >
+              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#1554d1]">
+                <Check
+                  size={11}
+                  strokeWidth={3}
+                  className="text-white"
+                />
+              </span>
+
+              Trusted Artisans
+            </div>
+
+            <h2
+              className="
+                mt-6
+                max-w-[600px]
+                text-[38px]
+                font-semibold
+                leading-[1.08]
+                tracking-[-0.04em]
+                text-[#071b49]
+                md:text-[48px]
+              "
+            >
+              Meet the professionals
+              <br />
+              <span className="text-[#1554d1]">
+                behind great work.
+              </span>
+            </h2>
+
+            <p
+              className="
+                mt-5
+                max-w-[550px]
+                text-[15px]
+                leading-7
+                text-[#596983]
+                md:text-[16px]
+              "
+            >
+              Verified professionals, highly rated by customers and ready
+              to help with your next job.
+            </p>
+          </div>
+
+          {/* View all */}
+
+          <button
+            type="button"
+            className="
+              group
+              inline-flex
+              w-fit
+              shrink-0
+              items-center
+              gap-3
+              rounded-full
+              bg-white
+              px-5
+              py-3
+              text-sm
+              font-semibold
+              text-[#1554d1]
+              shadow-sm
+              ring-1
+              ring-blue-100
+              transition-all
+              duration-300
+              hover:bg-[#1554d1]
+              hover:text-white
+              hover:shadow-lg
+            "
+          >
+            View all artisans
+
+            <ArrowRight
+              size={17}
+              className="transition-transform duration-300 group-hover:translate-x-1"
             />
           </button>
         </div>
 
-        {/* 🔹 ARTISAN GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-          {artisans.map((pro, i) => (
-            <div key={i} className="group cursor-pointer">
-              {/* Image Container */}
-              <div className="relative h-[200px] w-full overflow-hidden rounded-[2.5rem] mb-6 shadow-xl shadow-blue-900/5">
-                <img
-                  src={pro.img}
-                  alt={pro.name}
-                  className="h-full w-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                />
+        {/* =====================================================
+            ARTISAN SHOWCASE
+        ===================================================== */}
 
-                {/* Overlay with Glassmorphism Effect on Hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="relative z-10 grid gap-5 lg:grid-cols-[1.35fr_1fr]">
+          {/* ===================================================
+              FEATURED ARTISAN
+          =================================================== */}
 
-                {/* Floating Badge */}
-                <div className="absolute top-6 left-6 flex items-center space-x-2 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full shadow-lg border border-white/20">
-                  <BadgeCheck size={14} className="text-blue-600" />
-                  <span className="text-[10px] font-bold text-slate-900 uppercase tracking-widest">
-                    Premium
-                  </span>
-                </div>
+          {featured && (
+            <article
+              className="
+                group
+                relative
+                min-h-[520px]
+                overflow-hidden
+                rounded-[30px]
+                bg-[#000b76]
+                shadow-[0_25px_60px_rgba(7,27,73,0.18)]
+              "
+            >
+              {/* Image */}
 
-                {/* View Profile Arrow */}
-                <div className="absolute top-6 right-6 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-                  <ArrowUpRight size={20} />
-                </div>
+              <Image
+                src={featured.image}
+                alt={featured.name}
+                fill
+                sizes="(max-width: 1024px) 100vw, 55vw"
+                className="
+                  object-cover
+                  transition-transform
+                  duration-700
+                  group-hover:scale-105
+                "
+              />
+
+              {/* Dark gradient */}
+
+              <div
+                className="
+                  absolute
+                  inset-0
+                  bg-gradient-to-t
+                  from-[#000b76]
+                  via-[#000b76]/25
+                  to-transparent
+                "
+              />
+
+              {/* Verification */}
+
+              <div className="absolute left-6 top-6">
+                <VerifiedBadge />
               </div>
 
-              {/* Info Area */}
-              <div className="px-2 space-y-2">
-                <div className="flex justify-between items-center">
-                  <h4 className="text-2xl font-fantasy text-slate-900 group-hover:text-blue-600 transition-colors">
-                    {pro.name}
-                  </h4>
-                  <div className="flex items-center space-x-1">
-                    <Star size={16} className="fill-blue-600 text-blue-600" />
-                    <span className="text-sm font-bold text-slate-900">
-                      {pro.rating}
+              {/* Featured label */}
+
+              <div
+                className="
+                  absolute
+                  right-6
+                  top-6
+                  rounded-full
+                  bg-[#1554d1]
+                  px-4
+                  py-2
+                  text-[11px]
+                  font-semibold
+                  text-white
+                  shadow-lg
+                "
+              >
+                Top Artisan
+              </div>
+
+              {/* Content */}
+
+              <div className="absolute bottom-0 left-0 right-0 p-7 md:p-9">
+                <p className="text-sm font-medium text-blue-200">
+                  {featured.profession}
+                </p>
+
+                <h3
+                  className="
+                    mt-1
+                    text-[30px]
+                    font-semibold
+                    tracking-[-0.03em]
+                    text-white
+                    md:text-[36px]
+                  "
+                >
+                  {featured.name}
+                </h3>
+
+                <p className="mt-3 max-w-[440px] text-sm leading-6 text-blue-100">
+                  {featured.description}
+                </p>
+
+                {/* Stats */}
+
+                <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-white">
+                  <div className="flex items-center gap-1.5">
+                    <Star
+                      size={16}
+                      fill="currentColor"
+                      className="text-white"
+                    />
+
+                    <span className="font-semibold">
+                      {featured.rating}
                     </span>
                   </div>
+
+                  <span className="h-4 w-px bg-white/30" />
+
+                  <span>
+                    {featured.jobs} jobs completed
+                  </span>
+
+                  <span className="h-4 w-px bg-white/30" />
+
+                  <div className="flex items-center gap-1.5">
+                    <MapPin size={15} />
+                    {featured.location}
+                  </div>
                 </div>
-                <p className="text-blue-500 text-xs font-bold uppercase tracking-[0.2em]">
-                  {pro.category}
-                </p>
+
+                {/* Button */}
+
+                <button
+                  type="button"
+                  className="
+                    group/button
+                    mt-6
+                    inline-flex
+                    items-center
+                    gap-2
+                    rounded-full
+                    bg-white
+                    px-5
+                    py-3
+                    text-sm
+                    font-semibold
+                    text-[#000b76]
+                    transition-all
+                    duration-300
+                    hover:bg-[#1554d1]
+                    hover:text-white
+                  "
+                >
+                  View Profile
+
+                  <ArrowRight
+                    size={16}
+                    className="transition-transform duration-300 group-hover/button:translate-x-1"
+                  />
+                </button>
               </div>
-            </div>
-          ))}
+            </article>
+          )}
+
+          {/* ===================================================
+              SMALL ARTISANS
+          =================================================== */}
+
+          <div className="grid gap-5 sm:grid-cols-3 lg:grid-cols-1">
+            {others.map((artisan) => (
+              <article
+                key={artisan.name}
+                className="
+                  group
+                  relative
+                  flex
+                  min-h-[165px]
+                  overflow-hidden
+                  rounded-[26px]
+                  bg-white
+                  p-3
+                  shadow-[0_12px_35px_rgba(7,27,73,0.08)]
+                  ring-1
+                  ring-slate-100
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:shadow-[0_18px_40px_rgba(7,27,73,0.13)]
+                "
+              >
+                {/* Image */}
+
+                <div className="relative h-full min-h-[145px] w-[135px] shrink-0 overflow-hidden rounded-[20px]">
+                  <Image
+                    src={artisan.image}
+                    alt={artisan.name}
+                    fill
+                    sizes="135px"
+                    className="
+                      object-cover
+                      transition-transform
+                      duration-500
+                      group-hover:scale-105
+                    "
+                  />
+
+                  <div className="absolute left-2 top-2">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#1554d1] shadow-md">
+                      <Check
+                        size={12}
+                        strokeWidth={3}
+                        className="text-white"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Content */}
+
+                <div className="flex flex-1 flex-col justify-center px-4 py-3">
+                  <p className="text-xs font-medium text-[#1554d1]">
+                    {artisan.profession}
+                  </p>
+
+                  <h3
+                    className="
+                      mt-1
+                      text-[18px]
+                      font-semibold
+                      tracking-[-0.02em]
+                      text-[#071b49]
+                    "
+                  >
+                    {artisan.name}
+                  </h3>
+
+                  <div className="mt-3 flex items-center gap-3 text-xs text-slate-500">
+                    <span className="flex items-center gap-1 font-semibold text-[#071b49]">
+                      <Star
+                        size={13}
+                        fill="currentColor"
+                        className="text-[#1554d1]"
+                      />
+
+                      {artisan.rating}
+                    </span>
+
+                    <span>•</span>
+
+                    <span>{artisan.jobs} jobs</span>
+                  </div>
+
+                  <div className="mt-2 flex items-center gap-1 text-xs text-slate-500">
+                    <MapPin size={13} />
+                    {artisan.location}
+                  </div>
+
+                  <button
+                    type="button"
+                    className="
+                      group/profile
+                      mt-3
+                      flex
+                      w-fit
+                      items-center
+                      gap-1
+                      text-xs
+                      font-semibold
+                      text-[#1554d1]
+                    "
+                  >
+                    View Profile
+
+                    <ArrowRight
+                      size={13}
+                      className="transition-transform duration-300 group-hover/profile:translate-x-1"
+                    />
+                  </button>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
+
+        {/* =====================================================
+            TRUST STATS
+        ===================================================== */}
+
       </div>
     </section>
   );

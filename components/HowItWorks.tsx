@@ -1,164 +1,279 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import {
-  ArrowRight,
-  Search,
-  Sparkles,
-  ShieldCheck,
-} from "lucide-react";
+import { ArrowRight, Check, FileText, MessageCircle, Users } from "lucide-react";
 
 const steps = [
   {
     number: "01",
-    title: "Describe Your Need",
-    description:
-      "Tell us what needs attention and where. From urgent repairs to planned upgrades.",
-    icon: <Search size={22} />,
+    icon: FileText,
+    title: "Post a Job",
+    description: "Tell us what you need done.",
   },
   {
     number: "02",
-    title: "Matched Instantly",
-    description:
-      "Our intelligent system connects you with verified professionals nearby.",
-    icon: <Sparkles size={22} />,
+    icon: Users,
+    title: "Get Matched",
+    description: "We connect you with available artisans.",
   },
   {
     number: "03",
-    title: "Elite Service Delivery",
-    description:
-      "Relax while trusted artisans deliver exceptional workmanship with precision.",
-    icon: <ShieldCheck size={22} />,
+    icon: MessageCircle,
+    title: "Review & Hire",
+    description: "Check reviews, compare and hire with confidence.",
+  },
+  {
+    number: "04",
+    icon: Check,
+    title: "Get It Done",
+    description: "Sit back while the job gets done right.",
   },
 ];
 
-export default function ProcessCarousel() {
-  const [active, setActive] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActive((prev) => (prev + 1) % steps.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, []);
-
+export default function HowItWorks() {
   return (
-    <section className="relative overflow-hidden bg-white py-40">
-      {/* 🔹 BACKGROUND ATMOSPHERE */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-[120px] opacity-80" />
+    <section className="relative overflow-hidden bg-white px-6 py-20 md:px-10 md:py-24 lg:px-16">
+      <div className="relative mx-auto max-w-[1440px]">
+        {/* =====================================================
+            HEADER
+        ===================================================== */}
 
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-20 items-center">
-          {/* 🔹 LEFT CONTENT */}
-          <div className="lg:col-span-4 space-y-8">
-            <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-100 text-[#000b76] px-4 py-2 rounded-full">
-              <span className="text-[10px] font-black uppercase tracking-[0.25em]">
-                The Process
-              </span>
-            </div>
-
-            <div className="space-y-6">
-              <h2 className="text-5xl md:text-6xl font-black tracking-tighter leading-[0.95] text-slate-900">
-                A smoother way to hire trusted artisans.
-              </h2>
-
-              <p className="text-slate-500 text-lg leading-relaxed font-medium max-w-md">
-                From discovery to completion, every interaction is designed to
-                feel seamless, transparent, and premium.
-              </p>
-            </div>
-
-            {/* CONTROLS */}
-            <div className="flex items-center gap-4 pt-4">
-              {steps.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActive(i)}
-                  className={`h-2 rounded-full transition-all duration-500 ${
-                    active === i
-                      ? "w-14 bg-[#000b76]"
-                      : "w-2 bg-slate-300"
-                  }`}
-                />
-              ))}
-            </div>
+        <div className="mx-auto max-w-[620px] text-center">
+          {/* Small label */}
+          <div className="inline-flex items-center gap-2 text-sm font-semibold text-[#1554d1]">
+            <span className="h-2 w-2 rounded-full bg-[#1554d1]" />
+            How It Works
           </div>
 
-          {/* 🔹 RIGHT CAROUSEL */}
-          <div className="lg:col-span-8 relative h-[500px] flex items-center justify-center overflow-hidden">
-            {/* FLOW LINE */}
-            <div className="absolute top-1/2 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-blue-100 to-transparent" />
+          <h2
+            className="
+              mt-4
+              text-[32px]
+              font-semibold
+              leading-[1.1]
+              tracking-[-0.035em]
+              text-[#071b49]
+              md:text-[40px]
+            "
+          >
+            Getting your job done
+            <br className="hidden sm:block" />
+            is simple.
+          </h2>
 
-            {/* GLOW */}
-            <div className="absolute w-72 h-72 rounded-full" />
+          <p
+            className="
+              mx-auto
+              mt-4
+              max-w-[500px]
+              text-sm
+              leading-6
+              text-[#64718a]
+              md:text-[15px]
+            "
+          >
+            From finding the right artisan to getting the job completed,
+            GoFix keeps everything simple.
+          </p>
+        </div>
 
-            {steps.map((step, i) => {
-              const position =
-                (i - active + steps.length) % steps.length;
+        {/* =====================================================
+            PROCESS
+        ===================================================== */}
 
-              let styles = "";
+        <div className="relative mt-16 md:mt-20">
+          {/* Desktop connecting line */}
 
-              if (position === 0) {
-                styles =
-                  "translate-x-0 scale-100 z-30 opacity-100";
-              } else if (position === 1) {
-                styles =
-                  "translate-x-[70%] scale-90 z-20 opacity-50 blur-[1px]";
-              } else {
-                styles =
-                  "-translate-x-[70%] scale-90 z-20 opacity-50 blur-[1px]";
-              }
+          <div
+            className="
+              pointer-events-none
+              absolute
+              left-[12.5%]
+              right-[12.5%]
+              top-[31px]
+              hidden
+              h-px
+              bg-[#c9d9f8]
+              lg:block
+            "
+          />
+
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+            {steps.map((step, index) => {
+              const Icon = step.icon;
+              const isFirst = index === 0;
 
               return (
                 <div
-                  key={i}
-                  className={`absolute w-full max-w-[520px] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${styles}`}
+                  key={step.number}
+                  className="
+                    group
+                    relative
+                    flex
+                    flex-col
+                    items-center
+                    text-center
+                    lg:px-8
+                  "
                 >
-                  <div className="relative overflow-hidden rounded-[2.8rem] border border-slate-100 bg-white p-10 md:p-12 shadow-[0_30px_80px_-15px_rgba(15,23,42,0.12)]">
-                    {/* CARD GLOW */}
-                    <div className="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-[80px]" />
+                  {/* =================================================
+                      NUMBER
+                  ================================================= */}
 
-                    {/* NUMBER */}
-                    <span className="absolute top-6 right-8 text-8xl font-black text-slate-100 select-none">
+                  <div
+                    className={`
+                      relative
+                      z-10
+                      flex
+                      h-[62px]
+                      w-[62px]
+                      items-center
+                      justify-center
+                      rounded-full
+                      border
+                      transition-all
+                      duration-300
+
+                      ${
+                        isFirst
+                          ? "border-[#000b76] bg-[#000b76] text-white shadow-[0_10px_25px_rgba(0,11,118,0.18)]"
+                          : "border-[#dbe7fb] bg-white text-[#1554d1] group-hover:border-[#1554d1] group-hover:bg-[#f1f6ff]"
+                      }
+                    `}
+                  >
+                    <span className="text-[14px] font-bold">
                       {step.number}
                     </span>
-
-                    <div className="relative z-10 space-y-10">
-                      {/* ICON */}
-                      <div className="w-16 h-16 rounded-2xl bg-[#000b76] text-white flex items-center justify-center shadow-lg shadow-blue-900/20">
-                        {step.icon}
-                      </div>
-
-                      {/* CONTENT */}
-                      <div className="space-y-5">
-                        <h3 className="text-3xl md:text-4xl font-black tracking-tight text-slate-900 leading-tight">
-                          {step.title}
-                        </h3>
-
-                        <p className="text-slate-500 leading-relaxed text-lg font-medium max-w-md">
-                          {step.description}
-                        </p>
-                      </div>
-
-                      {/* CTA */}
-                      <button className="group flex items-center gap-3 text-[#000b76] font-black">
-                        Learn More
-
-                        <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center group-hover:translate-x-1 transition-transform">
-                          <ArrowRight size={16} />
-                        </div>
-                      </button>
-                    </div>
                   </div>
+
+                  {/* =================================================
+                      ICON
+                  ================================================= */}
+
+                  <div
+                    className="
+                      mt-6
+                      flex
+                      h-11
+                      w-11
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-[#f1f6ff]
+                      text-[#1554d1]
+                      transition-transform
+                      duration-300
+                      group-hover:-translate-y-1
+                    "
+                  >
+                    <Icon size={20} strokeWidth={1.7} />
+                  </div>
+
+                  {/* =================================================
+                      TEXT
+                  ================================================= */}
+
+                  <div className="mt-4 max-w-[190px]">
+                    <h3
+                      className="
+                        text-[17px]
+                        font-semibold
+                        tracking-[-0.015em]
+                        text-[#071b49]
+                      "
+                    >
+                      {step.title}
+                    </h3>
+
+                    <p
+                      className="
+                        mt-2
+                        text-[13px]
+                        leading-[1.6]
+                        text-[#64718a]
+                      "
+                    >
+                      {step.description}
+                    </p>
+                  </div>
+
+                  {/* =================================================
+                      MOBILE CONNECTOR
+                  ================================================= */}
+
+                  {index < steps.length - 1 && (
+                    <div
+                      className="
+                        absolute
+                        bottom-[-48px]
+                        left-1/2
+                        h-10
+                        w-px
+                        -translate-x-1/2
+                        bg-[#c9d9f8]
+                        md:hidden
+                      "
+                    />
+                  )}
                 </div>
               );
             })}
           </div>
         </div>
+
+        {/* =====================================================
+            BOTTOM CTA
+        ===================================================== */}
+
+        <div className="mt-16 flex justify-center md:mt-20">
+          <button
+            type="button"
+            className="
+              group
+              inline-flex
+              items-center
+              gap-2
+              rounded-full
+              bg-[#000b76]
+              px-6
+              py-3.5
+              text-sm
+              font-semibold
+              text-white
+              shadow-[0_10px_25px_rgba(0,11,118,0.14)]
+              transition-all
+              duration-300
+              hover:-translate-y-0.5
+              hover:bg-[#07149a]
+              hover:shadow-[0_14px_30px_rgba(0,11,118,0.2)]
+            "
+          >
+            Get started with GoFix
+
+            <ArrowRight
+              size={16}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
+          </button>
+        </div>
+
+        {/* =====================================================
+            SUBTLE DECORATION
+        ===================================================== */}
+
+        <div
+          className="
+            pointer-events-none
+            absolute
+            -bottom-24
+            -right-24
+            hidden
+            h-48
+            w-48
+            rounded-full
+            bg-[#f1f6ff]
+            lg:block
+          "
+        />
       </div>
     </section>
   );
