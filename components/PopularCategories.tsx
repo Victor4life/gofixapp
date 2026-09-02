@@ -39,6 +39,13 @@ const categories = [
       "https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=800&q=85",
     icon: PaintRoller,
   },
+  {
+    name: "Cleaning",
+    description: "Residential & commercial cleaning services",
+    image:
+      "https://images.unsplash.com/photo-1581579182210-1e3f5b8c6f2d?w=800&q=85",
+    icon: MoreHorizontal,
+  }
 ];
 
 export default function PopularCategories() {
@@ -75,6 +82,32 @@ export default function PopularCategories() {
           border-[#f5f7ff]
         "
       />
+
+            {/* =====================================================
+          TOP RIGHT DOT PATTERN
+      ===================================================== */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          right-[7%]
+          top-[65px]
+          hidden
+          opacity-70
+          lg:block
+        "
+      >
+        <div className="grid grid-cols-4 gap-[18px]">
+          {Array.from({ length: 16 }).map((_, index) => (
+            <span
+              key={index}
+              className="h-[6px] w-[6px] rounded-full bg-[#a9c6fa]"
+            />
+          ))}
+        </div>
+      </div>
+
 
 
       <div className="relative mx-auto max-w-[1380px] px-6 lg:px-10">
@@ -426,6 +459,12 @@ export default function PopularCategories() {
           ================================================= */}
 
           <ServiceCard category={categories[3]} />
+
+          {/* =================================================
+              CLEANING
+          ================================================= */}
+
+          <ServiceCard category={categories[4]} />
 
 
           {/* =================================================

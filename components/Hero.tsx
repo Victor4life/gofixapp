@@ -597,8 +597,7 @@ export default function Hero() {
             left-0
             z-20
             h-[120px]
-            w-full
-          "
+            w-full          "
           viewBox="0 0 1440 160"
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"

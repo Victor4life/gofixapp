@@ -1,17 +1,13 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Inter, Cinzel } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
 import Script from "next/script";
-import ToastProvider from "@/components/providers/ToastProvider"; 
+import ToastProvider from "@/components/providers/ToastProvider";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const cinzel = Cinzel({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-cinzel",
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -26,9 +22,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${cinzel.variable}`}>
+    <html lang="en" className={inter.variable}>
       <body>
-        <ToastProvider> {/* 👈 Wrap children with ToastProvider */}
+        <ToastProvider>
           {children}
         </ToastProvider>
 
@@ -41,7 +37,8 @@ export default function RootLayout({
               var s,c,o=smartsupp=function(){ o._.push(arguments)};o._=[];
               s=d.getElementsByTagName('script')[0];c=d.createElement('script');
               c.type='text/javascript';c.charset='utf-8';c.async=true;
-              c.src='https://www.smartsuppchat.com/loader.js?';s.parentNode.insertBefore(c,s);
+              c.src='https://www.smartsuppchat.com/loader.js?';
+              s.parentNode.insertBefore(c,s);
             })(document);
           `}
         </Script>

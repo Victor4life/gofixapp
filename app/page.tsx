@@ -25,8 +25,8 @@ export default function LandingPage() {
       <LoadingScreen />
       <div className="animate-in fade-in duration-1000">
         <Hero />
+                  <HowItWorks />
         <PopularCategories />
-                <HowItWorks />
 <FeaturedArtisans />
 <Testimonials />
 <FinalCTA />
