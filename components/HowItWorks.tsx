@@ -71,30 +71,35 @@ export default function HowItWorks() {
       ========================================================== */}
 
 <svg
-        className="absolute inset-0 z-0 h-full w-full"
-        viewBox="0 0 1440 760"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <path
-          d="
-            M 0 0
-            H 1440
-            V 555
+  className="absolute inset-0 z-0 h-full w-full"
+  viewBox="0 0 1440 500"
+  preserveAspectRatio="none"
+  aria-hidden="true"
+>
+  <path
+    d="
+      M 0 45
 
-            C 1418 620 1380 680 1315 718
-            C 1250 756 1175 760 1085 760
+      C 180 5 350 10 520 20
+      C 720 32 900 38 1080 30
+      C 1220 22 1340 8 1440 0
 
-            C 900 760 760 755 610 750
-            C 470 746 330 732 215 725
+      V 390
 
-            C 125 720 55 728 0 745
+      C 1410 435 1360 475 1290 490
+      C 1220 505 1120 500 1020 500
 
-            Z
-          "
-          fill="#06147f"
-        />
-      </svg>
+      C 820 500 650 492 500 486
+      C 350 480 220 475 120 488
+      C 70 492 30 498 0 505
+
+      Z
+    "
+    fill="#06147f"
+  />
+</svg>
+
+
       {/* =========================================================
           DECORATIVE CIRCLES
       ========================================================== */}
@@ -106,8 +111,8 @@ export default function HowItWorks() {
           absolute
           left-[18px]
           top-[38px]
-          h-[48px]
-          w-[48px]
+          h-[58px]
+          w-[58px]
           rounded-full
           bg-[#1539c4]
         "
@@ -120,8 +125,8 @@ export default function HowItWorks() {
           absolute
           right-[26px]
           top-[42px]
-          h-[30px]
-          w-[30px]
+          h-[40px]
+          w-[40px]
           rounded-full
           bg-[#1539c4]
         "
@@ -147,7 +152,7 @@ export default function HowItWorks() {
         {Array.from({ length: 25 }).map((_, index) => (
           <span
             key={index}
-            className="h-[4px] w-[4px] rounded-full bg-[#2864e8]"
+            className="h-[8px] w-[8px] rounded-full bg-[#2864e8]"
           />
         ))}
       </div>
@@ -164,7 +169,7 @@ export default function HowItWorks() {
           max-w-[1280px]
           px-6
           pb-[85px]
-          pt-[58px]
+          pt-[85px]
           sm:px-8
           lg:px-10
         "
