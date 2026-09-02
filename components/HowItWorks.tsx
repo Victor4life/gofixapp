@@ -1,291 +1,264 @@
 "use client";
 
+import Link from "next/link";
 import {
-  Award,
-  Check,
-  Clock3,
   FileText,
-  House,
-  MessageCircle,
-  ShieldCheck,
-  Star,
   Users,
+  ShieldCheck,
+  CircleCheck,
   ArrowRight,
 } from "lucide-react";
 
 const steps = [
   {
-    number: "01",
+    number: "1",
     title: "Post a Job",
     description: (
       <>
         Tell us what you need
         <br />
-        done and add the details.
-        <br />
-        It only takes a minute.
+        done and where.
       </>
     ),
     icon: FileText,
   },
   {
-    number: "02",
+    number: "2",
     title: "Get Matched",
     description: (
       <>
-        We find the best available
+        We connect you with
         <br />
-        artisans for your job and
-        <br />
-        send them your request.
+        verified artisans.
       </>
     ),
     icon: Users,
   },
   {
-    number: "03",
+    number: "3",
     title: "Review & Hire",
     description: (
       <>
-        Compare profiles, reviews
+        Check profiles, reviews,
         <br />
-        and quotes. Choose the
-        <br />
-        artisan you trust.
+        and hire with confidence.
       </>
     ),
-    icon: MessageCircle,
+    icon: ShieldCheck,
   },
   {
-    number: "04",
+    number: "4",
     title: "Get It Done",
     description: (
       <>
-        Sit back and relax while
-        <br />
-        your job gets done right,
+        Your job gets done right,
         <br />
         on time.
       </>
     ),
-    icon: House,
-  },
-];
-
-const benefits = [
-  {
-    icon: ShieldCheck,
-    title: "Trusted Professionals",
-    description: (
-      <>
-        Every artisan is verified
-        <br />
-        and background checked.
-      </>
-    ),
-  },
-  {
-    icon: Clock3,
-    title: "Fast & Reliable",
-    description: (
-      <>
-        Quick responses and
-        <br />
-        on-time service delivery.
-      </>
-    ),
-  },
-  {
-    icon: Award,
-    title: "Satisfaction Guaranteed",
-    description: (
-      <>
-        Quality work or your money
-        <br />
-        back. We've got you.
-      </>
-    ),
+    icon: CircleCheck,
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section className="relative overflow-hidden bg-white py-10 md:py-24 lg:py-16">
+    <section className="relative overflow-hidden bg-[#f7f9ff]">
 
-      <div className="relative z-10 mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16">
-        {/* =====================================================
-            BENEFITS STRIP
-        ===================================================== */}
+      {/* =========================================================
+          BLUE BACKGROUND
+          SVG gives us control over BOTH the top and bottom waves
+          and the large curved right-hand corners.
+      ========================================================== */}
 
-        <div
-          className="
-            relative
-            mt-20
-            overflow-hidden
-            rounded-[14px]
-            border
-            border-[#dce8fb]
-            bg-[#f8faff]
+<svg
+        className="absolute inset-0 z-0 h-full w-full"
+        viewBox="0 0 1440 760"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="
+            M 0 0
+            H 1440
+            V 555
 
-            md:mt-24
-            lg:mt-28
+            C 1418 620 1380 680 1315 718
+            C 1250 756 1175 760 1085 760
+
+            C 900 760 760 755 610 750
+            C 470 746 330 732 215 725
+
+            C 125 720 55 728 0 745
+
+            Z
           "
-        >
-          <div className="grid grid-cols-1 md:grid-cols-3">
+          fill="#06147f"
+        />
+      </svg>
+      {/* =========================================================
+          DECORATIVE CIRCLES
+      ========================================================== */}
 
-            {benefits.map((benefit, index) => {
-              const Icon = benefit.icon;
+      {/* Large left circle */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          left-[18px]
+          top-[38px]
+          h-[48px]
+          w-[48px]
+          rounded-full
+          bg-[#1539c4]
+        "
+      />
 
-              return (
-                <div
-                  key={benefit.title}
-                  className={`
-                    flex
-                    items-center
-                    gap-5
-                    px-7
-                    py-7
+      {/* Small top-right circle */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          right-[26px]
+          top-[42px]
+          h-[30px]
+          w-[30px]
+          rounded-full
+          bg-[#1539c4]
+        "
+      />
 
-                    md:px-8
-                    md:py-8
-                    lg:px-10
+      {/* =========================================================
+          RIGHT DOT PATTERN
+      ========================================================== */}
 
-                    ${
-                      index !== benefits.length - 1
-                        ? "border-b border-[#d8e5fa] md:border-b-0 md:border-r"
-                        : ""
-                    }
-                  `}
-                >
+      <div
+        className="
+          pointer-events-none
+          absolute
+          right-[27px]
+          top-[125px]
+          z-[1]
+          hidden
+          grid-cols-5
+          gap-[9px]
+          lg:grid
+        "
+      >
+        {Array.from({ length: 25 }).map((_, index) => (
+          <span
+            key={index}
+            className="h-[4px] w-[4px] rounded-full bg-[#2864e8]"
+          />
+        ))}
+      </div>
 
-                  {/* ICON */}
+      {/* =========================================================
+          MAIN CONTENT
+      ========================================================== */}
 
-                  <div
-                    className="
-                      flex
-                      h-[72px]
-                      w-[72px]
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-full
-                      bg-[#e4edff]
-                      text-[#0028a5]
-                    "
-                  >
-                    <Icon
-                      size={38}
-                      strokeWidth={1.6}
-                    />
-                  </div>
+      <div
+        className="
+          relative
+          z-10
+          mx-auto
+          max-w-[1280px]
+          px-6
+          pb-[85px]
+          pt-[58px]
+          sm:px-8
+          lg:px-10
+        "
+      >
 
+        {/* =======================================================
+            HEADER
+        ======================================================== */}
 
-                  {/* TEXT */}
+        <div className="flex items-start justify-between">
 
-                  <div>
-                    <h3
-                      className="
-                        text-[17px]
-                        font-bold
-                        tracking-[-0.02em]
-                        text-[#071b49]
-                      "
-                    >
-                      {benefit.title}
-                    </h3>
+          <div>
+            <p
+              className="
+                mb-[8px]
+                text-[9px]
+                font-semibold
+                uppercase
+                tracking-[0.02em]
+                text-[#bcd1ff]
+              "
+            >
+              How It Works
+            </p>
 
-                    <p
-                      className="
-                        mt-2
-                        text-[14px]
-                        leading-[1.65]
-                        text-[#344360]
-                      "
-                    >
-                      {benefit.description}
-                    </p>
-                  </div>
-
-                </div>
-              );
-            })}
+            <h2
+              className="
+                text-[27px]
+                font-semibold
+                leading-[1.08]
+                tracking-[-0.035em]
+                text-white
+                sm:text-[30px]
+              "
+            >
+              Get the job done
+              <br />
+              in 4 simple steps
+            </h2>
           </div>
+
+          {/* Learn More */}
+          <Link
+            href="/how-it-works"
+            className="
+              hidden
+              h-[34px]
+              items-center
+              gap-[12px]
+              rounded-[5px]
+              border
+              border-[#7387e8]
+              px-[14px]
+              text-[9px]
+              font-semibold
+              text-white
+              transition-all
+              duration-200
+              hover:bg-white
+              hover:text-[#06147f]
+              sm:flex
+            "
+          >
+            Learn More
+
+            <ArrowRight
+              size={13}
+              strokeWidth={2}
+            />
+          </Link>
         </div>
 
-
-        {/* =====================================================
+        {/* =======================================================
             STEPS
-        ===================================================== */}
+        ======================================================== */}
 
-        <div className="relative mt-20 md:mt-24 lg:mt-28">
+        <div className="relative mt-[35px]">
 
-          {/* -------------------------------------------------
-              CONNECTING CURVED LINES
-          ------------------------------------------------- */}
-
+          {/* Dotted connecting line */}
           <div
             className="
               pointer-events-none
               absolute
-              left-[13%]
-              right-[13%]
-              top-[92px]
+              left-[8%]
+              right-[8%]
+              top-[34px]
               hidden
               lg:block
             "
           >
-            <svg
-              width="100%"
-              height="80"
-              viewBox="0 0 1000 80"
-              preserveAspectRatio="none"
-              fill="none"
-            >
-              <path
-                d="
-                  M0 38
-                  C75 5, 125 5, 200 38
-                  C275 71, 325 71, 400 38
-                  C475 5, 525 5, 600 38
-                  C675 71, 725 71, 800 38
-                  C875 5, 925 5, 1000 38
-                "
-                stroke="#b6cdf6"
-                strokeWidth="1.5"
-                strokeDasharray="2 5"
-              />
-
-              {/* Connector dots */}
-
-              <circle
-                cx="250"
-                cy="38"
-                r="6"
-                fill="#155eef"
-              />
-
-              <circle
-                cx="500"
-                cy="38"
-                r="6"
-                fill="#155eef"
-              />
-
-              <circle
-                cx="750"
-                cy="38"
-                r="6"
-                fill="#155eef"
-              />
-            </svg>
+            <div className="border-t-[2px] border-dotted border-[#3970e9]" />
           </div>
 
-
-          {/* -------------------------------------------------
-              STEP GRID
-          ------------------------------------------------- */}
-
-          <div className="grid grid-cols-1 gap-14 md:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
 
             {steps.map((step) => {
               const Icon = step.icon;
@@ -293,220 +266,120 @@ export default function HowItWorks() {
               return (
                 <div
                   key={step.number}
-                  className="
-                    group
-                    relative
-                    text-center
-                    lg:px-5
-                  "
+                  className="relative z-10"
                 >
 
-                  {/* NUMBER */}
+                  {/* =================================================
+                      ICON
+                  ================================================== */}
 
                   <div
                     className="
-                      text-[46px]
-                      font-semibold
-                      leading-none
-                      tracking-[-0.04em]
-                      text-[#aec7f8]
-
-                      md:text-[48px]
+                      relative
+                      flex
+                      h-[68px]
+                      w-[68px]
+                      items-center
+                      justify-center
+                      rounded-full
+                      border
+                      border-[#8ca0ed]
+                      bg-[#06147f]
                     "
                   >
-                    {step.number}
-                  </div>
-
-
-                  {/* ICON AREA */}
-
-                  <div className="relative mx-auto mt-3 h-[128px] w-[128px]">
-
-                    {/* Soft glow */}
-
-                    <div
-                      className="
-                        absolute
-                        inset-0
-                        rounded-[24px]
-                        bg-[#f5f8ff]
-                        shadow-[0_15px_35px_rgba(27,70,150,0.07)]
-                        transition-transform
-                        duration-300
-                        group-hover:-translate-y-1
-                      "
+                    <Icon
+                      size={28}
+                      strokeWidth={1.7}
+                      className="text-[#dce6ff]"
                     />
 
-                    {/* Icon */}
-
-                    <div
+                    {/* Number */}
+                    <span
                       className="
                         absolute
-                        inset-0
+                        -bottom-[12px]
+                        left-0
                         flex
+                        h-[21px]
+                        w-[21px]
                         items-center
                         justify-center
-                        text-[#0028a5]
+                        rounded-full
+                        bg-[#2868eb]
+                        text-[10px]
+                        font-semibold
+                        text-white
                       "
                     >
-                      <Icon
-                        size={58}
-                        strokeWidth={1.7}
-                      />
-                    </div>
-
-                    {/* Small decorative circle */}
-
-                    {step.number === "01" && (
-                      <div
-                        className="
-                          absolute
-                          bottom-[8px]
-                          right-[8px]
-                          flex
-                          h-[34px]
-                          w-[34px]
-                          items-center
-                          justify-center
-                          rounded-full
-                          bg-[#155eef]
-                          text-white
-                          shadow-md
-                        "
-                      >
-                        <Check
-                          size={19}
-                          strokeWidth={2.5}
-                        />
-                      </div>
-                    )}
-
-                    {step.number === "02" && (
-                      <div
-                        className="
-                          absolute
-                          bottom-[7px]
-                          right-[7px]
-                          flex
-                          h-[34px]
-                          w-[34px]
-                          items-center
-                          justify-center
-                          rounded-full
-                          bg-[#155eef]
-                          text-white
-                          shadow-md
-                        "
-                      >
-                        <Check
-                          size={18}
-                          strokeWidth={2.5}
-                        />
-                      </div>
-                    )}
-
-                    {step.number === "03" && (
-                      <div
-                        className="
-                          absolute
-                          bottom-[9px]
-                          left-[15px]
-                          flex
-                          items-center
-                          gap-[2px]
-                          text-[#f7ad19]
-                        "
-                      >
-                        <Star size={12} fill="currentColor" />
-                        <Star size={12} fill="currentColor" />
-                        <Star size={12} fill="currentColor" />
-                        <Star size={12} fill="currentColor" />
-                        <Star size={12} fill="currentColor" />
-                      </div>
-                    )}
-
-                    {step.number === "04" && (
-                      <div
-                        className="
-                          absolute
-                          bottom-[8px]
-                          right-[8px]
-                          flex
-                          h-[34px]
-                          w-[34px]
-                          items-center
-                          justify-center
-                          rounded-full
-                          bg-[#28c76f]
-                          text-white
-                          shadow-md
-                        "
-                      >
-                        <Check
-                          size={18}
-                          strokeWidth={2.5}
-                        />
-                      </div>
-                    )}
+                      {step.number}
+                    </span>
                   </div>
 
+                  {/* =================================================
+                      TEXT
+                  ================================================== */}
 
-                  {/* TITLE */}
+                  <div className="mt-[25px]">
+                    <h3
+                      className="
+                        text-[14px]
+                        font-semibold
+                        leading-[1.15]
+                        tracking-[-0.015em]
+                        text-white
+                      "
+                    >
+                      {step.title}
+                    </h3>
 
-                  <h3
-                    className="
-                      mt-6
-                      text-[20px]
-                      font-bold
-                      tracking-[-0.025em]
-                      text-[#071b49]
-
-                      md:text-[21px]
-                    "
-                  >
-                    {step.title}
-                  </h3>
-
-
-                  {/* DESCRIPTION */}
-
-                  <p
-                    className="
-                      mx-auto
-                      mt-4
-                      max-w-[250px]
-                      text-[15px]
-                      leading-[1.75]
-                      text-[#344360]
-                    "
-                  >
-                    {step.description}
-                  </p>
+                    <p
+                      className="
+                        mt-[8px]
+                        text-[10px]
+                        leading-[1.5]
+                        text-[#c9d4fa]
+                      "
+                    >
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
               );
             })}
           </div>
         </div>
 
+        {/* =======================================================
+            MOBILE LEARN MORE
+        ======================================================== */}
 
+        <Link
+          href="/how-it-works"
+          className="
+            mt-[35px]
+            flex
+            h-[34px]
+            w-fit
+            items-center
+            gap-[12px]
+            rounded-[5px]
+            border
+            border-[#7387e8]
+            px-[14px]
+            text-[9px]
+            font-semibold
+            text-white
+            sm:hidden
+          "
+        >
+          Learn More
+
+          <ArrowRight
+            size={13}
+            strokeWidth={2}
+          />
+        </Link>
       </div>
-
-
-      {/* White cutout over wave */}
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          bottom-[-100px]
-          left-[-100px]
-          h-[190px]
-          w-[440px]
-          rotate-[8deg]
-          rounded-[50%]
-          bg-white
-        "
-      />
     </section>
   );
 }
