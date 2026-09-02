@@ -65,6 +65,8 @@ export default function Hero() {
           className="
             pointer-events-none
             absolute
+            hidden
+            lg:block
             right-[-20px]
             top-[70px]
             z-[2]
@@ -266,7 +268,7 @@ export default function Hero() {
             ].map((item, index) => (
               <a
                 key={item}
-                href="#"
+                href="/blog"
                 className={`
                   relative
                   text-[14px]

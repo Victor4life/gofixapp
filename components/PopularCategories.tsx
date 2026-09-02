@@ -12,25 +12,25 @@ const services = [
   {
     name: "Plumbing",
     description: "Fix leaks, install fixtures, and more.",
-    image: "/images/services/plumbing.jpg",
+    image: "/images/image.png",
     icon: Wrench,
   },
   {
     name: "Electrical",
     description: "Wiring, repairs, installations done safely.",
-    image: "/images/services/electrical.jpg",
+    image: "/images/image.png",
     icon: Plug,
   },
   {
     name: "Carpentry",
     description: "Custom woodwork, repairs and installations.",
-    image: "/images/services/carpentry.jpg",
+    image: "/images/image.png",
     icon: Hammer,
   },
   {
     name: "Painting",
     description: "Give your space a fresh and lasting look.",
-    image: "/images/services/painting.jpg",
+    image: "/images/image.png",
     icon: PaintRoller,
   },
 ];
@@ -43,9 +43,49 @@ export default function PopularCategories() {
         {/* Section Header */}
         <div className="mb-8 flex items-end justify-between gap-6">
           <div>
-            <p className="mb-2 text-[11px] font-semibold uppercase tracking-wide text-[#000b76]">
+            <div
+              className="
+                mb-3
+                inline-flex
+                items-center
+                gap-2
+                rounded-full
+                bg-[#ffffff]
+                px-4
+                py-2
+                text-[13px]
+                font-medium
+                text-[#000b76]
+              "
+            >
+
+              <span
+                className="
+                  flex
+                  h-[23px]
+                  w-[23px]
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white
+                "
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#000b76"
+                  strokeWidth="2"
+                >
+                  <path d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z" />
+                  <path d="m8.5 12 2.2 2.2 4.8-5" />
+                </svg>
+              </span>
+
               Popular Categories
-            </p>
+
+            </div>
 
             <h2 className="max-w-[300px] text-3xl font-semibold leading-[1.05] tracking-[-0.03em] text-[#07145c] sm:text-4xl">
               What do you

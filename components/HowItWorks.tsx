@@ -110,7 +110,7 @@ export default function HowItWorks() {
           pointer-events-none
           absolute
           left-[18px]
-          top-[38px]
+          top-[40px]
           h-[58px]
           w-[58px]
           rounded-full
@@ -145,7 +145,7 @@ export default function HowItWorks() {
           z-[1]
           hidden
           grid-cols-5
-          gap-[9px]
+          gap-[12px]
           lg:grid
         "
       >
@@ -168,8 +168,8 @@ export default function HowItWorks() {
           mx-auto
           max-w-[1280px]
           px-6
-          pb-[85px]
-          pt-[85px]
+          pb-[90px]
+          pt-[90px]
           sm:px-8
           lg:px-10
         "
