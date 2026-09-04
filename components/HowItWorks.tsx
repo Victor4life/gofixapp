@@ -95,7 +95,7 @@ export default function HowItWorks() {
 
       Z
     "
-    fill="#06147f"
+    fill="#000b76"
   />
 </svg>
 

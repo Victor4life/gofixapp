@@ -66,7 +66,6 @@ export default function Hero() {
             pointer-events-none
             absolute
             hidden
-            lg:block
             right-[-20px]
             top-[70px]
             z-[2]

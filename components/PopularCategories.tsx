@@ -12,25 +12,25 @@ const services = [
   {
     name: "Plumbing",
     description: "Fix leaks, install fixtures, and more.",
-    image: "/images/image.png",
+    image: "/images/plumbing.jpg",
     icon: Wrench,
   },
   {
     name: "Electrical",
     description: "Wiring, repairs, installations done safely.",
-    image: "/images/image.png",
+    image: "/images/electrical.jpg",
     icon: Plug,
   },
   {
     name: "Carpentry",
     description: "Custom woodwork, repairs and installations.",
-    image: "/images/image.png",
+    image: "/images/carpentry.jpg",
     icon: Hammer,
   },
   {
     name: "Painting",
     description: "Give your space a fresh and lasting look.",
-    image: "/images/image.png",
+    image: "/images/painting.jpg",
     icon: PaintRoller,
   },
 ];

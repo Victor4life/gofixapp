@@ -4,7 +4,6 @@ import FeaturedArtisans from "@/components/FeaturedArtisans";
 import TrustSafety from "@/components/TrustSafety";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
-import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
 import Navbar from "@/components/Navbar";
 import TypewriterText from "@/components/TypeWriterText";
@@ -14,6 +13,11 @@ import PostJobCTA from "@/components/PostJobs";
 import Image from "next/image";
 import Hero from "@/components/Hero";
 import FinalCTA from "@/components/FinalCta";
+import NavBar from "@/components/Navbar";
+import WhyChooseGofix from "@/components/WhyChooseGofix";
+import TopArtisans from "@/components/TopArtisans";
+import ReadyToGetStarted from "@/components/ReadyToGetStarted";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,6 +31,10 @@ export default function LandingPage() {
         <Hero />
         <PopularCategories />
         <HowItWorks />
+<WhyChooseGofix />
+<TopArtisans />
+<ReadyToGetStarted />
+<Footer />
       </div>
     </>
   );
