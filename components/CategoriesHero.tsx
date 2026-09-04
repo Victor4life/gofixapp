@@ -178,7 +178,7 @@ export default function CategoriesHero() {
               "
             >
               <Image
-                src="/images/categories-hero-artisan.png"
+                src="/images/categories.png"
                 alt="GoFix artisan"
                 fill
                 priority
