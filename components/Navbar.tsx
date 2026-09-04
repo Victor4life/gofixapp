@@ -1,207 +1,289 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { Hammer, ArrowRight } from "lucide-react";
+import { UserRound, ArrowRight, Menu, X } from "lucide-react";
+import { useState } from "react";
+
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "Categories", href: "/categories" },
+  { label: "How It Works", href: "/how-it-works" },
+  { label: "Artisans", href: "/artisans" },
+  { label: "About Us", href: "/about" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
+];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const navLinks = [
-    { name: "Categories", href: "/categories" },
-    { name: "Blog", href: "/blog" },
-    { name: "Contact", href: "/contact" },
-    { name: "Resources", href: "/resources" },
-  ];
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <>
-      {/* NAVBAR */}
-      <nav
-        className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
-          isScrolled || isOpen ? "py-4" : "py-6"
-        }`}
+    <header className="relative z-50 w-full">
+      <div
+        className="
+          mx-auto
+          flex
+          max-w-[1400px]
+          items-center
+          justify-between
+          px-6
+          py-7
+          lg:px-12
+        "
       >
-        <div className="max-w-7xl mx-auto px-6 transition-all duration-500">
+        {/* ==========================================================
+            LOGO
+        ========================================================== */}
+        <Link
+          href="/"
+          className="flex items-center gap-3"
+        >
+          {/* G LOGO BOX */}
           <div
-            className={`flex items-center justify-between transition-all duration-500 ${
-              isScrolled || isOpen
-                ? "bg-[#000b76]/75 backdrop-blur-2xl border border-white/10 rounded-[2rem] px-8 py-4 shadow-[0_20px_60px_rgba(0,0,0,0.25)]"
-                : "bg-transparent px-0 py-0"
-            }`}
+            className="
+              flex
+              h-[45px]
+              w-[45px]
+              items-center
+              justify-center
+              rounded-[12px]
+              border-[4px]
+              border-white
+            "
           >
-            {/* LOGO */}
-            <Link
-              href="/"
-              className="flex items-center space-x-3 group relative z-[110]"
-            >
-              <div
-                className={`flex items-center justify-center transition-all duration-500 ${
-                  isScrolled || isOpen
-                    ? "w-11 h-11 rounded-2xl bg-white text-[#000b76]"
-                    : "w-11 h-11 rounded-2xl bg-blue-500 text-white"
-                } shadow-xl`}
-              >
-                <Hammer
-                  size={20}
-                  className="transition-transform duration-500 group-hover:rotate-12"
-                />
-              </div>
+            <span className="text-[24px] font-black leading-none text-white">
+              G
+            </span>
+          </div>
 
-              <span className="text-2xl font-black tracking-tighter text-white uppercase">
-                Go<span className="text-blue-300">Fix</span>
-              </span>
-            </Link>
-
-            {/* DESKTOP LINKS */}
-            <div className="hidden md:flex items-center space-x-1">
-              {navLinks.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="relative px-5 py-2 text-sm font-bold text-blue-100/70 hover:text-white transition-all rounded-full hover:bg-white/5"
-                >
-                  {item.name}
-                </Link>
-              ))}
+          {/* BRAND NAME */}
+          <div>
+            <div className="text-[25px] font-bold leading-none text-white">
+              GoFix
             </div>
 
-            {/* ACTIONS */}
-            <div className="flex items-center space-x-4 relative z-[110]">
-              <Link
-                href="/login"
-                className="hidden md:block text-sm font-bold text-blue-100/70 hover:text-white transition-colors"
-              >
-                Login
-              </Link>
-
-              {/* CTA */}
-              <Link
-                href="/signup"
-                className="group relative overflow-hidden bg-white text-[#000b76] px-6 py-3 rounded-full text-sm font-black transition-all active:scale-95 shadow-[0_10px_30px_rgba(255,255,255,0.15)] hover:shadow-[0_15px_40px_rgba(255,255,255,0.25)]"
-              >
-                <span className="relative z-10 flex items-center gap-2">
-                  Join Now
-                  <ArrowRight
-                    size={15}
-                    className="transition-transform duration-300 group-hover:translate-x-1"
-                  />
-                </span>
-
-                {/* Glow Hover */}
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </Link>
-
-              {/* MOBILE MENU BUTTON */}
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden relative flex flex-col justify-center items-center w-11 h-11 rounded-2xl bg-white/10 border border-white/10 backdrop-blur-xl transition-all hover:bg-white/20"
-              >
-                <div
-                  className={`absolute w-5 h-[2px] bg-white transition-all duration-300 ${
-                    isOpen
-                      ? "rotate-45"
-                      : "-translate-y-[5px]"
-                  }`}
-                />
-
-                <div
-                  className={`absolute w-5 h-[2px] bg-white transition-all duration-300 ${
-                    isOpen
-                      ? "-rotate-45"
-                      : "translate-y-[5px]"
-                  }`}
-                />
-              </button>
+            <div className="mt-1 text-[11px] text-white/90">
+              Find. Hire. Done.
             </div>
           </div>
-        </div>
-      </nav>
+        </Link>
 
-      {/* MOBILE MENU */}
-      <div
-        className={`fixed inset-0 z-[90] bg-[#000b76] transition-all duration-700 ease-in-out ${
-          isOpen
-            ? "translate-y-0 opacity-100"
-            : "-translate-y-full opacity-0"
-        }`}
-      >
-        {/* BACKGROUND GLOW */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-blue-500/10 blur-[140px] rounded-full pointer-events-none" />
+        {/* ==========================================================
+            DESKTOP NAVIGATION
+        ========================================================== */}
+        <nav className="hidden items-center gap-9 lg:flex">
+          {navItems.map((item, index) => (
+            <Link
+              key={item.label}
+              href={item.href}
+              className={`
+                relative
+                text-[14px]
+                font-medium
+                transition-opacity
+                hover:opacity-80
+                ${index === 0 ? "text-white" : "text-white/90"}
+              `}
+            >
+              {item.label}
 
-        <div className="h-full flex flex-col justify-center px-10 space-y-12 relative z-10">
-          {/* NAV LINKS */}
-          <div className="flex flex-col space-y-7">
-            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-blue-300/50">
-              Navigation
-            </span>
-
-            {navLinks.map((item, i) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                onClick={() => setIsOpen(false)}
-                className={`group flex items-center justify-between text-4xl font-black tracking-tighter text-white transition-all duration-500 ${
-                  isOpen
-                    ? "translate-x-0 opacity-100"
-                    : "-translate-x-10 opacity-0"
-                }`}
-                style={{
-                  transitionDelay: `${i * 100}ms`,
-                }}
-              >
-                <span className="group-hover:text-blue-300 transition-colors">
-                  {item.name}
-                </span>
-
-                <ArrowRight
-                  size={28}
-                  className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all"
+              {/* ACTIVE HOME UNDERLINE */}
+              {index === 0 && (
+                <span
+                  className="
+                    absolute
+                    -bottom-[17px]
+                    left-0
+                    h-[2px]
+                    w-full
+                    bg-white
+                  "
                 />
+              )}
+            </Link>
+          ))}
+        </nav>
+
+        {/* ==========================================================
+            DESKTOP ACTIONS
+        ========================================================== */}
+        <div className="hidden items-center gap-8 lg:flex">
+          {/* LOGIN */}
+          <Link
+            href="/login"
+            className="
+              flex
+              items-center
+              gap-2
+              text-[14px]
+              font-medium
+              text-white
+              transition-opacity
+              hover:opacity-80
+            "
+          >
+            <UserRound
+              size={18}
+              strokeWidth={1.7}
+            />
+
+            <span>Log in</span>
+          </Link>
+
+          {/* POST A JOB */}
+          <Link
+            href="/post-job"
+            className="
+              flex
+              items-center
+              gap-3
+              rounded-[10px]
+              bg-white
+              px-6
+              py-3.5
+              text-[14px]
+              font-semibold
+              text-[#000b76]
+              transition-all
+              hover:bg-white/90
+              hover:shadow-lg
+            "
+          >
+            <span>Post a Job</span>
+
+            <ArrowRight
+              size={18}
+              strokeWidth={2}
+            />
+          </Link>
+        </div>
+
+        {/* ==========================================================
+            MOBILE MENU BUTTON
+        ========================================================== */}
+        <button
+          type="button"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="
+            flex
+            h-11
+            w-11
+            items-center
+            justify-center
+            rounded-lg
+            border
+            border-white/30
+            text-white
+            lg:hidden
+          "
+          aria-label="Toggle navigation"
+          aria-expanded={mobileOpen}
+        >
+          {mobileOpen ? (
+            <X size={22} />
+          ) : (
+            <Menu size={22} />
+          )}
+        </button>
+      </div>
+
+      {/* ==========================================================
+          MOBILE NAVIGATION
+      ========================================================== */}
+      {mobileOpen && (
+        <div
+          className="
+            absolute
+            left-4
+            right-4
+            top-full
+            rounded-2xl
+            border
+            border-white/10
+            bg-[#000b76]
+            p-5
+            shadow-2xl
+            lg:hidden
+          "
+        >
+          <nav className="flex flex-col">
+            {navItems.map((item, index) => (
+              <Link
+                key={item.label}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className={`
+                  border-b
+                  border-white/10
+                  px-2
+                  py-4
+                  text-[15px]
+                  font-medium
+                  last:border-0
+                  ${
+                    index === 0
+                      ? "text-white"
+                      : "text-white/80"
+                  }
+                `}
+              >
+                {item.label}
               </Link>
             ))}
-          </div>
 
-          {/* MOBILE CTA */}
-          <div
-            className={`pt-10 border-t border-white/10 flex flex-col space-y-4 transition-all duration-500 ${
-              isOpen
-                ? "translate-y-0 opacity-100"
-                : "translate-y-10 opacity-0"
-            }`}
-            style={{
-              transitionDelay: "500ms",
-            }}
-          >
+            {/* MOBILE LOGIN */}
             <Link
               href="/login"
-              onClick={() => setIsOpen(false)}
-              className="w-full py-5 rounded-[1.5rem] bg-white/5 border border-white/10 text-white text-center font-bold backdrop-blur-xl"
+              onClick={() => setMobileOpen(false)}
+              className="
+                mt-4
+                flex
+                items-center
+                gap-2
+                px-2
+                py-3
+                text-[15px]
+                font-medium
+                text-white
+              "
             >
-              Login to Account
+              <UserRound
+                size={18}
+                strokeWidth={1.7}
+              />
+
+              Log in
             </Link>
 
+            {/* MOBILE POST JOB */}
             <Link
-              href="/signup"
-              onClick={() => setIsOpen(false)}
-              className="w-full py-5 rounded-[1.5rem] bg-white text-[#000b76] text-center font-black shadow-2xl"
+              href="/post-job"
+              onClick={() => setMobileOpen(false)}
+              className="
+                mt-2
+                flex
+                items-center
+                justify-center
+                gap-3
+                rounded-[10px]
+                bg-white
+                px-5
+                py-3.5
+                text-[14px]
+                font-semibold
+                text-[#000b76]
+              "
             >
-              Join as a Professional
+              Post a Job
+
+              <ArrowRight
+                size={18}
+                strokeWidth={2}
+              />
             </Link>
-          </div>
+          </nav>
         </div>
-      </div>
-    </>
+      )}
+    </header>
   );
 }
