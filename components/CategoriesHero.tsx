@@ -177,13 +177,16 @@ export default function CategoriesHero() {
                 w-[430px]
               "
             >
-              <Image
-                src="/images/category.png"
-                alt="GoFix artisan"
-                fill
-                priority
-                className="object-contain object-bottom"
-              />
+          <img
+            src="/images/hero.png"
+            alt="GoFix artisan"
+            className="
+              h-full
+              w-full
+              object-contain
+              object-bottom
+            "
+          />
             </div>
 
             {/* Workshop/tool background */}
@@ -200,12 +203,15 @@ export default function CategoriesHero() {
                 rounded-l-[10px]
               "
             >
-              <Image
-                src="/images/categories-workshop.png"
-                alt="Artisan workshop"
-                fill
-                className="object-cover"
-              />
+          <img
+            src="/images/workshop.jpg"
+            alt=""
+            className="
+              h-full
+              w-full
+              object-cover
+            "
+          />
             </div>
           </div>
         </div>

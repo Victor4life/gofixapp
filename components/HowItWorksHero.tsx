@@ -229,7 +229,7 @@ export default function HowItWorksHero() {
           "
         >
           <img
-            src="/images/how-it-works-workshop.png"
+            src="/images/workshop.jpg"
             alt=""
             className="
               h-full
@@ -256,7 +256,7 @@ export default function HowItWorksHero() {
           "
         >
           <img
-            src="/images/how-it-works-artisan.png"
+            src="/images/hero.png"
             alt="GoFix artisan"
             className="
               h-full
