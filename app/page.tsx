@@ -18,6 +18,7 @@ import WhyChooseGofix from "@/components/WhyChooseGofix";
 import TopArtisans from "@/components/TopArtisans";
 import ReadyToGetStarted from "@/components/ReadyToGetStarted";
 import Footer from "@/components/Footer";
+import WhyChooseGofixHowItWorks from "@/components/WhyChooseGofixHowItWorks";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,7 +32,7 @@ export default function LandingPage() {
         <Hero />
         <PopularCategories />
         <HowItWorks />
-<WhyChooseGofix />
+<WhyChooseGofixHowItWorks />
 <TopArtisans />
 <ReadyToGetStarted />
 <Footer />
