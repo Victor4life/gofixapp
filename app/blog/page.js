@@ -2,11 +2,23 @@ import Link from "next/link";
 import { fetchGraphQL } from "@/lib/contentful";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
-// Helper to format a date (add if you have a date field)
-// import { formatDate } from "@/lib/utils";
+import {
+  ArrowRight,
+  CalendarDays,
+  ChevronRight,
+  Clock3,
+  Mail,
+  Search,
+  Wrench,
+} from "lucide-react";
 
 export default async function BlogFeed() {
+  /*
+   * ============================================================
+   * CONTENTFUL / CMS DATA
+   * ============================================================
+   */
+
   const query = `
     query {
       productCollection {
@@ -15,9 +27,9 @@ export default async function BlogFeed() {
           slug
           shortDescription
           tag
-          featuredImage { url }
-          # Add date field if available
-          # date
+          featuredImage {
+            url
+          }
         }
       }
     }
@@ -26,121 +38,473 @@ export default async function BlogFeed() {
   const data = await fetchGraphQL(query);
   const posts = data?.productCollection?.items || [];
 
+  /*
+   * ============================================================
+   * EMPTY STATE
+   * ============================================================
+   */
+
   if (posts.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] text-slate-400 px-6">
-        <svg className="w-12 h-12 mb-4 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-        </svg>
-        <p className="text-xl font-light tracking-tight">No stories yet.</p>
-        <p className="text-sm text-slate-400 mt-1">Check back soon.</p>
-      </div>
+      <>
+
+        <main className="flex min-h-[70vh] items-center justify-center bg-white px-6">
+          <div className="text-center">
+            <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#eef3ff]">
+              <Wrench className="text-[#0645d8]" size={28} />
+            </div>
+
+            <h1 className="text-2xl font-semibold text-[#000b76]">
+              No stories yet.
+            </h1>
+
+            <p className="mt-2 text-sm text-[#7182ad]">
+              Check back soon for helpful home improvement tips.
+            </p>
+          </div>
+        </main>
+
+        <Footer />
+      </>
     );
   }
 
+  /*
+   * ============================================================
+   * POSTS
+   * ============================================================
+   */
+
   const [heroPost, ...gridPosts] = posts;
+
+  /*
+   * Build category counts from CMS tags
+   */
+
+  const categoryMap = {};
+
+  posts.forEach((post) => {
+    const category = post.tag || "Home Improvement";
+
+    categoryMap[category] = (categoryMap[category] || 0) + 1;
+  });
+
+  const categories = Object.entries(categoryMap)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 6);
+
+  /*
+   * ============================================================
+   * PAGE
+   * ============================================================
+   */
 
   return (
     <>
-      <Navbar />
-      <main className="min-h-screen bg-[#fafafa] text-slate-900 selection:bg-blue-100 antialiased">
-        <div className="max-w-7xl mx-auto px-6 py-16 md:py-24">
-          {/* --- HERO SECTION --- */}
-          {heroPost && (
-            <section className="relative mb-28 lg:mb-36">
-              <Link
-                href={`/blog/${heroPost.slug}`}
-                className="group block lg:grid lg:grid-cols-12 gap-12 items-center"
-              >
-                <div className="lg:col-span-7 relative aspect-[4/3] lg:aspect-[16/10] overflow-hidden rounded-2xl bg-slate-200 shadow-lg shadow-slate-200/40">
-                  {heroPost.featuredImage?.url && (
-                    <img
-                      src={heroPost.featuredImage.url}
-                      alt={heroPost.title}
-                      className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                      loading="eager"
-                    />
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
 
-                <div className="lg:col-span-5 mt-8 lg:mt-0">
-                  {/* Meta row */}
-                  <div className="flex items-center gap-3 text-[11px] font-medium uppercase tracking-wider text-slate-500 mb-4">
-                    {heroPost.tag && (
-                      <span className="inline-flex items-center rounded-full bg-blue-50 text-blue-700 px-3 py-1 text-[10px] font-semibold">
-                        {heroPost.tag}
-                      </span>
-                    )}
-                    {/* Optional date */}
-                    {/* <time dateTime={heroPost.date}>{formatDate(heroPost.date)}</time> */}
-                    <span className="text-slate-300">·</span>
-                    <span className="text-slate-400">Featured</span>
-                  </div>
+      <main className="min-h-screen bg-white text-[#000b76]">
+        {/* ======================================================
+            HERO
+        ====================================================== */}
 
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight mb-4 group-hover:text-blue-600 transition-colors duration-300">
-                    {heroPost.title}
-                  </h2>
-                  <p className="text-slate-500 text-base md:text-lg leading-relaxed mb-6">
-                    {heroPost.shortDescription ||
-                      "A deep dive into design thinking and modern digital experiences."}
-                  </p>
-                  <span className="inline-flex items-center text-sm font-semibold text-blue-600 group-hover:underline underline-offset-4 decoration-2">
-                    Continue reading
-                    <svg className="ml-1.5 w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
+        <section className="relative overflow-hidden bg-[#000b76] text-white">
+          <Navbar />
+          <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+            <div className="grid min-h-[520px] items-center gap-10 pb-24 pt-16 lg:grid-cols-2 lg:pt-12">
+              {/* LEFT */}
+              <div className="relative z-10 max-w-[620px]">
+                <div className="mb-5 flex items-center gap-3">
+                  <span className="text-xs font-medium uppercase tracking-[0.08em]">
+                    Our Blog
                   </span>
-                </div>
-              </Link>
-            </section>
-          )}
 
-          {/* --- GRID SECTION --- */}
-          <div className="border-t border-slate-200 pt-12 mb-8">
-            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400">Latest articles</h3>
+                  <span className="h-px w-10 bg-white/70" />
+                </div>
+
+                <h1 className="text-5xl font-semibold leading-[1.05] tracking-[-0.035em] md:text-6xl lg:text-[64px]">
+                  Tips, Guides &
+                  <br />
+                  Home Improvement
+                  <br />
+                  Inspiration
+                </h1>
+
+                <p className="mt-6 max-w-[540px] text-base leading-7 text-white/85 md:text-lg">
+                  Discover helpful tips, expert advice, and the latest trends
+                  in home repairs and improvements. Stay informed and make
+                  better decisions for your home.
+                </p>
+              </div>
+
+              {/* RIGHT */}
+              <div className="relative flex min-h-[370px] items-end justify-center lg:min-h-[450px]">
+                {/* Decorative circle */}
+                <div className="absolute left-[10%] top-[12%] h-14 w-14 rounded-full bg-[#1557d6]" />
+
+                {/* Large blue shape */}
+                <div className="absolute bottom-0 right-[2%] h-[300px] w-[440px] rotate-[-7deg] rounded-[48%_52%_45%_55%] bg-[#4d83ed] lg:h-[350px] lg:w-[500px]" />
+
+                {/* Light shape */}
+                <div className="absolute bottom-[10%] right-[12%] h-[300px] w-[300px] rounded-full bg-[#72a0fa]/60" />
+
+                {/* Decorative curve */}
+                <div className="absolute left-[3%] top-[25%] h-[190px] w-[190px] rotate-[-25deg] rounded-full border border-white/80 border-b-transparent border-r-transparent" />
+
+                {/* Artisan image */}
+                <div className="relative z-10 h-[390px] w-[390px] lg:h-[470px] lg:w-[460px]">
+                  <img
+                    src="/images/blog-man.png"
+                    alt="GoFix artisan holding a power drill"
+                    className="h-full w-full object-contain object-bottom"
+                  />
+                </div>
+
+                {/* Decorative lines */}
+                <div className="absolute right-[8%] top-[8%] flex gap-2">
+                  <span className="h-7 w-1 rotate-[30deg] rounded-full bg-white" />
+                  <span className="h-4 w-1 rotate-[30deg] rounded-full bg-white" />
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-20">
-            {gridPosts.map((post, index) => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group flex flex-col"
-              >
-                <div className="aspect-[4/5] h-[320px] rounded-xl overflow-hidden bg-slate-100 mb-6 relative">
-                  {post.featuredImage?.url && (
-                    <img
-                      src={post.featuredImage.url}
-                      alt={post.title}
-                      className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105 group-hover:brightness-95"
-                      loading={index < 3 ? "eager" : "lazy"}
+          {/* HERO WAVE */}
+          <div className="absolute bottom-[-1px] left-0 w-full">
+            <svg
+              viewBox="0 0 1440 100"
+              preserveAspectRatio="none"
+              className="block h-[65px] w-full"
+            >
+              <path
+                d="M0 15C180 75 350 90 550 68C770 44 930 25 1120 52C1260 72 1360 65 1440 40V100H0V15Z"
+                fill="white"
+              />
+            </svg>
+          </div>
+        </section>
+
+        {/* ======================================================
+            BLOG CONTENT
+        ====================================================== */}
+
+        <section className="px-6 py-14 lg:px-12 lg:py-20">
+          <div className="mx-auto max-w-[1400px]">
+            <div className="grid gap-12 lg:grid-cols-[1fr_280px]">
+              {/* ==================================================
+                  MAIN BLOG COLUMN
+              ================================================== */}
+
+              <div>
+                {/* Heading */}
+                <div className="mb-8">
+                  <h2 className="text-3xl font-semibold tracking-[-0.025em] md:text-4xl">
+                    Latest Articles
+                  </h2>
+
+                  <p className="mt-2 text-sm text-[#7182ad] md:text-base">
+                    Browse our latest blog posts and get inspired.
+                  </p>
+                </div>
+
+                {/* ==================================================
+                    ARTICLE GRID
+                ================================================== */}
+
+                <div className="grid gap-x-7 gap-y-12 md:grid-cols-2">
+                  {gridPosts.map((post, index) => (
+                    <Link
+                      key={post.slug}
+                      href={`/blog/${post.slug}`}
+                      className="group"
+                    >
+                      {/* Image */}
+                      <div className="relative mb-5 aspect-[16/9] overflow-hidden rounded-xl bg-[#eef3ff]">
+                        {post.featuredImage?.url ? (
+                          <img
+                            src={post.featuredImage.url}
+                            alt={post.title}
+                            loading={index < 2 ? "eager" : "lazy"}
+                            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        ) : (
+                          <div className="flex h-full items-center justify-center">
+                            <Wrench
+                              size={30}
+                              className="text-[#0645d8]/40"
+                            />
+                          </div>
+                        )}
+
+                        {/* Category */}
+                        <div className="absolute left-3 top-3">
+                          <span className="rounded-full bg-[#0645d8] px-3 py-1.5 text-[10px] font-semibold text-white shadow-sm">
+                            {post.tag || "Home Improvement"}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Title */}
+                      <h3 className="text-xl font-semibold leading-snug tracking-[-0.015em] transition-colors group-hover:text-[#0645d8]">
+                        {post.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="mt-2 line-clamp-3 text-sm leading-6 text-[#7182ad]">
+                        {post.shortDescription ||
+                          "Discover helpful information and practical advice for your home."}
+                      </p>
+
+                      {/* Meta */}
+                      <div className="mt-4 flex items-center gap-4 text-xs text-[#7182ad]">
+                        <span className="flex items-center gap-1.5">
+                          <CalendarDays size={14} />
+                          Aug 2025
+                        </span>
+
+                        <span className="flex items-center gap-1.5">
+                          <Clock3 size={14} />
+                          5 min read
+                        </span>
+                      </div>
+
+                      {/* Read more */}
+                      <div className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#0645d8]">
+                        Read More
+                        <ArrowRight
+                          size={16}
+                          className="transition-transform group-hover:translate-x-1"
+                        />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+
+                {/* ==================================================
+                    PAGINATION
+                ================================================== */}
+
+                <div className="mt-14 flex items-center justify-center gap-2">
+                  <button
+                    type="button"
+                    className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f1f5ff] text-[#0645d8]"
+                  >
+                    <ChevronRight
+                      size={16}
+                      className="rotate-180"
                     />
-                  )}
-                  <div className="absolute top-3 left-3 backdrop-blur-md bg-white/80 px-2.5 py-1 rounded-full border border-white/50 shadow-sm">
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-slate-700">
-                      {post.tag || "Article"}
-                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0645d8] text-sm font-semibold text-white"
+                  >
+                    1
+                  </button>
+
+                  <button
+                    type="button"
+                    className="flex h-9 w-9 items-center justify-center rounded-full text-sm text-[#000b76] hover:bg-[#f1f5ff]"
+                  >
+                    2
+                  </button>
+
+                  <button
+                    type="button"
+                    className="flex h-9 w-9 items-center justify-center rounded-full text-sm text-[#000b76] hover:bg-[#f1f5ff]"
+                  >
+                    3
+                  </button>
+
+                  <button
+                    type="button"
+                    className="flex h-9 w-9 items-center justify-center rounded-full text-sm text-[#000b76] hover:bg-[#f1f5ff]"
+                  >
+                    4
+                  </button>
+
+                  <button
+                    type="button"
+                    className="flex h-9 w-9 items-center justify-center rounded-full bg-[#f1f5ff] text-[#0645d8]"
+                  >
+                    <ChevronRight size={16} />
+                  </button>
+                </div>
+              </div>
+
+              {/* ==================================================
+                  SIDEBAR
+              ================================================== */}
+
+              <aside className="space-y-5">
+                {/* Search */}
+                <div className="relative">
+                  <input
+                    type="search"
+                    placeholder="Search articles..."
+                    className="h-12 w-full rounded-lg border border-[#dbe5fa] bg-white pl-4 pr-11 text-sm text-[#000b76] outline-none placeholder:text-[#9aa8c7] focus:border-[#0645d8] focus:ring-2 focus:ring-[#0645d8]/10"
+                  />
+
+                  <Search
+                    size={18}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-[#0645d8]"
+                  />
+                </div>
+
+                {/* Popular categories */}
+                <div className="rounded-xl bg-[#f1f6ff] p-5">
+                  <h3 className="text-xl font-semibold">
+                    Popular Categories
+                  </h3>
+
+                  <div className="mt-4 space-y-2">
+                    {categories.map(([category, count]) => (
+                      <div
+                        key={category}
+                        className="flex items-center justify-between rounded-lg bg-white px-3 py-3"
+                      >
+                        <div className="flex min-w-0 items-center gap-3">
+                          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e6efff]">
+                            <Wrench
+                              size={15}
+                              className="text-[#0645d8]"
+                            />
+                          </div>
+
+                          <span className="truncate text-xs font-medium">
+                            {category}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-[#7182ad]">
+                            {count}
+                          </span>
+
+                          <ChevronRight
+                            size={14}
+                            className="text-[#7182ad]"
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
 
-                <h4 className="text-xl font-bold leading-snug mb-2 group-hover:text-blue-600 transition-colors">
-                  {post.title}
-                </h4>
-                <p className="text-slate-500 text-sm leading-relaxed line-clamp-3 flex-1">
-                  {post.shortDescription}
-                </p>
-                {/* Optional: small author/date line */}
-                {/* <div className="mt-4 flex items-center text-xs text-slate-400">
-                  <span>5 min read</span>
-                  <span className="mx-2">·</span>
-                  <time>{formatDate(post.date)}</time>
-                </div> */}
-              </Link>
-            ))}
+                {/* Artisan CTA */}
+                <div className="relative overflow-hidden rounded-xl bg-[#000b76] p-6 text-white">
+                  <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[#0645d8]/60" />
+
+                  <div className="relative z-10">
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-white/80">
+                      Need a professional?
+                    </p>
+
+                    <h3 className="mt-3 text-2xl font-semibold leading-tight">
+                      Find Trusted
+                      <br />
+                      Artisans Near You
+                    </h3>
+
+                    <p className="mt-3 text-xs leading-5 text-white/75">
+                      Get quality home repair and improvement services from
+                      verified skilled professionals.
+                    </p>
+
+                    <Link
+                      href="/post-a-job"
+                      className="group mt-5 inline-flex items-center gap-2 rounded-lg bg-white px-5 py-3 text-xs font-semibold text-[#000b76]"
+                    >
+                      Post a Job
+
+                      <ArrowRight
+                        size={15}
+                        className="transition-transform group-hover:translate-x-1"
+                      />
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Newsletter */}
+                <div className="rounded-xl bg-[#f1f6ff] p-6">
+                  <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-white">
+                    <Mail
+                      size={18}
+                      className="text-[#0645d8]"
+                    />
+                  </div>
+
+                  <h3 className="text-xl font-semibold">
+                    Subscribe to Our Newsletter
+                  </h3>
+
+                  <p className="mt-2 text-xs leading-5 text-[#7182ad]">
+                    Get the latest tips, guides and offers delivered to your
+                    inbox.
+                  </p>
+
+                  <form className="mt-5 flex overflow-hidden rounded-lg border border-[#cbdafa] bg-white">
+                    <input
+                      type="email"
+                      placeholder="Enter your email address"
+                      className="min-w-0 flex-1 bg-transparent px-3 py-3 text-xs text-[#000b76] outline-none placeholder:text-[#9aa8c7]"
+                    />
+
+                    <button
+                      type="submit"
+                      aria-label="Subscribe"
+                      className="flex w-11 shrink-0 items-center justify-center bg-[#0645d8] text-white"
+                    >
+                      <ArrowRight size={17} />
+                    </button>
+                  </form>
+                </div>
+              </aside>
+            </div>
           </div>
-        </div>
+        </section>
+
+        {/* ======================================================
+            BLOG CTA
+        ====================================================== */}
+
+        <section className="px-6 pb-5 lg:px-12">
+          <div className="relative mx-auto max-w-[1400px] overflow-hidden rounded-[22px] bg-[#000b76] px-7 py-7 text-white md:px-10">
+            {/* Decorative shape */}
+            <div className="absolute -right-10 -top-20 h-56 w-56 rounded-full bg-[#0645d8]/40" />
+
+            <div className="relative z-10 flex flex-col items-center gap-5 md:flex-row">
+              {/* Logo mark */}
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border-2 border-white text-2xl font-bold">
+                G
+              </div>
+
+              <div className="flex-1 text-center md:text-left">
+                <h2 className="text-xl font-semibold md:text-2xl">
+                  Ready to get your home projects done?
+                </h2>
+
+                <p className="mt-1 text-xs text-white/75 md:text-sm">
+                  Post a job today and connect with trusted artisans in your
+                  area.
+                </p>
+              </div>
+
+              <Link
+                href="/post-a-job"
+                className="group inline-flex shrink-0 items-center gap-2 rounded-lg bg-white px-6 py-3.5 text-xs font-semibold text-[#000b76]"
+              >
+                Post a Job
+
+                <ArrowRight
+                  size={16}
+                  className="transition-transform group-hover:translate-x-1"
+                />
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
+
       <Footer />
     </>
   );
