@@ -83,28 +83,75 @@ export default function AboutMission() {
             </div>
           </div>
 
-          {/* RIGHT — ARTISAN */}
-          <div className="relative flex min-h-[300px] items-end justify-center lg:min-h-[360px]">
-            {/* Blue abstract shape */}
-            <div className="absolute bottom-4 h-[260px] w-[260px] rounded-[48%_52%_45%_55%] bg-[#d5e5ff]" />
+{/* RIGHT — ARTISAN */}
+<div className="relative flex min-h-[360px] items-end justify-center lg:min-h-[390px]">
 
-            <div className="absolute bottom-10 right-0 h-28 w-28 rounded-full bg-[#e3eeff]" />
+  {/* Main blue background shape */}
+  <div
+    className="
+      absolute bottom-4 left-1/2
+      h-[280px] w-[280px]
+      -translate-x-1/2
+      rounded-[48%_52%_45%_55%]
+      bg-[#d5e5ff]
+      md:h-[320px] md:w-[320px]
+    "
+  />
 
-            <div className="relative z-10 h-[350px] w-full overflow-hidden">
-              <img
-                src="/images/about-mission-woman.png"
-                alt="GoFix professional artisan"
-                className="absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 object-contain"
-              />
-            </div>
+  {/* Secondary decorative circle */}
+  <div
+    className="
+      absolute right-[5%] top-[45px]
+      h-24 w-24
+      rounded-full
+      bg-[#e3eeff]
+      md:h-28 md:w-28
+    "
+  />
 
-            {/* Decorative lines */}
-            <div className="absolute right-4 top-12 hidden lg:block">
-              <span className="absolute h-8 w-[2px] rotate-[25deg] bg-[#1458e8]" />
-              <span className="absolute left-5 top-1 h-5 w-[2px] rotate-[65deg] bg-[#1458e8]" />
-            </div>
-          </div>
+  {/* Woman */}
+  <div
+    className="
+      relative z-10
+      flex h-[390px] w-full
+      items-end justify-center
+    "
+  >
+    <img
+      src="/images/about-mission-woman.png"
+      alt="GoFix professional artisan"
+      className="
+        h-[390px]
+        w-auto
+        max-w-none
+        object-contain
+        object-bottom
+      "
+    />
+  </div>
 
+  {/* Decorative lines */}
+  <div className="absolute right-[8%] top-[65px] z-20 hidden lg:block">
+    <span
+      className="
+        absolute
+        h-9 w-[2px]
+        rotate-[25deg]
+        bg-[#1458e8]
+      "
+    />
+
+    <span
+      className="
+        absolute left-6 top-1
+        h-6 w-[2px]
+        rotate-[65deg]
+        bg-[#1458e8]
+      "
+    />
+  </div>
+
+</div>
         </div>
       </div>
     </section>

@@ -79,7 +79,7 @@ export default function AboutHero() {
             {/* Artisan image */}
             <div className="relative z-10 h-[450px] w-full max-w-[530px] overflow-hidden lg:h-[500px]">
               <img
-                src="/images/about-hero-man.png"
+                src="/images/about-hero-mann.png"
                 alt="GoFix trusted artisan"
                 className="absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 object-contain"
               />

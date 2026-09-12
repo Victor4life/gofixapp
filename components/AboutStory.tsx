@@ -63,7 +63,7 @@ export default function AboutStory() {
             <div className="relative z-10 overflow-hidden rounded-[28px] bg-slate-100 shadow-xl shadow-slate-200/50">
               <div className="aspect-[1.35/1]">
                 <img
-                  src="/images/about-story.jpg"
+                  src="/images/about-story.png"
                   alt="GoFix artisan working on a home project"
                   className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.03]"
                 />

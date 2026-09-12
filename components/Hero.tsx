@@ -35,12 +35,14 @@ export default function Hero() {
         <div
           className="
             absolute
+            hidden
             right-[38%]
             top-[110px]
             h-[70px]
             w-[70px]
             rounded-full
             bg-[#1230a8]
+            lg:block
           "
         />
 
@@ -48,12 +50,14 @@ export default function Hero() {
         <div
           className="
             absolute
+            hidden
             right-[9%]
             top-[175px]
             h-[120px]
             w-[120px]
             rounded-full
             bg-[#1029a5]
+            lg:block
           "
         />
 
