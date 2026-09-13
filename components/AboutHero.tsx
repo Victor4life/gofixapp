@@ -66,7 +66,7 @@ export default function AboutHero() {
           </div>
 
 {/* RIGHT HERO VISUAL */}
-<div className="relative h-[360px] lg:h-[430px]">
+<div className="relative h-[360px] lg:h-[500px]">
 
   {/* Large abstract blue shape */}
   <div
