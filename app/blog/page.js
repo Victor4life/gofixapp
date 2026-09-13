@@ -153,7 +153,7 @@ export default async function BlogFeed() {
                 {/* Artisan image */}
                 <div className="relative z-10 h-[390px] w-[390px] lg:h-[470px] lg:w-[460px]">
                   <img
-                    src="/images/blog-man.png"
+                    src="/images/blog-mann.png"
                     alt="GoFix artisan holding a power drill"
                     className="h-full w-full object-contain object-bottom"
                   />

@@ -65,68 +65,185 @@ export default function AboutHero() {
             </div>
           </div>
 
-          {/* RIGHT IMAGE */}
-          <div className="relative flex min-h-[430px] items-end justify-center lg:min-h-[500px]">
-            {/* Large abstract blue shape */}
-            <div className="absolute right-[-40px] top-[25px] h-[390px] w-[390px] rounded-[48%_52%_45%_55%/52%_45%_55%_48%] bg-[#4c82ff] opacity-90 lg:h-[470px] lg:w-[470px]" />
+{/* RIGHT HERO VISUAL */}
+<div className="relative h-[360px] lg:h-[430px]">
 
-            {/* Secondary shape */}
-            <div className="absolute right-[100px] top-[85px] h-[300px] w-[300px] rounded-full bg-[#1554e8] opacity-70 blur-[1px]" />
+  {/* Large abstract blue shape */}
+  <div
+    className="
+      absolute
+      right-[-80px]
+      top-[40px]
+      h-[330px]
+      w-[330px]
+      rounded-[48%_52%_45%_55%]
+      bg-[#4c82ff]
+      opacity-90
+      lg:right-[-35px]
+      lg:top-[45px]
+      lg:h-[430px]
+      lg:w-[430px]
+    "
+  />
 
-            {/* Small floating circle */}
-            <div className="absolute right-[70px] top-[25px] h-10 w-10 rounded-full bg-[#1458e8]" />
+  {/* Secondary darker blue shape */}
+  <div
+    className="
+      absolute
+      right-[90px]
+      top-[95px]
+      h-[250px]
+      w-[250px]
+      rounded-full
+      bg-[#1554e8]
+      opacity-70
+      lg:right-[105px]
+      lg:top-[105px]
+      lg:h-[330px]
+      lg:w-[330px]
+    "
+  />
 
-            {/* Artisan image */}
-            <div className="relative z-10 h-[450px] w-full max-w-[530px] overflow-hidden lg:h-[500px]">
-              <img
-                src="/images/about-hero-mann.png"
-                alt="GoFix trusted artisan"
-                className="absolute bottom-0 left-1/2 h-full w-auto max-w-none -translate-x-1/2 object-contain"
+  {/* Small floating circle */}
+  <div
+    className="
+      absolute
+      right-[70px]
+      top-[20px]
+      h-10
+      w-10
+      rounded-full
+      bg-[#1458e8]
+      lg:right-[175px]
+      lg:top-[28px]
+    "
+  />
+
+  {/* Artisan */}
+  <div
+    className="
+      absolute
+      bottom-[-8px]
+      right-[-20px]
+      z-10
+      h-[390px]
+      w-[390px]
+      lg:bottom-[-12px]
+      lg:right-[-15px]
+      lg:h-[505px]
+      lg:w-[505px]
+    "
+  >
+    <img
+      src="/images/about-hero-mann.png"
+      alt="GoFix trusted artisan"
+      className="
+        absolute
+        bottom-0
+        right-0
+        h-full
+        w-auto
+        max-w-none
+        object-contain
+        object-bottom
+      "
+    />
+  </div>
+
+  {/* Trusted professional text */}
+  <div
+    className="
+      absolute
+      right-[0px]
+      top-[100px]
+      z-20
+      hidden
+      rotate-[-8deg]
+      text-sm
+      font-medium
+      leading-5
+      text-white
+      lg:block
+    "
+  >
+    <div className="relative">
+      <span>
+        Trusted
+        <br />
+        Skilled
+        <br />
+        Professional
+      </span>
+
+      {/* Curved arrow */}
+      <svg
+        className="absolute -bottom-12 -left-8"
+        width="55"
+        height="55"
+        viewBox="0 0 55 55"
+        fill="none"
+      >
+        <path
+          d="M48 5C44 25 31 39 9 45"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+
+        <path
+          d="M12 38L8 45L16 45"
+          stroke="white"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
+  </div>
+
+        {/* ================= CURVED Arrow BOTTOM ================= */}
+
+                  <svg
+              className="absolute left-[7%] top-[115px] z-20 hidden lg:block"
+              width="70"
+              height="75"
+              viewBox="0 0 70 75"
+              fill="none"
+            >
+              <path
+                d="M63 5C42 12 20 28 10 54"
+                stroke="white"
+                strokeWidth="1.6"
+                strokeLinecap="round"
               />
-            </div>
 
-            {/* Trusted professional label */}
-            <div className="absolute right-[5%] top-[105px] z-20 hidden rotate-[-8deg] text-sm font-medium leading-5 text-white lg:block">
-              <div className="relative">
-                <span>
-                  Trusted
-                  <br />
-                  Skilled
-                  <br />
-                  Professional
-                </span>
+              <path
+                d="M8 44L10 55L20 51"
+                stroke="white"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
 
-                {/* Curved arrow */}
-                <svg
-                  className="absolute -bottom-12 -left-8"
-                  width="55"
-                  height="55"
-                  viewBox="0 0 55 55"
-                  fill="none"
-                >
-                  <path
-                    d="M48 5C44 25 31 39 9 45"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    d="M12 38L8 45L16 45"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-            </div>
 
-            {/* Decorative lines */}
-            <div className="absolute right-[8%] top-[60px] z-20 hidden lg:block">
-              <span className="absolute h-10 w-[2px] rotate-[28deg] bg-white" />
-              <span className="absolute left-5 top-1 h-6 w-[2px] rotate-[58deg] bg-white" />
-            </div>
-          </div>
+  {/* Decorative lines */}
+  <div
+    className="
+      absolute
+      right-[55px]
+      top-[55px]
+      z-20
+      hidden
+      lg:block
+    "
+  >
+    <span className="absolute h-10 w-[2px] rotate-[28deg] bg-white" />
+
+    <span className="absolute left-5 top-1 h-6 w-[2px] rotate-[58deg] bg-white" />
+  </div>
+
+</div>
         </div>
       </div>
 
