@@ -73,7 +73,7 @@ export default function HowItWorksHero() {
             <div className="absolute right-[120px] top-[105px] h-[270px] w-[270px] rounded-[50%] bg-[#1554e8] opacity-75 lg:right-[145px] lg:top-[80px] lg:h-[330px] lg:w-[330px]" />
 
             {/* Workshop background */}
-            <div className="absolute right-[-25px] top-[80px] z-[5] h-[245px] w-[340px] overflow-hidden rounded-l-[4px] sm:right-[-35px] sm:h-[280px] sm:w-[410px] lg:right-[-45px] lg:top-[85px] lg:h-[285px] lg:w-[455px]">
+            <div className="absolute hidden lg:block right-[-25px] top-[80px] z-[5] h-[245px] w-[340px] overflow-hidden rounded-l-[4px] sm:right-[-35px] sm:h-[280px] sm:w-[410px] lg:right-[-45px] lg:top-[85px] lg:h-[285px] lg:w-[455px]">
               <img
                 src="/images/workshop.jpg"
                 alt=""

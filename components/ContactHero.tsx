@@ -14,7 +14,7 @@ export default function ContactHero() {
       </div>
 
       {/* Hero content */}
-      <div className="mx-auto flex min-h-[560px] max-w-[1400px] items-center px-6 pb-24 pt-16 lg:px-12">
+      <div className="mx-auto flex min-h-[560px] max-w-[1400px] items-center px-6 pb-12 pt-8 lg:px-12">
         <div className="grid w-full items-center gap-12 lg:grid-cols-2">
           
           {/* Left */}
@@ -62,7 +62,7 @@ export default function ContactHero() {
           </div>
 
           {/* Right */}
-          <div className="relative flex min-h-[390px] items-end justify-center lg:min-h-[470px]">
+          <div className="relative flex min-h-[390px] items-end justify-center lg:min-h-[400px]">
             
             {/* Decorative circle */}
             <div className="absolute left-[12%] top-[15%] h-14 w-14 rounded-full bg-[#1557d6]" />
@@ -76,7 +76,7 @@ export default function ContactHero() {
             {/* Artisan */}
             <div className="relative z-10 h-[410px] w-[390px] lg:h-[475px] lg:w-[450px]">
               <Image
-                src="/images/contact-man.png"
+                src="/images/about-hero-mann.png"
                 alt="GoFix support artisan"
                 fill
                 priority

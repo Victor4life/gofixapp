@@ -110,7 +110,7 @@ export default async function BlogFeed() {
         <section className="relative overflow-hidden bg-[#000b76] text-white">
           <Navbar />
           <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
-            <div className="grid min-h-[520px] items-center gap-10 pb-24 pt-16 lg:grid-cols-2 lg:pt-12">
+            <div className="grid min-h-[520px] items-center gap-10 pb-12 pt-8 lg:grid-cols-2 lg:pt-12">
               {/* LEFT */}
               <div className="relative z-10 max-w-[620px]">
                 <div className="mb-5 flex items-center gap-3">
@@ -137,7 +137,7 @@ export default async function BlogFeed() {
               </div>
 
               {/* RIGHT */}
-              <div className="relative flex min-h-[370px] items-end justify-center lg:min-h-[450px]">
+              <div className="relative flex min-h-[370px] items-end justify-center lg:min-h-[400px]">
                 {/* Decorative circle */}
                 <div className="absolute left-[10%] top-[12%] h-14 w-14 rounded-full bg-[#1557d6]" />
 
@@ -153,7 +153,7 @@ export default async function BlogFeed() {
                 {/* Artisan image */}
                 <div className="relative z-10 h-[390px] w-[390px] lg:h-[470px] lg:w-[460px]">
                   <img
-                    src="/images/blog-mann.png"
+                    src="/images/hero.png"
                     alt="GoFix artisan holding a power drill"
                     className="h-full w-full object-contain object-bottom"
                   />
