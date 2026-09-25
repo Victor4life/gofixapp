@@ -1,12 +1,50 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "./Navbar";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Hero() {
+  const router = useRouter();
+
+  const [service, setService] = useState("");
+  const [location, setLocation] = useState("");
+  const [category, setCategory] = useState("All Categories");
+
+  const categories = [
+    "All Categories",
+    "Plumbing",
+    "Electrical",
+    "Painting",
+    "Carpentry",
+    "AC & Cooling",
+    "Home Repairs",
+  ];
+
+  const handleSearch = () => {
+    const params = new URLSearchParams();
+
+    if (service.trim()) {
+      params.set("service", service.trim());
+    }
+
+    if (location.trim()) {
+      params.set("location", location.trim());
+    }
+
+    if (category !== "All Categories") {
+      params.set("category", category);
+    }
+
+    const query = params.toString();
+
+    router.push(query ? `/artisans?${query}` : "/artisans");
+  };
+
   return (
     <section className="relative overflow-hidden bg-white">
-
       {/* ============================================================
           HERO
       ============================================================ */}
@@ -16,7 +54,6 @@ export default function Hero() {
             BACKGROUND DECORATION
         ========================================================== */}
 
-        {/* Large subtle blue circle */}
         <div
           className="
             absolute
@@ -31,7 +68,6 @@ export default function Hero() {
           "
         />
 
-        {/* Small blue circle */}
         <div
           className="
             absolute
@@ -46,7 +82,6 @@ export default function Hero() {
           "
         />
 
-        {/* Small blue circle behind artisan */}
         <div
           className="
             absolute
@@ -60,7 +95,6 @@ export default function Hero() {
             lg:block
           "
         />
-
 
         {/* ==========================================================
             DECORATIVE SVG BLOBS
@@ -78,6 +112,7 @@ export default function Hero() {
             w-[760px]
             lg:right-[-30px]
             lg:top-[55px]
+            lg:block
             lg:h-[570px]
             lg:w-[820px]
           "
@@ -85,8 +120,6 @@ export default function Hero() {
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
         >
-
-          {/* Blue organic shape */}
           <path
             d="
               M180 390
@@ -103,7 +136,6 @@ export default function Hero() {
             fill="#1239B7"
           />
 
-          {/* White organic blob */}
           <path
             d="
               M275 380
@@ -120,7 +152,6 @@ export default function Hero() {
             fill="white"
           />
 
-          {/* Thin white outline */}
           <path
             d="
               M120 400
@@ -139,13 +170,12 @@ export default function Hero() {
             strokeWidth="2"
             opacity="0.85"
           />
-
         </svg>
-
 
         {/* ==========================================================
             DOT PATTERN
         ========================================================== */}
+
         <div
           className="
             absolute
@@ -171,10 +201,10 @@ export default function Hero() {
           ))}
         </div>
 
-
         {/* ==========================================================
             DECORATIVE RIGHT CIRCLE
         ========================================================== */}
+
         <div
           className="
             absolute
@@ -206,15 +236,16 @@ export default function Hero() {
           "
         />
 
-
         {/* ==========================================================
             HEADER
         ========================================================== */}
-<Navbar />
+
+        <Navbar />
 
         {/* ==========================================================
             MAIN HERO CONTENT
         ========================================================== */}
+
         <div
           className="
             relative
@@ -234,6 +265,7 @@ export default function Hero() {
           {/* ========================================================
               LEFT
           ======================================================== */}
+
           <div className="relative z-20">
 
             {/* Badge */}
@@ -252,7 +284,6 @@ export default function Hero() {
                 text-white
               "
             >
-
               <span
                 className="
                   flex
@@ -278,9 +309,7 @@ export default function Hero() {
               </span>
 
               Verified artisans. Quality you can trust.
-
             </div>
-
 
             {/* Heading */}
             <h1
@@ -303,9 +332,7 @@ export default function Hero() {
               <span className="text-[#6388ff]">
                 need it.
               </span>
-
             </h1>
-
 
             {/* Description */}
             <p
@@ -321,11 +348,12 @@ export default function Hero() {
               artisans for any job, big or small.
             </p>
 
-
             {/* CTA */}
-            <div className="mt-8 flex items-center gap-7">
+            <div className="mt-8 flex flex-wrap items-center gap-7">
 
-              <button
+              {/* FIND AN ARTISAN */}
+              <Link
+                href="/artisans"
                 className="
                   flex
                   items-center
@@ -337,6 +365,9 @@ export default function Hero() {
                   text-[14px]
                   font-semibold
                   text-[#000b76]
+                  transition
+                  hover:bg-[#f1f4ff]
+                  hover:shadow-lg
                 "
               >
                 Find an Artisan
@@ -352,11 +383,11 @@ export default function Hero() {
                   <path d="M5 12h14" />
                   <path d="m13 6 6 6-6 6" />
                 </svg>
+              </Link>
 
-              </button>
-
-
-              <button
+              {/* HOW IT WORKS */}
+              <Link
+                href="/how-it-works"
                 className="
                   flex
                   items-center
@@ -364,9 +395,10 @@ export default function Hero() {
                   text-[15px]
                   font-medium
                   text-white
+                  transition
+                  hover:text-blue-200
                 "
               >
-
                 <span
                   className="
                     flex
@@ -377,6 +409,8 @@ export default function Hero() {
                     rounded-full
                     border
                     border-white
+                    transition
+                    hover:bg-white/10
                   "
                 >
                   <svg
@@ -390,17 +424,15 @@ export default function Hero() {
                 </span>
 
                 How It Works
-
-              </button>
+              </Link>
 
             </div>
-
           </div>
-
 
           {/* ========================================================
               RIGHT / ARTISAN
           ======================================================== */}
+
           <div
             className="
               relative
@@ -410,18 +442,14 @@ export default function Hero() {
               lg:min-h-[590px]
             "
           >
-
-            {/* Artisan */}
             <div
               className="
                 absolute
                 right-[-40px]
                 top-[-5px]
                 z-10
-
                 h-[555px]
                 w-[720px]
-
                 lg:right-[-65px]
                 lg:top-[-35px]
                 lg:h-[620px]
@@ -437,11 +465,9 @@ export default function Hero() {
                 className="object-contain object-center"
               />
             </div>
-
           </div>
 
         </div>
-
 
         {/* ==========================================================
             MAIN WHITE WAVE
@@ -455,7 +481,8 @@ export default function Hero() {
             left-0
             z-20
             h-[120px]
-            w-full          "
+            w-full
+          "
           viewBox="0 0 1440 160"
           preserveAspectRatio="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -477,10 +504,10 @@ export default function Hero() {
 
       </div>
 
-
       {/* ============================================================
           SEARCH BAR
       ============================================================ */}
+
       <div
         className="
           relative
@@ -492,10 +519,10 @@ export default function Hero() {
           lg:-mt-[65px]
         "
       >
-
         <div
           className="
             grid
+            overflow-hidden
             rounded-[18px]
             border
             border-[#e5eaf5]
@@ -506,7 +533,10 @@ export default function Hero() {
           "
         >
 
-          {/* Service */}
+          {/* ========================================================
+              SERVICE
+          ======================================================== */}
+
           <div
             className="
               flex
@@ -520,7 +550,6 @@ export default function Hero() {
               lg:border-r
             "
           >
-
             <div
               className="
                 flex
@@ -547,22 +576,42 @@ export default function Hero() {
               </svg>
             </div>
 
-            <div>
-
-              <div className="text-[12px] font-semibold text-[#10234b]">
+            <div className="min-w-0 flex-1">
+              <label
+                htmlFor="service"
+                className="block text-[12px] font-semibold text-[#10234b]"
+              >
                 What service do you need?
-              </div>
+              </label>
 
-              <div className="mt-1 text-[13px] text-[#8993aa]">
-                e.g. Plumbing, Electrical, Painting
-              </div>
-
+              <input
+                id="service"
+                type="text"
+                value={service}
+                onChange={(e) => setService(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSearch();
+                  }
+                }}
+                placeholder="e.g. Plumbing, Electrical, Painting"
+                className="
+                  mt-1
+                  w-full
+                  bg-transparent
+                  text-[13px]
+                  text-[#10234b]
+                  outline-none
+                  placeholder:text-[#8993aa]
+                "
+              />
             </div>
-
           </div>
 
+          {/* ========================================================
+              LOCATION
+          ======================================================== */}
 
-          {/* Location */}
           <div
             className="
               flex
@@ -576,7 +625,6 @@ export default function Hero() {
               lg:border-r
             "
           >
-
             <div
               className="
                 flex
@@ -603,22 +651,42 @@ export default function Hero() {
               </svg>
             </div>
 
-            <div>
-
-              <div className="text-[12px] font-semibold text-[#10234b]">
+            <div className="min-w-0 flex-1">
+              <label
+                htmlFor="location"
+                className="block text-[12px] font-semibold text-[#10234b]"
+              >
                 Location
-              </div>
+              </label>
 
-              <div className="mt-1 text-[13px] text-[#8993aa]">
-                Enter your location
-              </div>
-
+              <input
+                id="location"
+                type="text"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSearch();
+                  }
+                }}
+                placeholder="Enter your location"
+                className="
+                  mt-1
+                  w-full
+                  bg-transparent
+                  text-[13px]
+                  text-[#10234b]
+                  outline-none
+                  placeholder:text-[#8993aa]
+                "
+              />
             </div>
-
           </div>
 
+          {/* ========================================================
+              CATEGORY
+          ======================================================== */}
 
-          {/* Category */}
           <div
             className="
               flex
@@ -632,7 +700,6 @@ export default function Hero() {
               lg:border-r
             "
           >
-
             <div
               className="
                 flex
@@ -666,17 +733,45 @@ export default function Hero() {
               </svg>
             </div>
 
-            <div className="flex-1">
-
-              <div className="text-[12px] font-semibold text-[#10234b]">
+            <div className="min-w-0 flex-1">
+              <label
+                htmlFor="category"
+                className="block text-[12px] font-semibold text-[#10234b]"
+              >
                 Category
-              </div>
+              </label>
 
-              <div className="mt-1 flex items-center justify-between text-[13px] text-[#8993aa]">
-
-                <span>All Categories</span>
+              <div className="relative mt-1">
+                <select
+                  id="category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                  className="
+                    w-full
+                    appearance-none
+                    bg-transparent
+                    pr-7
+                    text-[13px]
+                    text-[#8993aa]
+                    outline-none
+                    cursor-pointer
+                  "
+                >
+                  {categories.map((item) => (
+                    <option key={item} value={item}>
+                      {item}
+                    </option>
+                  ))}
+                </select>
 
                 <svg
+                  className="
+                    pointer-events-none
+                    absolute
+                    right-0
+                    top-1/2
+                    -translate-y-1/2
+                  "
                   width="17"
                   height="17"
                   viewBox="0 0 24 24"
@@ -686,18 +781,18 @@ export default function Hero() {
                 >
                   <path d="m6 9 6 6 6-6" />
                 </svg>
-
               </div>
-
             </div>
-
           </div>
 
+          {/* ========================================================
+              SEARCH
+          ======================================================== */}
 
-          {/* Search */}
           <div className="p-1">
-
             <button
+              type="button"
+              onClick={handleSearch}
               className="
                 flex
                 h-full
@@ -712,17 +807,15 @@ export default function Hero() {
                 text-white
                 transition
                 hover:bg-[#07188f]
+                active:scale-[0.98]
               "
             >
               Search Artisans
             </button>
-
           </div>
 
         </div>
-
       </div>
-
 
     </section>
   );
