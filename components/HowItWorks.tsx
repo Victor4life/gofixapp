@@ -13,122 +13,113 @@ const steps = [
   {
     number: "1",
     title: "Post a Job",
-    description: (
-      <>
-        Tell us what you need
-        <br />
-        done and where.
-      </>
-    ),
+    description: "Tell us what you need done and where.",
     icon: FileText,
   },
   {
     number: "2",
     title: "Get Matched",
-    description: (
-      <>
-        We connect you with
-        <br />
-        verified artisans.
-      </>
-    ),
+    description: "We connect you with verified artisans.",
     icon: Users,
   },
   {
     number: "3",
     title: "Review & Hire",
-    description: (
-      <>
-        Check profiles, reviews,
-        <br />
-        and hire with confidence.
-      </>
-    ),
+    description: "Check profiles, reviews, and hire with confidence.",
     icon: ShieldCheck,
   },
   {
     number: "4",
     title: "Get It Done",
-    description: (
-      <>
-        Your job gets done right,
-        <br />
-        on time.
-      </>
-    ),
+    description: "Your job gets done right, on time.",
     icon: CircleCheck,
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section className="relative overflow-hidden bg-[#f7f9ff]">
+    <section className="relative w-full overflow-hidden bg-[#f7f9ff]">
 
       {/* =========================================================
           BLUE BACKGROUND
-          SVG gives us control over BOTH the top and bottom waves
-          and the large curved right-hand corners.
       ========================================================== */}
 
-<svg
-  className="absolute inset-0 z-0 h-full w-full"
-  viewBox="0 0 1440 500"
-  preserveAspectRatio="none"
-  aria-hidden="true"
->
-  <path
-    d="
-      M 0 45
+      <svg
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full"
+        viewBox="0 0 1440 650"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d="
+            M 0 55
 
-      C 180 5 350 10 520 20
-      C 720 32 900 38 1080 30
-      C 1220 22 1340 8 1440 0
+            C 180 15 350 18 520 28
+            C 720 40 900 46 1080 38
+            C 1220 30 1340 16 1440 8
 
-      V 390
+            V 510
 
-      C 1410 435 1360 475 1290 490
-      C 1220 505 1120 500 1020 500
+            C 1400 555 1350 600 1270 620
+            C 1170 645 1050 640 930 638
 
-      C 820 500 650 492 500 486
-      C 350 480 220 475 120 488
-      C 70 492 30 498 0 505
+            C 750 635 600 625 470 620
+            C 330 615 210 610 110 625
+            C 65 632 25 638 0 642
 
-      Z
-    "
-    fill="#000b76"
-  />
-</svg>
-
+            Z
+          "
+          fill="#000b76"
+        />
+      </svg>
 
       {/* =========================================================
           DECORATIVE CIRCLES
       ========================================================== */}
 
-      {/* Large left circle */}
+      {/* Left circle */}
       <div
         className="
           pointer-events-none
           absolute
-          left-[18px]
-          top-[40px]
-          h-[58px]
-          w-[58px]
+          left-[-18px]
+          top-[42px]
+          h-12
+          w-12
           rounded-full
           bg-[#1539c4]
+
+          sm:left-[20px]
+          sm:top-[48px]
+          sm:h-14
+          sm:w-14
+
+          lg:left-[32px]
+          lg:top-[55px]
+          lg:h-[58px]
+          lg:w-[58px]
         "
       />
 
-      {/* Small top-right circle */}
+      {/* Right circle */}
       <div
         className="
           pointer-events-none
           absolute
-          right-[26px]
-          top-[42px]
-          h-[40px]
-          w-[40px]
+          right-[-10px]
+          top-[55px]
+          h-8
+          w-8
           rounded-full
           bg-[#1539c4]
+
+          sm:right-[24px]
+          sm:top-[50px]
+          sm:h-10
+          sm:w-10
+
+          lg:right-[32px]
+          lg:top-[58px]
         "
       />
 
@@ -140,25 +131,25 @@ export default function HowItWorks() {
         className="
           pointer-events-none
           absolute
-          right-[27px]
-          top-[125px]
+          right-[28px]
+          top-[135px]
           z-[1]
           hidden
           grid-cols-5
-          gap-[12px]
-          lg:grid
+          gap-[10px]
+          xl:grid
         "
       >
         {Array.from({ length: 25 }).map((_, index) => (
           <span
             key={index}
-            className="h-[8px] w-[8px] rounded-full bg-[#2864e8]"
+            className="h-[7px] w-[7px] rounded-full bg-[#2864e8]"
           />
         ))}
       </div>
 
       {/* =========================================================
-          MAIN CONTENT
+          CONTENT
       ========================================================== */}
 
       <div
@@ -166,12 +157,19 @@ export default function HowItWorks() {
           relative
           z-10
           mx-auto
+          w-full
           max-w-[1280px]
-          px-6
-          pb-[90px]
-          pt-[90px]
+          px-5
+          pb-16
+          pt-16
+
           sm:px-8
+          sm:pb-20
+          sm:pt-20
+
           lg:px-10
+          lg:pb-[95px]
+          lg:pt-[90px]
         "
       >
 
@@ -179,17 +177,29 @@ export default function HowItWorks() {
             HEADER
         ======================================================== */}
 
-        <div className="flex items-start justify-between">
+        <div
+          className="
+            flex
+            flex-col
+            gap-5
 
-          <div>
+            sm:flex-row
+            sm:items-start
+            sm:justify-between
+          "
+        >
+          {/* LEFT */}
+          <div className="max-w-[600px]">
             <p
               className="
-                mb-[8px]
+                mb-2
                 text-[9px]
                 font-semibold
                 uppercase
-                tracking-[0.02em]
+                tracking-[0.08em]
                 text-[#bcd1ff]
+
+                sm:text-[10px]
               "
             >
               How It Works
@@ -197,12 +207,15 @@ export default function HowItWorks() {
 
             <h2
               className="
-                text-[27px]
+                text-[28px]
                 font-semibold
                 leading-[1.08]
                 tracking-[-0.035em]
                 text-white
-                sm:text-[30px]
+
+                sm:text-[32px]
+
+                lg:text-[34px]
               "
             >
               Get the job done
@@ -211,32 +224,35 @@ export default function HowItWorks() {
             </h2>
           </div>
 
-          {/* Learn More */}
+          {/* DESKTOP LEARN MORE */}
           <Link
             href="/how-it-works"
             className="
               hidden
-              h-[34px]
+              shrink-0
               items-center
-              gap-[12px]
+              gap-2
               rounded-[5px]
               border
               border-[#7387e8]
-              px-[14px]
-              text-[9px]
+              px-4
+              py-2.5
+              text-[10px]
               font-semibold
               text-white
               transition-all
               duration-200
+
               hover:bg-white
               hover:text-[#06147f]
+
               sm:flex
             "
           >
             Learn More
 
             <ArrowRight
-              size={13}
+              size={14}
               strokeWidth={2}
             />
           </Link>
@@ -246,9 +262,12 @@ export default function HowItWorks() {
             STEPS
         ======================================================== */}
 
-        <div className="relative mt-[35px]">
+        <div className="relative mt-10 sm:mt-12 lg:mt-14">
 
-          {/* Dotted connecting line */}
+          {/* =====================================================
+              CONNECTING LINE
+          ====================================================== */}
+
           <div
             className="
               pointer-events-none
@@ -257,21 +276,42 @@ export default function HowItWorks() {
               right-[8%]
               top-[34px]
               hidden
-              lg:block
+
+              xl:block
             "
           >
             <div className="border-t-[2px] border-dotted border-[#3970e9]" />
           </div>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+          {/* =====================================================
+              GRID
+          ====================================================== */}
 
+          <div
+            className="
+              grid
+              grid-cols-1
+              gap-10
+
+              sm:grid-cols-2
+              sm:gap-x-8
+              sm:gap-y-12
+
+              xl:grid-cols-4
+              xl:gap-0
+            "
+          >
             {steps.map((step) => {
               const Icon = step.icon;
 
               return (
                 <div
                   key={step.number}
-                  className="relative z-10"
+                  className="
+                    relative
+                    z-10
+                    min-w-0
+                  "
                 >
 
                   {/* =================================================
@@ -282,38 +322,46 @@ export default function HowItWorks() {
                     className="
                       relative
                       flex
-                      h-[68px]
-                      w-[68px]
+                      h-[64px]
+                      w-[64px]
                       items-center
                       justify-center
                       rounded-full
                       border
                       border-[#8ca0ed]
                       bg-[#06147f]
+
+                      sm:h-[68px]
+                      sm:w-[68px]
                     "
                   >
                     <Icon
-                      size={28}
+                      size={27}
                       strokeWidth={1.7}
                       className="text-[#dce6ff]"
                     />
 
-                    {/* Number */}
+                    {/* NUMBER */}
                     <span
                       className="
                         absolute
-                        -bottom-[12px]
+                        -bottom-[10px]
                         left-0
                         flex
-                        h-[21px]
-                        w-[21px]
+                        h-5
+                        w-5
                         items-center
                         justify-center
                         rounded-full
                         bg-[#2868eb]
-                        text-[10px]
+                        text-[9px]
                         font-semibold
                         text-white
+
+                        sm:-bottom-[12px]
+                        sm:h-[21px]
+                        sm:w-[21px]
+                        sm:text-[10px]
                       "
                     >
                       {step.number}
@@ -324,14 +372,16 @@ export default function HowItWorks() {
                       TEXT
                   ================================================== */}
 
-                  <div className="mt-[25px]">
+                  <div className="mt-6 max-w-[230px] sm:mt-7">
                     <h3
                       className="
                         text-[14px]
                         font-semibold
-                        leading-[1.15]
+                        leading-[1.2]
                         tracking-[-0.015em]
                         text-white
+
+                        sm:text-[15px]
                       "
                     >
                       {step.title}
@@ -339,10 +389,12 @@ export default function HowItWorks() {
 
                     <p
                       className="
-                        mt-[8px]
+                        mt-2
                         text-[10px]
-                        leading-[1.5]
+                        leading-[1.6]
                         text-[#c9d4fa]
+
+                        sm:text-[11px]
                       "
                     >
                       {step.description}
@@ -361,26 +413,31 @@ export default function HowItWorks() {
         <Link
           href="/how-it-works"
           className="
-            mt-[35px]
+            mt-10
             flex
-            h-[34px]
+            h-[36px]
             w-fit
             items-center
-            gap-[12px]
+            gap-2
             rounded-[5px]
             border
             border-[#7387e8]
-            px-[14px]
-            text-[9px]
+            px-4
+            text-[10px]
             font-semibold
             text-white
+            transition-all
+
+            hover:bg-white
+            hover:text-[#06147f]
+
             sm:hidden
           "
         >
           Learn More
 
           <ArrowRight
-            size={13}
+            size={14}
             strokeWidth={2}
           />
         </Link>

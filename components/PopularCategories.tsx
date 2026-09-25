@@ -56,40 +56,64 @@ const categories = [
 
 export default function PopularCategories() {
   return (
-    <section className="bg-white px-5 py-20 sm:px-8 lg:px-10 lg:py-24">
-      <div className="mx-auto max-w-[1280px]">
+    <section className="w-full overflow-hidden bg-white px-4 py-14 sm:px-6 sm:py-16 md:px-8 lg:px-10 lg:py-20 xl:py-24">
+      <div className="mx-auto w-full max-w-[1280px]">
 
         {/* =========================
             SECTION HEADER
         ========================== */}
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
 
-          {/* Left */}
-          <div>
+          {/* LEFT */}
+          <div className="min-w-0">
             {/* Eyebrow */}
             <div className="mb-3 flex items-center gap-3">
-              <span className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#075eea]">
+              <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#075eea] sm:text-[11px]">
                 Popular Categories
               </span>
 
-              <span className="h-[1px] w-10 bg-[#075eea]" />
+              <span className="h-px w-8 bg-[#075eea] sm:w-10" />
             </div>
 
             {/* Heading */}
-            <h2 className="max-w-[620px] text-[32px] font-bold leading-[1.12] tracking-[-0.035em] text-[#092d80] sm:text-[40px]">
+            <h2
+              className="
+                max-w-[620px]
+                text-[28px]
+                font-bold
+                leading-[1.12]
+                tracking-[-0.035em]
+                text-[#092d80]
+                sm:text-[34px]
+                md:text-[38px]
+                lg:text-[40px]
+              "
+            >
               Find the right service for your home.
             </h2>
 
             {/* Description */}
-            <p className="mt-3 max-w-[560px] text-[14px] leading-6 text-[#667085]">
+            <p className="mt-3 max-w-[560px] text-[13px] leading-6 text-[#667085] sm:text-[14px]">
               From small fixes to big projects, we&apos;ve got you covered.
             </p>
           </div>
 
-          {/* Desktop link */}
+          {/* DESKTOP LINK */}
           <Link
             href="/categories"
-            className="group hidden items-center gap-2 pb-1 text-[12px] font-bold text-[#075eea] transition-all sm:flex"
+            className="
+              group
+              hidden
+              shrink-0
+              items-center
+              gap-2
+              pb-1
+              text-[12px]
+              font-bold
+              text-[#075eea]
+              transition-all
+              sm:flex
+            "
           >
             View all categories
 
@@ -106,7 +130,18 @@ export default function PopularCategories() {
         ========================== */}
         <Link
           href="/categories"
-          className="group mt-5 flex w-fit items-center gap-2 text-[12px] font-bold text-[#075eea] sm:hidden"
+          className="
+            group
+            mt-5
+            flex
+            w-fit
+            items-center
+            gap-2
+            text-[12px]
+            font-bold
+            text-[#075eea]
+            sm:hidden
+          "
         >
           View all categories
 
@@ -120,8 +155,20 @@ export default function PopularCategories() {
         {/* =========================
             CATEGORY GRID
         ========================== */}
-        <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
-
+        <div
+          className="
+            mt-8
+            grid
+            grid-cols-2
+            gap-3
+            sm:mt-10
+            sm:grid-cols-2
+            sm:gap-4
+            md:grid-cols-3
+            lg:grid-cols-3
+            xl:grid-cols-6
+          "
+        >
           {categories.map((category) => {
             const Icon = category.icon;
 
@@ -136,27 +183,35 @@ export default function PopularCategories() {
                   group
                   relative
                   flex
-                  min-h-[132px]
+                  min-w-0
+                  min-h-[145px]
                   flex-col
+                  overflow-hidden
                   rounded-[10px]
                   border
                   border-[#e4e9f2]
                   bg-white
-                  p-4
+                  p-3.5
                   transition-all
                   duration-300
+
                   hover:-translate-y-1
                   hover:border-[#cddafa]
                   hover:shadow-[0_12px_30px_rgba(7,30,100,0.08)]
+
+                  sm:min-h-[150px]
+                  sm:p-4
+
+                  xl:min-h-[145px]
                 "
               >
-
-                {/* Icon */}
+                {/* ICON */}
                 <div
                   className={`
                     flex
-                    h-[43px]
-                    w-[43px]
+                    h-10
+                    w-10
+                    shrink-0
                     items-center
                     justify-center
                     rounded-full
@@ -165,31 +220,53 @@ export default function PopularCategories() {
                     transition-transform
                     duration-300
                     group-hover:scale-105
+
+                    sm:h-[43px]
+                    sm:w-[43px]
                   `}
                 >
                   <Icon
-                    size={21}
+                    size={19}
                     strokeWidth={2}
+                    className="sm:h-[21px] sm:w-[21px]"
                   />
                 </div>
 
-                {/* Text */}
-                <div className="mt-4">
-                  <h3 className="text-[13px] font-bold leading-5 text-[#092d80]">
+                {/* TEXT */}
+                <div className="mt-3 min-w-0 pr-1 sm:mt-4">
+                  <h3
+                    className="
+                      truncate
+                      text-[12px]
+                      font-bold
+                      leading-5
+                      text-[#092d80]
+                      sm:text-[13px]
+                    "
+                  >
                     {category.name}
                   </h3>
 
-                  <p className="mt-1 text-[10px] leading-[1.45] text-[#667085]">
+                  <p
+                    className="
+                      mt-1
+                      line-clamp-2
+                      text-[9px]
+                      leading-[1.45]
+                      text-[#667085]
+                      sm:text-[10px]
+                    "
+                  >
                     {category.description}
                   </p>
                 </div>
 
-                {/* Arrow */}
+                {/* ARROW */}
                 <div
                   className="
                     absolute
                     bottom-3
-                    left-4
+                    right-3
                     flex
                     h-5
                     w-5
@@ -199,19 +276,20 @@ export default function PopularCategories() {
                     transition-all
                     duration-300
                     group-hover:translate-x-1
+                    sm:bottom-3
+                    sm:right-4
                   "
                 >
                   <ArrowRight
-                    size={14}
+                    size={13}
                     strokeWidth={2}
+                    className="sm:h-[14px] sm:w-[14px]"
                   />
                 </div>
-
               </Link>
             );
           })}
         </div>
-
       </div>
     </section>
   );
