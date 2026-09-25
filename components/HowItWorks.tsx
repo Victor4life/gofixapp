@@ -38,34 +38,35 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="relative w-full overflow-hidden bg-[#f7f9ff]">
+    <section className="relative overflow-hidden bg-[#f7f9ff]">
 
       {/* =========================================================
           BLUE BACKGROUND
+          Desktop / LG stays the same
       ========================================================== */}
 
       <svg
-        className="pointer-events-none absolute inset-0 z-0 h-full w-full"
-        viewBox="0 0 1440 650"
+        className="absolute inset-0 z-0 h-full w-full"
+        viewBox="0 0 1440 500"
         preserveAspectRatio="none"
         aria-hidden="true"
       >
         <path
           d="
-            M 0 55
+            M 0 45
 
-            C 180 15 350 18 520 28
-            C 720 40 900 46 1080 38
-            C 1220 30 1340 16 1440 8
+            C 180 5 350 10 520 20
+            C 720 32 900 38 1080 30
+            C 1220 22 1340 8 1440 0
 
-            V 510
+            V 390
 
-            C 1400 555 1350 600 1270 620
-            C 1170 645 1050 640 930 638
+            C 1410 435 1360 475 1290 490
+            C 1220 505 1120 500 1020 500
 
-            C 750 635 600 625 470 620
-            C 330 615 210 610 110 625
-            C 65 632 25 638 0 642
+            C 820 500 650 492 500 486
+            C 350 480 220 475 120 488
+            C 70 492 30 498 0 505
 
             Z
           "
@@ -77,49 +78,37 @@ export default function HowItWorks() {
           DECORATIVE CIRCLES
       ========================================================== */}
 
-      {/* Left circle */}
+      {/* Desktop left circle */}
       <div
         className="
           pointer-events-none
           absolute
-          left-[-18px]
-          top-[42px]
-          h-12
-          w-12
+          left-[18px]
+          top-[40px]
+          hidden
+          h-[58px]
+          w-[58px]
           rounded-full
           bg-[#1539c4]
 
-          sm:left-[20px]
-          sm:top-[48px]
-          sm:h-14
-          sm:w-14
-
-          lg:left-[32px]
-          lg:top-[55px]
-          lg:h-[58px]
-          lg:w-[58px]
+          sm:block
         "
       />
 
-      {/* Right circle */}
+      {/* Desktop right circle */}
       <div
         className="
           pointer-events-none
           absolute
-          right-[-10px]
-          top-[55px]
-          h-8
-          w-8
+          right-[26px]
+          top-[42px]
+          hidden
+          h-[40px]
+          w-[40px]
           rounded-full
           bg-[#1539c4]
 
-          sm:right-[24px]
-          sm:top-[50px]
-          sm:h-10
-          sm:w-10
-
-          lg:right-[32px]
-          lg:top-[58px]
+          sm:block
         "
       />
 
@@ -131,25 +120,26 @@ export default function HowItWorks() {
         className="
           pointer-events-none
           absolute
-          right-[28px]
-          top-[135px]
+          right-[27px]
+          top-[125px]
           z-[1]
           hidden
           grid-cols-5
-          gap-[10px]
-          xl:grid
+          gap-[12px]
+
+          lg:grid
         "
       >
         {Array.from({ length: 25 }).map((_, index) => (
           <span
             key={index}
-            className="h-[7px] w-[7px] rounded-full bg-[#2864e8]"
+            className="h-[8px] w-[8px] rounded-full bg-[#2864e8]"
           />
         ))}
       </div>
 
       {/* =========================================================
-          CONTENT
+          MAIN CONTENT
       ========================================================== */}
 
       <div
@@ -157,18 +147,21 @@ export default function HowItWorks() {
           relative
           z-10
           mx-auto
-          w-full
           max-w-[1280px]
+
+          /* PHONE */
           px-5
-          pb-16
-          pt-16
+          pb-[55px]
+          pt-[58px]
 
+          /* TABLET */
           sm:px-8
-          sm:pb-20
-          sm:pt-20
+          sm:pb-[70px]
+          sm:pt-[70px]
 
+          /* DESKTOP - KEEP */
           lg:px-10
-          lg:pb-[95px]
+          lg:pb-[90px]
           lg:pt-[90px]
         "
       >
@@ -177,29 +170,21 @@ export default function HowItWorks() {
             HEADER
         ======================================================== */}
 
-        <div
-          className="
-            flex
-            flex-col
-            gap-5
+        <div className="flex items-start justify-between">
 
-            sm:flex-row
-            sm:items-start
-            sm:justify-between
-          "
-        >
-          {/* LEFT */}
-          <div className="max-w-[600px]">
+          <div>
             <p
               className="
-                mb-2
-                text-[9px]
+                mb-[7px]
+                text-[8px]
                 font-semibold
                 uppercase
                 tracking-[0.08em]
                 text-[#bcd1ff]
 
-                sm:text-[10px]
+                sm:text-[9px]
+
+                lg:text-[9px]
               "
             >
               How It Works
@@ -207,15 +192,17 @@ export default function HowItWorks() {
 
             <h2
               className="
-                text-[28px]
+                max-w-[280px]
+                text-[25px]
                 font-semibold
                 leading-[1.08]
                 tracking-[-0.035em]
                 text-white
 
-                sm:text-[32px]
+                sm:max-w-[400px]
+                sm:text-[29px]
 
-                lg:text-[34px]
+                lg:text-[27px]
               "
             >
               Get the job done
@@ -224,20 +211,20 @@ export default function HowItWorks() {
             </h2>
           </div>
 
-          {/* DESKTOP LEARN MORE */}
+          {/* Desktop Learn More */}
           <Link
             href="/how-it-works"
             className="
               hidden
+              h-[34px]
               shrink-0
               items-center
-              gap-2
+              gap-[12px]
               rounded-[5px]
               border
               border-[#7387e8]
-              px-4
-              py-2.5
-              text-[10px]
+              px-[14px]
+              text-[9px]
               font-semibold
               text-white
               transition-all
@@ -252,7 +239,7 @@ export default function HowItWorks() {
             Learn More
 
             <ArrowRight
-              size={14}
+              size={13}
               strokeWidth={2}
             />
           </Link>
@@ -262,12 +249,11 @@ export default function HowItWorks() {
             STEPS
         ======================================================== */}
 
-        <div className="relative mt-10 sm:mt-12 lg:mt-14">
+        <div className="relative mt-[30px] sm:mt-[35px]">
 
-          {/* =====================================================
-              CONNECTING LINE
-          ====================================================== */}
-
+          {/* Connecting line
+              Only needed when steps are in one row.
+          */}
           <div
             className="
               pointer-events-none
@@ -277,28 +263,28 @@ export default function HowItWorks() {
               top-[34px]
               hidden
 
-              xl:block
+              lg:block
             "
           >
             <div className="border-t-[2px] border-dotted border-[#3970e9]" />
           </div>
 
-          {/* =====================================================
-              GRID
-          ====================================================== */}
-
           <div
             className="
               grid
-              grid-cols-1
-              gap-10
 
+              /* PHONE */
+              grid-cols-1
+              gap-[30px]
+
+              /* TABLET */
               sm:grid-cols-2
               sm:gap-x-8
-              sm:gap-y-12
+              sm:gap-y-[38px]
 
-              xl:grid-cols-4
-              xl:gap-0
+              /* DESKTOP - KEEP */
+              lg:grid-cols-4
+              lg:gap-0
             "
           >
             {steps.map((step) => {
@@ -311,6 +297,17 @@ export default function HowItWorks() {
                     relative
                     z-10
                     min-w-0
+
+                    /* PHONE */
+                    flex
+                    items-start
+                    gap-4
+
+                    /* TABLET */
+                    sm:block
+
+                    /* DESKTOP */
+                    lg:block
                   "
                 >
 
@@ -322,8 +319,9 @@ export default function HowItWorks() {
                     className="
                       relative
                       flex
-                      h-[64px]
-                      w-[64px]
+                      h-[58px]
+                      w-[58px]
+                      shrink-0
                       items-center
                       justify-center
                       rounded-full
@@ -331,25 +329,28 @@ export default function HowItWorks() {
                       border-[#8ca0ed]
                       bg-[#06147f]
 
-                      sm:h-[68px]
-                      sm:w-[68px]
+                      sm:h-[64px]
+                      sm:w-[64px]
+
+                      lg:h-[68px]
+                      lg:w-[68px]
                     "
                   >
                     <Icon
-                      size={27}
+                      size={24}
                       strokeWidth={1.7}
-                      className="text-[#dce6ff]"
+                      className="text-[#dce6ff] sm:h-[26px] sm:w-[26px] lg:h-[28px] lg:w-[28px]"
                     />
 
-                    {/* NUMBER */}
+                    {/* Number */}
                     <span
                       className="
                         absolute
-                        -bottom-[10px]
+                        -bottom-[8px]
                         left-0
                         flex
-                        h-5
-                        w-5
+                        h-[19px]
+                        w-[19px]
                         items-center
                         justify-center
                         rounded-full
@@ -358,10 +359,11 @@ export default function HowItWorks() {
                         font-semibold
                         text-white
 
-                        sm:-bottom-[12px]
+                        sm:-bottom-[10px]
                         sm:h-[21px]
                         sm:w-[21px]
-                        sm:text-[10px]
+
+                        lg:-bottom-[12px]
                       "
                     >
                       {step.number}
@@ -372,16 +374,29 @@ export default function HowItWorks() {
                       TEXT
                   ================================================== */}
 
-                  <div className="mt-6 max-w-[230px] sm:mt-7">
+                  <div
+                    className="
+                      min-w-0
+                      pt-[2px]
+
+                      sm:mt-[22px]
+                      sm:max-w-[210px]
+                      sm:pt-0
+
+                      lg:mt-[25px]
+                    "
+                  >
                     <h3
                       className="
-                        text-[14px]
+                        text-[13px]
                         font-semibold
                         leading-[1.2]
                         tracking-[-0.015em]
                         text-white
 
-                        sm:text-[15px]
+                        sm:text-[14px]
+
+                        lg:text-[14px]
                       "
                     >
                       {step.title}
@@ -389,12 +404,16 @@ export default function HowItWorks() {
 
                     <p
                       className="
-                        mt-2
+                        mt-[6px]
+                        max-w-[240px]
                         text-[10px]
-                        leading-[1.6]
+                        leading-[1.5]
                         text-[#c9d4fa]
 
-                        sm:text-[11px]
+                        sm:mt-[8px]
+                        sm:text-[10px]
+
+                        lg:text-[10px]
                       "
                     >
                       {step.description}
@@ -413,20 +432,21 @@ export default function HowItWorks() {
         <Link
           href="/how-it-works"
           className="
-            mt-10
+            mt-[32px]
             flex
-            h-[36px]
+            h-[34px]
             w-fit
             items-center
-            gap-2
+            gap-[12px]
             rounded-[5px]
             border
             border-[#7387e8]
-            px-4
-            text-[10px]
+            px-[14px]
+            text-[9px]
             font-semibold
             text-white
             transition-all
+            duration-200
 
             hover:bg-white
             hover:text-[#06147f]
@@ -437,7 +457,7 @@ export default function HowItWorks() {
           Learn More
 
           <ArrowRight
-            size={14}
+            size={13}
             strokeWidth={2}
           />
         </Link>
