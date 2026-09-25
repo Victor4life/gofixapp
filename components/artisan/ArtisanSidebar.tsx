@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   ClipboardList,
   Home,
-  LayoutDashboard,
   LogOut,
   Search,
   Settings,
@@ -18,13 +17,43 @@ import {
 import { supabase } from "@/lib/supabase/client";
 
 const navItems = [
-  { label: "Dashboard", href: "/artisan", icon: Home },
-  { label: "Requests", href: "/artisan/requests", icon: ClipboardList, count: 2 },
-  { label: "Active Jobs", href: "/artisan/active-jobs", icon: BriefcaseBusiness },
-  { label: "Completed", href: "/artisan/completed", icon: CheckCircle2 },
-  { label: "Profile", href: "/artisan/profile", icon: UserRound },
-  { label: "Notifications", href: "/artisan/notifications", icon: Bell, count: 4 },
-  { label: "Settings", href: "/artisan/settings", icon: Settings },
+  {
+    label: "Dashboard",
+    href: "/artisan",
+    icon: Home,
+  },
+  {
+    label: "Requests",
+    href: "/artisan/requests",
+    icon: ClipboardList,
+    count: 2,
+  },
+  {
+    label: "Active Jobs",
+    href: "/artisan/active-jobs",
+    icon: BriefcaseBusiness,
+  },
+  {
+    label: "Completed",
+    href: "/artisan/completed",
+    icon: CheckCircle2,
+  },
+  {
+    label: "Profile",
+    href: "/artisan/profile",
+    icon: UserRound,
+  },
+  {
+    label: "Notifications",
+    href: "/artisan/notifications",
+    icon: Bell,
+    count: 4,
+  },
+  {
+    label: "Settings",
+    href: "/artisan/settings",
+    icon: Settings,
+  },
 ];
 
 export default function ArtisanSidebarPage() {
@@ -37,112 +66,192 @@ export default function ArtisanSidebarPage() {
   }
 
   return (
-    <aside className="sticky top-0 flex h-screen w-full flex-col bg-white px-4 py-6 shadow-2xl">
-      {/* Logo Section */}
-      <Link href="/" className="group mb-8 flex items-center gap-3 px-1">
-        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#000b76] text-white shadow-lg shadow-[#000b76]/20 transition-all duration-300 group-hover:scale-105 group-hover:shadow-xl">
-          <Wrench size={22} />
+    <aside className="sticky top-0 flex h-screen w-full flex-col overflow-hidden bg-[#000b76] px-4 py-6 text-white">
+      {/* =========================================================
+          LOGO
+      ========================================================= */}
+      <Link
+        href="/"
+        className="group mb-8 flex items-center gap-3 px-3"
+      >
+        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border-[3px] border-white text-white transition-all duration-300 group-hover:scale-105">
+          <span className="text-xl font-bold">G</span>
         </div>
+
         <div>
-          <span className="block text-xl font-black leading-none text-black">
+          <span className="block text-xl font-bold leading-none text-white">
             GoFix
           </span>
-          <span className="mt-1 block text-sm font-semibold text-[#000b76]">
+
+          <span className="mt-1 block text-[10px] font-medium tracking-wide text-white/60">
             Artisan Suite
           </span>
         </div>
       </Link>
 
-      {/* Search Bar */}
-<div className="relative mb-6 px-1">
-  <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-    <Search size={18} className="text-gray-400 transition-colors duration-300 group-focus-within:text-[#000b76]" />
-  </div>
-  <input
-    type="search"
-    placeholder="Search requests, jobs, or clients..."
-    className="h-11 w-full rounded-xl border border-gray-200 bg-gray-50 pl-11 pr-12 text-sm text-black placeholder:text-gray-400 transition-all duration-300 focus:border-[#000b76] focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#000b76]/10"
-  />
-  {/* Optional keyboard shortcut hint */}
-  <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-    <kbd className="hidden sm:inline-flex items-center gap-1 rounded-md bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-500 border border-gray-200">
-      <span className="text-xs">⌘</span>
-      <span className="text-xs">K</span>
-    </kbd>
-  </div>
-</div>
+      {/* =========================================================
+          SEARCH
+      ========================================================= */}
+      <div className="relative mb-7 px-1">
+        <Search
+          size={17}
+          className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-white/40"
+        />
 
-      {/* Navigation */}
-      <nav className="space-y-1.5">
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const isActive =
-            pathname === item.href ||
-            (item.href !== "/artisan" && pathname.startsWith(item.href));
+        <input
+          type="search"
+          placeholder="Search..."
+          className="
+            h-10 w-full rounded-xl
+            border border-white/10
+            bg-white/[0.07]
+            pl-10 pr-3
+            text-xs text-white
+            outline-none
+            placeholder:text-white/35
+            transition-all
+            focus:border-white/25
+            focus:bg-white/10
+            focus:ring-2
+            focus:ring-white/10
+          "
+        />
+      </div>
 
-          return (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={`group flex h-11 items-center gap-3 rounded-xl px-4 text-sm font-semibold transition-all duration-300 ${
-                isActive
-                  ? "bg-[#000b76] text-white shadow-lg shadow-[#000b76]/20"
-                  : "text-black hover:bg-gray-100"
-              }`}
-            >
-              <Icon
-                size={20}
-                className={`shrink-0 transition-all duration-300 ${
-                  isActive ? "text-white" : "text-gray-500 group-hover:text-[#000b76]"
-                }`}
-              />
-              <span className="min-w-0 flex-1 truncate">{item.label}</span>
-              {item.count ? (
-                <span
-                  className={`flex h-6 min-w-6 items-center justify-center rounded-full px-1.5 text-xs font-bold ${
+      {/* =========================================================
+          NAVIGATION
+      ========================================================= */}
+      <nav className="flex-1">
+        <p className="mb-3 px-4 text-[9px] font-bold uppercase tracking-[0.18em] text-white/35">
+          Workspace
+        </p>
+
+        <div className="space-y-1">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+
+            const isActive =
+              pathname === item.href ||
+              (item.href !== "/artisan" &&
+                pathname.startsWith(item.href));
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`
+                  group relative flex h-11 items-center gap-3
+                  rounded-xl px-4
+                  text-sm font-medium
+                  transition-all duration-200
+
+                  ${
                     isActive
-                      ? "bg-white/20 text-white"
-                      : "bg-gray-100 text-black"
-                  }`}
-                >
-                  {item.count}
+                      ? "bg-[#1264f5] text-white shadow-lg shadow-blue-950/20"
+                      : "text-white/65 hover:bg-white/[0.07] hover:text-white"
+                  }
+                `}
+              >
+                {/* Active indicator */}
+                {isActive && (
+                  <span className="absolute left-0 top-1/2 h-5 w-1 -translate-y-1/2 rounded-r-full bg-white" />
+                )}
+
+                <Icon
+                  size={19}
+                  strokeWidth={isActive ? 2.2 : 1.8}
+                  className={`
+                    shrink-0 transition-colors
+                    ${
+                      isActive
+                        ? "text-white"
+                        : "text-white/50 group-hover:text-white"
+                    }
+                  `}
+                />
+
+                <span className="min-w-0 flex-1 truncate">
+                  {item.label}
                 </span>
-              ) : null}
-            </Link>
-          );
-        })}
+
+                {item.count ? (
+                  <span
+                    className={`
+                      flex h-5 min-w-5 items-center justify-center
+                      rounded-full px-1.5 text-[10px] font-bold
+                      ${
+                        isActive
+                          ? "bg-white/20 text-white"
+                          : "bg-white/10 text-white/65"
+                      }
+                    `}
+                  >
+                    {item.count}
+                  </span>
+                ) : null}
+              </Link>
+            );
+          })}
+        </div>
       </nav>
 
-      {/* Bottom Section */}
-      <div className="mt-auto space-y-4 pt-6">
-        {/* Profile Tip Card */}
-        <div className="relative overflow-hidden rounded-2xl bg-[#000b76] p-4 shadow-lg transition-all duration-300 hover:shadow-xl">
-          {/* Decorative elements */}
-          <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-white/5 blur-2xl" />
-          <div className="absolute -bottom-8 -left-8 h-24 w-24 rounded-full bg-white/5 blur-2xl" />
-          
-{/*<div className="relative flex flex-1 items-center gap-4 rounded-xl bg-gradient-to-br from-[#000b76] to-[#0012a0] p-4 shadow-lg">
-  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 backdrop-blur-sm text-white shadow-sm">
-    <LayoutDashboard size={18} />
-  </div>
-  <div className="flex-1">
-    <p className="text-sm font-bold text-white">Keep profile fresh</p>
-    <p className="text-xs leading-relaxed text-blue-100">
-      Updated services help clients choose you faster.
-    </p>
-  </div>
-</div>  
+      {/* =========================================================
+          BOTTOM SECTION
+      ========================================================= */}
+      <div className="mt-auto space-y-4 pt-5">
+        {/* Profile Tip */}
+        <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.07] p-4">
+          {/* Decorative circles */}
+          <div className="absolute -right-8 -top-8 h-20 w-20 rounded-full bg-white/5 blur-2xl" />
 
-*/}      </div>
+          <div className="absolute -bottom-8 -left-8 h-20 w-20 rounded-full bg-blue-400/10 blur-2xl" />
 
-        {/* Logout Button */}
+          <div className="relative">
+            <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-white/10">
+              <UserRound size={17} className="text-white" />
+            </div>
+
+            <p className="text-xs font-bold text-white">
+              Keep your profile fresh
+            </p>
+
+            <p className="mt-1 text-[10px] leading-4 text-white/50">
+              Updated services help clients choose you faster.
+            </p>
+
+            <Link
+              href="/artisan/profile"
+              className="mt-3 inline-flex items-center text-[10px] font-semibold text-blue-200 transition-colors hover:text-white"
+            >
+              Update profile
+              <span className="ml-1">→</span>
+            </Link>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="h-px bg-white/10" />
+
+        {/* Logout */}
         <button
           type="button"
           onClick={handleLogout}
-          className="group flex h-11 w-full items-center gap-3 rounded-xl px-4 text-sm font-semibold text-black transition-all duration-300 hover:bg-red-50 hover:text-red-600"
+          className="
+            group flex h-11 w-full items-center gap-3
+            rounded-xl px-4
+            text-sm font-medium text-white/60
+            transition-all duration-200
+            hover:bg-red-500/10
+            hover:text-red-300
+          "
         >
-          <LogOut size={18} className="transition-transform duration-300 group-hover:translate-x-0.5" />
-          Logout
+          <LogOut
+            size={18}
+            strokeWidth={1.8}
+            className="transition-transform duration-200 group-hover:translate-x-0.5"
+          />
+
+          <span>Logout</span>
         </button>
       </div>
     </aside>
