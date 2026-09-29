@@ -13,7 +13,7 @@ import {
   Calendar,
   AlertCircle,
   ArrowRight,
-  Zap
+  Zap,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -84,252 +84,509 @@ export default function ActiveJobsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-50">
-      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#f7faff]">
+      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+
         {/* Header */}
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#000b76]/10 text-[#000b76]">
-              <BriefcaseBusiness size={24} />
-            </div>
+          <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+
             <div>
-              <h1 className="text-3xl font-bold text-slate-900">Active Jobs</h1>
-              <p className="text-sm text-slate-500 mt-1">
-                Manage ongoing work in real time
+              <div className="mb-3 flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-[#1264f5]" />
+                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#1264f5]">
+                  Artisan Workspace
+                </span>
+              </div>
+
+              <h1 className="text-2xl font-bold tracking-tight text-[#000b76] sm:text-3xl">
+                Active Jobs
+              </h1>
+
+              <p className="mt-2 max-w-xl text-sm leading-6 text-gray-500">
+                Manage your accepted jobs and keep track of work currently in
+                progress.
               </p>
             </div>
+
+            <Link
+              href="/artisan/requests"
+              className="group inline-flex w-fit items-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition-all duration-300 hover:border-[#000b76]/20 hover:text-[#000b76] hover:shadow-md"
+            >
+              Browse Requests
+              <ArrowRight
+                size={15}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
+            </Link>
           </div>
-          
-          {/* Stats Summary */}
-          <div className="mt-4 flex flex-wrap gap-3">
-            <div className="inline-flex items-center gap-2 rounded-full bg-yellow-50 px-3 py-1.5 text-xs font-medium text-yellow-700">
-              <Clock3 size={12} />
-              Accepted: {stats.accepted}
+        </div>
+
+        {/* Stats */}
+        <div className="mb-8 grid gap-4 sm:grid-cols-3">
+
+          {/* Accepted */}
+          <div className="group rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+                  Accepted
+                </p>
+
+                <p className="mt-3 text-3xl font-bold text-gray-900">
+                  {stats.accepted}
+                </p>
+
+                <p className="mt-1 text-xs text-gray-400">
+                  Ready to start
+                </p>
+              </div>
+
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-600 transition-transform duration-300 group-hover:scale-105">
+                <Clock3 size={19} />
+              </div>
             </div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-xs font-medium text-blue-700">
-              <Zap size={12} />
-              In Progress: {stats.inProgress}
+          </div>
+
+          {/* In Progress */}
+          <div className="group rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">
+                  In Progress
+                </p>
+
+                <p className="mt-3 text-3xl font-bold text-gray-900">
+                  {stats.inProgress}
+                </p>
+
+                <p className="mt-1 text-xs text-gray-400">
+                  Currently working
+                </p>
+              </div>
+
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-[#1264f5] transition-transform duration-300 group-hover:scale-105">
+                <Zap size={19} />
+              </div>
             </div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#000b76]/10 px-3 py-1.5 text-xs font-medium text-[#000b76]">
-              <BriefcaseBusiness size={12} />
-              Total Active: {stats.total}
+          </div>
+
+          {/* Total */}
+          <div className="group rounded-2xl bg-[#000b76] p-5 shadow-lg shadow-[#000b76]/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div className="flex items-start justify-between">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wide text-white/60">
+                  Total Active
+                </p>
+
+                <p className="mt-3 text-3xl font-bold text-white">
+                  {stats.total}
+                </p>
+
+                <p className="mt-1 text-xs text-white/60">
+                  All active jobs
+                </p>
+              </div>
+
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-white transition-transform duration-300 group-hover:scale-105">
+                <BriefcaseBusiness size={19} />
+              </div>
             </div>
           </div>
         </div>
 
         {/* Loading State */}
         {loading ? (
-          <div className="flex min-h-[400px] items-center justify-center rounded-2xl bg-white p-8 shadow-sm">
-            <div className="flex items-center gap-3">
-              <Loader2 className="animate-spin text-[#000b76]" size={24} />
-              <span className="text-sm text-slate-600">Loading active jobs...</span>
+          <div className="flex min-h-[420px] items-center justify-center rounded-2xl border border-gray-100 bg-white shadow-sm">
+            <div className="flex flex-col items-center gap-3">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#000b76]/5">
+                <Loader2
+                  className="animate-spin text-[#000b76]"
+                  size={22}
+                />
+              </div>
+
+              <span className="text-sm font-medium text-gray-500">
+                Loading active jobs...
+              </span>
             </div>
           </div>
         ) : jobs.length === 0 ? (
+
           /* Empty State */
-          <div className="flex min-h-[400px] flex-col items-center justify-center rounded-2xl bg-white p-8 text-center shadow-sm">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-slate-100">
-              <BriefcaseBusiness size={32} className="text-slate-400" />
+          <div className="relative flex min-h-[420px] flex-col items-center justify-center overflow-hidden rounded-2xl border border-gray-100 bg-white p-8 text-center shadow-sm">
+
+            <div className="absolute -right-20 -top-20 h-48 w-48 rounded-full bg-[#000b76]/5 blur-3xl" />
+            <div className="absolute -bottom-20 -left-20 h-48 w-48 rounded-full bg-blue-100/50 blur-3xl" />
+
+            <div className="relative flex h-20 w-20 items-center justify-center rounded-2xl bg-[#000b76]/5 text-[#000b76]">
+              <BriefcaseBusiness size={32} />
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-slate-900">No active jobs</h3>
-            <p className="mt-2 text-sm text-slate-500 max-w-sm">
-              Accepted jobs will appear here once you start working on them
+
+            <h3 className="relative mt-5 text-lg font-bold text-gray-900">
+              No active jobs
+            </h3>
+
+            <p className="relative mt-2 max-w-sm text-sm leading-6 text-gray-500">
+              Accepted jobs will appear here once you start working on them.
             </p>
+
             <Link
               href="/artisan/requests"
-              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#000b76] px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg"
+              className="group relative mt-6 inline-flex items-center gap-2 rounded-xl bg-[#000b76] px-6 py-3 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#00108f] hover:shadow-lg"
             >
               Browse Available Requests
-              <ArrowRight size={16} />
+              <ArrowRight
+                size={16}
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              />
             </Link>
           </div>
         ) : (
+
           /* Jobs List */
-          <div className="space-y-4">
-            {jobs.map((job, index) => {
-              const isAccepted = job.status === "accepted";
-              const isInProgress = job.status === "in_progress";
-              const isUpdating = updatingJobId === job.id;
-              
-              return (
-                <div
-                  key={job.id}
-                  className="group relative overflow-hidden rounded-2xl border bg-white p-6 transition-all duration-300 hover:shadow-lg"
-                  style={{
-                    animation: `fadeIn 0.3s ease-out ${index * 0.05}s both`
-                  }}
-                >
-                  {/* Status indicator line */}
-                  <div className={`absolute left-0 top-0 h-full w-1 ${
-                    isAccepted ? "bg-yellow-500" : "bg-blue-500"
-                  }`} />
-                  
-                  <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-                    {/* Left Section - Job Info */}
-                    <div className="flex-1 space-y-3">
-                      <div className="flex items-start justify-between">
+          <div>
+
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <h2 className="text-lg font-bold text-gray-900">
+                  Current Jobs
+                </h2>
+
+                <p className="mt-1 text-xs text-gray-500">
+                  {jobs.length} active{" "}
+                  {jobs.length === 1 ? "job" : "jobs"}
+                </p>
+              </div>
+
+              <div className="hidden items-center gap-2 rounded-full bg-white px-3 py-1.5 text-[10px] font-medium text-gray-500 shadow-sm ring-1 ring-gray-100 sm:flex">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-500" />
+                Live updates
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              {jobs.map((job, index) => {
+                const isAccepted = job.status === "accepted";
+                const isInProgress = job.status === "in_progress";
+                const isUpdating = updatingJobId === job.id;
+
+                return (
+                  <div
+                    key={job.id}
+                    className="group relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg sm:p-6"
+                    style={{
+                      animation: `fadeIn 0.3s ease-out ${
+                        index * 0.05
+                      }s both`,
+                    }}
+                  >
+
+                    {/* Status indicator */}
+                    <div
+                      className={`absolute left-0 top-0 h-full w-1 ${
+                        isAccepted
+                          ? "bg-amber-400"
+                          : "bg-[#1264f5]"
+                      }`}
+                    />
+
+                    <div className="pl-2">
+
+                      {/* Job Header */}
+                      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+
                         <div className="flex items-center gap-3">
-                          <div className={`flex h-10 w-10 items-center justify-center rounded-xl ${
-                            isAccepted ? "bg-yellow-100" : "bg-blue-100"
-                          }`}>
+                          <div
+                            className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-xl ${
+                              isAccepted
+                                ? "bg-amber-50 text-amber-600"
+                                : "bg-blue-50 text-[#1264f5]"
+                            }`}
+                          >
                             {isAccepted ? (
-                              <Clock3 size={18} className="text-yellow-600" />
+                              <Clock3 size={19} />
                             ) : (
-                              <Zap size={18} className="text-blue-600" />
+                              <Zap size={19} />
                             )}
                           </div>
+
                           <div>
-                            <p className="font-semibold text-slate-900">
+                            <p className="text-sm font-bold text-gray-900">
                               Job #{job.id.slice(0, 8)}
                             </p>
-                            <div className="flex items-center gap-2 mt-1">
-                              <div className={`h-2 w-2 rounded-full ${
-                                isAccepted ? "bg-yellow-500 animate-pulse" : "bg-blue-500 animate-pulse"
-                              }`} />
-                              <p className="text-sm font-medium capitalize">
-                                {job.status === "accepted" ? "Accepted - Ready to Start" : "In Progress"}
+
+                            <div className="mt-1 flex items-center gap-2">
+                              <span
+                                className={`h-1.5 w-1.5 rounded-full ${
+                                  isAccepted
+                                    ? "animate-pulse bg-amber-500"
+                                    : "animate-pulse bg-[#1264f5]"
+                                }`}
+                              />
+
+                              <p className="text-xs font-medium text-gray-500">
+                                {job.status === "accepted"
+                                  ? "Accepted · Ready to Start"
+                                  : "In Progress"}
                               </p>
                             </div>
                           </div>
                         </div>
-                      </div>
 
-                      {/* Job Details Grid */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                        <div className="flex items-center gap-2">
-                          <Wrench size={14} className="text-slate-400" />
-                          <span className="text-sm text-slate-600">
-                            Service ID: <span className="font-mono text-xs">{job.service_id.slice(0, 12)}...</span>
-                          </span>
-                        </div>
-                        
-                        <div className="flex items-center gap-2">
-                          <User size={14} className="text-slate-400" />
-                          <span className="text-sm text-slate-600">
-                            Client ID: <span className="font-mono text-xs">{job.client_id?.slice(0, 12)}...</span>
-                          </span>
-                        </div>
-                        
-                        <div className="flex items-center gap-2">
-                          <Calendar size={14} className="text-slate-400" />
-                          <span className="text-sm text-slate-600">
-                            Created: {new Date(job.created_at).toLocaleDateString('en-US', {
-                              month: 'short',
-                              day: 'numeric',
-                              year: 'numeric'
-                            })}
-                          </span>
-                        </div>
-                        
-                        <div className="flex items-center gap-2">
-                          <Clock3 size={14} className="text-slate-400" />
-                          <span className="text-sm text-slate-600">
-                            Time: {new Date(job.created_at).toLocaleTimeString('en-US', {
-                              hour: '2-digit',
-                              minute: '2-digit'
-                            })}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Right Section - Actions */}
-                    <div className="flex-shrink-0">
-                      {isAccepted && (
-                        <button
-                          onClick={() => updateStatus(job.id, "in_progress")}
-                          disabled={isUpdating}
-                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-orange-500 px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
+                        {/* Status Badge */}
+                        <div
+                          className={`inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1.5 text-[10px] font-bold ${
+                            isAccepted
+                              ? "bg-amber-50 text-amber-700"
+                              : "bg-blue-50 text-blue-700"
+                          }`}
                         >
-                          {isUpdating ? (
+                          {isAccepted ? (
                             <>
-                              <Loader2 size={16} className="animate-spin" />
-                              Starting...
+                              <Clock3 size={11} />
+                              Ready to Start
                             </>
                           ) : (
                             <>
-                              <PlayCircle size={16} />
-                              Start Job
+                              <Zap size={11} />
+                              In Progress
                             </>
                           )}
-                        </button>
-                      )}
+                        </div>
+                      </div>
 
+                      {/* Details */}
+                      <div className="mt-5 grid gap-3 border-t border-gray-100 pt-5 sm:grid-cols-2 lg:grid-cols-4">
+
+                        <div className="flex min-w-0 items-center gap-3">
+                          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gray-50 text-gray-400">
+                            <Wrench size={15} />
+                          </div>
+
+                          <div className="min-w-0">
+                            <p className="text-[9px] font-bold uppercase tracking-wider text-gray-400">
+                              Service ID
+                            </p>
+
+                            <p className="mt-0.5 truncate font-mono text-[11px] text-gray-600">
+                              {job.service_id.slice(0, 12)}...
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex min-w-0 items-center gap-3">
+                          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gray-50 text-gray-400">
+                            <User size={15} />
+                          </div>
+
+                          <div className="min-w-0">
+                            <p className="text-[9px] font-bold uppercase tracking-wider text-gray-400">
+                              Client ID
+                            </p>
+
+                            <p className="mt-0.5 truncate font-mono text-[11px] text-gray-600">
+                              {job.client_id?.slice(0, 12)}...
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gray-50 text-gray-400">
+                            <Calendar size={15} />
+                          </div>
+
+                          <div>
+                            <p className="text-[9px] font-bold uppercase tracking-wider text-gray-400">
+                              Created
+                            </p>
+
+                            <p className="mt-0.5 text-[11px] font-medium text-gray-600">
+                              {new Date(
+                                job.created_at
+                              ).toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              })}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gray-50 text-gray-400">
+                            <Clock3 size={15} />
+                          </div>
+
+                          <div>
+                            <p className="text-[9px] font-bold uppercase tracking-wider text-gray-400">
+                              Time
+                            </p>
+
+                            <p className="mt-0.5 text-[11px] font-medium text-gray-600">
+                              {new Date(
+                                job.created_at
+                              ).toLocaleTimeString("en-US", {
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              })}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Progress */}
                       {isInProgress && (
-                        <button
-                          onClick={() => updateStatus(job.id, "completed")}
-                          disabled={isUpdating}
-                          className="inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:scale-105 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto"
-                        >
-                          {isUpdating ? (
-                            <>
-                              <Loader2 size={16} className="animate-spin" />
-                              Completing...
-                            </>
-                          ) : (
-                            <>
-                              <CheckCircle2 size={16} />
-                              Complete Job
-                            </>
-                          )}
-                        </button>
+                        <div className="mt-5 rounded-xl bg-blue-50/60 p-4">
+                          <div className="mb-2 flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#1264f5]" />
+
+                              <span className="text-[10px] font-semibold text-[#000b76]">
+                                Job Progress
+                              </span>
+                            </div>
+
+                            <span className="text-[10px] text-gray-400">
+                              In progress...
+                            </span>
+                          </div>
+
+                          <div className="h-1.5 overflow-hidden rounded-full bg-white">
+                            <div
+                              className="h-full animate-pulse rounded-full bg-gradient-to-r from-[#000b76] to-[#1264f5]"
+                              style={{ width: "65%" }}
+                            />
+                          </div>
+                        </div>
                       )}
+
+                      {/* Accepted Notice */}
+                      {isAccepted && (
+                        <div className="mt-5 flex items-start gap-3 rounded-xl border border-amber-100 bg-amber-50/70 p-3.5">
+                          <AlertCircle
+                            size={15}
+                            className="mt-0.5 shrink-0 text-amber-600"
+                          />
+
+                          <p className="text-[11px] leading-5 text-amber-700">
+                            This job is ready to start. Click{" "}
+                            <span className="font-semibold">
+                              "Start Job"
+                            </span>{" "}
+                            when you begin working on it.
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Bottom Action Row */}
+                      <div className="mt-5 flex flex-col gap-3 border-t border-gray-100 pt-5 sm:flex-row sm:items-center sm:justify-between">
+
+                        <p className="text-[10px] text-gray-400">
+                          Job ID:{" "}
+                          <span className="font-mono">
+                            {job.id.slice(0, 16)}
+                          </span>
+                        </p>
+
+                        <div className="w-full sm:w-auto">
+
+                          {isAccepted && (
+                            <button
+                              onClick={() =>
+                                updateStatus(
+                                  job.id,
+                                  "in_progress"
+                                )
+                              }
+                              disabled={isUpdating}
+                              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#000b76] px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-[#00108f] hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                            >
+                              {isUpdating ? (
+                                <>
+                                  <Loader2
+                                    size={15}
+                                    className="animate-spin"
+                                  />
+                                  Starting...
+                                </>
+                              ) : (
+                                <>
+                                  <PlayCircle size={15} />
+                                  Start Job
+                                </>
+                              )}
+                            </button>
+                          )}
+
+                          {isInProgress && (
+                            <button
+                              onClick={() =>
+                                updateStatus(
+                                  job.id,
+                                  "completed"
+                                )
+                              }
+                              disabled={isUpdating}
+                              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-green-700 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
+                            >
+                              {isUpdating ? (
+                                <>
+                                  <Loader2
+                                    size={15}
+                                    className="animate-spin"
+                                  />
+                                  Completing...
+                                </>
+                              ) : (
+                                <>
+                                  <CheckCircle2 size={15} />
+                                  Complete Job
+                                </>
+                              )}
+                            </button>
+                          )}
+                        </div>
+                      </div>
                     </div>
                   </div>
-
-                  {/* Progress Bar for In Progress Jobs */}
-                  {isInProgress && (
-                    <div className="mt-5">
-                      <div className="flex items-center justify-between text-xs text-slate-500 mb-1">
-                        <span>Job Progress</span>
-                        <span>In progress...</span>
-                      </div>
-                      <div className="h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
-                        <div 
-                          className="h-full rounded-full bg-gradient-to-r from-blue-500 to-indigo-500 animate-pulse"
-                          style={{ width: "65%" }}
-                        />
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Time indicator for accepted jobs */}
-                  {isAccepted && (
-                    <div className="mt-4 flex items-center gap-2 p-3 rounded-xl bg-yellow-50 border border-yellow-100">
-                      <AlertCircle size={14} className="text-yellow-600" />
-                      <p className="text-xs text-yellow-700">
-                        This job is ready to start. Click "Start Job" when you begin working on it.
-                      </p>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         )}
 
-        {/* Footer Stats */}
+        {/* Footer */}
         {jobs.length > 0 && (
-          <div className="mt-8 rounded-2xl bg-white p-4 shadow-sm">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#000b76]/10">
-                  <BriefcaseBusiness size={14} className="text-[#000b76]" />
+          <div className="mt-7 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#000b76]/5 text-[#000b76]">
+                  <BriefcaseBusiness size={15} />
                 </div>
-                <p className="text-sm text-slate-600">
-                  Showing {jobs.length} active job{jobs.length !== 1 ? "s" : ""}
+
+                <p className="text-xs text-gray-500">
+                  Showing{" "}
+                  <span className="font-semibold text-gray-700">
+                    {jobs.length}
+                  </span>{" "}
+                  active job{jobs.length !== 1 ? "s" : ""}
                 </p>
               </div>
-              <div className="flex gap-3">
+
+              <div className="flex flex-wrap gap-4">
                 <Link
                   href="/artisan/requests"
-                  className="text-sm text-[#000b76] hover:underline"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-[#000b76] transition hover:text-[#1264f5]"
                 >
-                  Browse More Requests →
+                  Browse More Requests
+                  <ArrowRight size={13} />
                 </Link>
+
                 <Link
                   href="/artisan/completed"
-                  className="text-sm text-slate-500 hover:text-slate-700"
+                  className="text-xs font-semibold text-gray-400 transition hover:text-gray-700"
                 >
                   View Completed
                 </Link>
@@ -346,6 +603,7 @@ export default function ActiveJobsPage() {
             opacity: 0;
             transform: translateY(10px);
           }
+
           to {
             opacity: 1;
             transform: translateY(0);
